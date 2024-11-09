@@ -31,6 +31,10 @@ group :development, :test do
   gem "brakeman", require: false
 
   gem "rubocop-rails-omakase", require: false
+
+  gem "lookbook"
+  gem "listen"
+  gem "actioncable"
 end
 
 group :development do
