@@ -18,7 +18,7 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module A
+module TrackTracker
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
@@ -38,5 +38,14 @@ module A
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.view_component.view_component_path = "app/frontend/components"
+    config.eager_load_paths << Rails.root.join("app", "frontend", "components")
+    config.view_component.preview_paths << Rails.root.join("app", "frontend", "components")
+
+    config.lookbook.preview_layout = "lookbook/component_preview"
+    config.lookbook.preview_display_options = {
+      theme: %w[light dark],
+    }
   end
 end
