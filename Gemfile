@@ -35,6 +35,8 @@ group :development, :test do
   gem "lookbook"
   gem "listen"
   gem "actioncable"
+
+  gem "rspec-rails"
 end
 
 group :development do
