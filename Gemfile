@@ -9,6 +9,8 @@ gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
+
+gem "view_component"
 gem "tailwindcss-rails"
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
