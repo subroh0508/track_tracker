@@ -4,35 +4,25 @@ require "rails_helper"
 
 RSpec.describe InputField::Component, type: :component do
   it "renders input field" do
-    render_inline described_class.new(classes: "max-w-sm mx-auto") do |c|
-      c.with_item do
-        [
-          c.render(Form::LabelComponent.new(
-            label_for: "id",
-            classes: "block",
-          )) { "ID" },
-          c.render(Form::InputComponent.new(
-            type: "text",
-            id: "id",
-            classes: "block w-full p-2.5",
-          )),
-        ].join.html_safe
-      end
-
-      c.with_item do
-        [
-          c.render(Form::LabelComponent.new(
-            label_for: "password",
-            classes: "block",
-          )) { "Password" },
-          c.render(Form::InputComponent.new(
-            type: "password",
-            id: "password",
-            classes: "block w-full p-2.5",
-          )),
-        ].join.html_safe
-      end
-    end
+    render_inline described_class.new(
+      items: [
+        InputField::Item.new(
+          id: "id",
+          label: "ID",
+          type: "text",
+          placeholder: nil,
+          required: nil,
+        ),
+        InputField::Item.new(
+          id: "password",
+          label: "Password",
+          type: "password",
+          placeholder: nil,
+          required: nil,
+        ),
+      ],
+      classes: "max-w-sm mx-auto",
+    )
 
     expect(page.find("form")["class"]).to include(
       "max-w-sm",
@@ -45,29 +35,21 @@ RSpec.describe InputField::Component, type: :component do
   end
 
   it "renders input field with button" do
-    render_inline described_class.new do |c|
-      c.with_item do
-        [
-          c.render(Form::LabelComponent.new(
-            label_for: "email",
-            classes: "block",
-          )) { "Email" },
-          c.render(Form::InputComponent.new(
-            type: "email",
-            id: "email",
-            classes: "block w-full p-2.5",
-          )),
-        ].join.html_safe
-      end
-
-      c.with_button(
-        variant: Button::CONTAINED,
-        type: "submit",
-      ) { "Submit" }
-    end
+    render_inline described_class.new(
+      items: [
+        InputField::Item.new(
+          id: "email",
+          label: "Email",
+          type: "email",
+          placeholder: "name@example.com",
+          required: true,
+        ),
+      ],
+      button_label: "Submit",
+    )
 
     expect(page).to have_content("Email")
-    expect(page).to have_selector("input[id='email']")
+    expect(page).to have_selector("input[id='email'][placeholder='name@example.com'][required]")
     expect(page).to have_button("Submit")
   end
 end

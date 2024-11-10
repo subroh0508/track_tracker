@@ -1,14 +1,31 @@
 <form class="<%= classes %>">
-  <% if items? %>
-    <% items.each do |item| %>
-      <div class="mb-5">
-        <%= item %>
-      </div>
-    <% end %>
+  <% items.each do |item| %>
+    <div class="mb-5">
+      <%= render Form::LabelComponent.new(
+        label_for: item.id,
+        classes: "block",
+      ) do %>
+        <%= item.label %>
+      <% end %>
+      <%= render Form::InputComponent.new(
+        type: item.type,
+        id: item.id,
+        placeholder: item.placeholder,
+        required: item.required,
+        classes: "block w-full p-2.5",
+      ) do %>
+        <%= item.value || "" %>
+      <% end %>
+    </div>
   <% end %>
-  <% if button? %>
+  <% if has_button? %>
     <div class="flex justify-end">
-      <%= button %>
+      <%= render Button::Component.new(
+        variant: Button::CONTAINED,
+        type: "submit",
+      ) do %>
+        <%= button_label %>
+      <% end %>
     </div>
   <% end %>
 </form>
