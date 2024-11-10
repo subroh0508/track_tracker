@@ -2,8 +2,15 @@
 
 module Card
   class DescriptionComponent < ViewComponent::Base
+    def initialize(classes: "")
+      @classes = classes
+    end
+
     def classes
-      "mb-3 #{text_style}"
+      [
+        @classes,
+        text_style,
+      ].join(" ")
     end
 
     private

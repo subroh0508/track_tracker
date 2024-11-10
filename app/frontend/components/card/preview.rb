@@ -6,7 +6,11 @@ module Card
     def default
       render Card::Component.new(classes: "max-w-sm") do |c|
         c.with_header { "illumination STARS" }
-        c.with_description { "Infinite Possibilities, Shining in Their Eyes" }
+        c.with_description do
+          c.render Card::DescriptionComponent.new do
+            "Infinite Possibilities, Shining in Their Eyes"
+          end
+        end
       end
     end
 
@@ -14,7 +18,11 @@ module Card
       render Card::Component.new(classes: "max-w-sm") do |c|
         c.with_image(src: "https://i.ytimg.com/vi/Bsm9rQc7uew/hq720.jpg")
         c.with_header { "Shinography" }
-        c.with_description { "SHINY COLORS - Topic" }
+        c.with_description do
+          c.render Card::DescriptionComponent.new do
+            "SHINY COLORS - Topic"
+          end
+        end
       end
     end
     # @!endgroup
