@@ -1,0 +1,14 @@
+<form class="<%= classes %>">
+  <% if items? %>
+    <% items.each do |item| %>
+      <div class="mb-5">
+        <%= item %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if button? %>
+    <div class="flex justify-end">
+      <%= button %>
+    </div>
+  <% end %>
+</form>

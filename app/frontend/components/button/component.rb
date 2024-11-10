@@ -6,10 +6,11 @@ module Button
   OUTLINED = "outlined"
 
   class Component < ViewComponent::Base
-    attr_reader :variant
+    attr_reader :variant, :type
 
-    def initialize(variant: Button::TEXT)
+    def initialize(variant: Button::TEXT, type: "button")
       @variant = variant
+      @type = type
     end
 
     def classes
@@ -17,7 +18,6 @@ module Button
         text_style,
         border,
         padding,
-        margin,
       ].join(" ")
     end
 
@@ -39,10 +39,6 @@ module Button
 
     def padding
       "px-5 py-2.5"
-    end
-
-    def margin
-      "me-2 mb-2"
     end
 
     def common_text_style
