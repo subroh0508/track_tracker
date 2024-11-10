@@ -15,7 +15,9 @@ RSpec.describe Card::Component, type: :component do
   it "renders card" do
     render_inline described_class.new(classes: "max-w-sm") do |c|
       c.with_header { title }
-      c.with_description { description }
+      c.with_description do
+        c.render(Card::DescriptionComponent.new) { description }
+      end
     end
 
     expect(page.find("div.max-w-sm")["class"]).to include(*classes, "p-6")
@@ -27,7 +29,9 @@ RSpec.describe Card::Component, type: :component do
     render_inline described_class.new(classes: "max-w-sm") do |c|
       c.with_image(src: "https://example.com/image.jpg")
       c.with_header { title }
-      c.with_description { description }
+      c.with_description do
+        c.render(Card::DescriptionComponent.new) { description }
+      end
     end
 
     expect(page.find("div.max-w-sm")["class"]).to include(*classes)
