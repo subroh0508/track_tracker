@@ -24,9 +24,8 @@ module Form
               label_for: "name",
             )) { "Name" },
             c.render(Form::InputComponent.new(
-              type: "name",
+              type: "text",
               id: "name",
-              required: true,
             )),
           ].join.html_safe
         end
