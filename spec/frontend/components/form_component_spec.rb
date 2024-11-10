@@ -34,10 +34,10 @@ RSpec.describe Form::Component, type: :component do
       "max-w-sm",
       "mx-auto",
     )
-    expect(page).to have_field("ID")
-    expect(page.find_by_id("id")).not_to be_nil
-    expect(page).to have_field("Password")
-    expect(page.find_by_id("password")).not_to be_nil
+    expect(page).to have_content("ID")
+    expect(page).to have_selector("input[id='id']")
+    expect(page).to have_content("Password")
+    expect(page).to have_selector("input[id='password']")
   end
 
   it "renders form" do
@@ -60,6 +60,8 @@ RSpec.describe Form::Component, type: :component do
       ) { "Submit" }
     end
 
+    expect(page).to have_content("Email")
+    expect(page).to have_selector("input[id='email']")
     expect(page).to have_button("Submit")
   end
 end
