@@ -35,6 +35,10 @@ group :development, :test do
   gem "lookbook"
   gem "listen"
   gem "actioncable"
+
+  gem "rspec-rails"
+
+  gem "capybara"
 end
 
 group :development do
