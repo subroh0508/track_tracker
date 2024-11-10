@@ -9,7 +9,7 @@ RSpec.describe Button::Component, type: :component do
     render_inline(described_class.new(variant: Button::TEXT)) { caption }
 
     expect(page).to have_text(caption)
-    expect(page.find("button")['class']).to include(
+    expect(page.find("button")["class"]).to include(
       "text-primary-700",
       "hover:bg-primary-100",
       "dark:text-primary-500",
@@ -22,7 +22,7 @@ RSpec.describe Button::Component, type: :component do
     render_inline(described_class.new(variant: Button::CONTAINED)) { caption }
 
     expect(page).to have_text(caption)
-    expect(page.find("button")['class']).to include(
+    expect(page.find("button")["class"]).to include(
       "text-white",
       "bg-primary-700",
       "hover:bg-primary-800",
@@ -36,7 +36,7 @@ RSpec.describe Button::Component, type: :component do
     render_inline(described_class.new(variant: Button::OUTLINED)) { caption }
 
     expect(page).to have_text(caption)
-    expect(page.find("button")['class']).to include(
+    expect(page.find("button")["class"]).to include(
       "text-primary-700",
       "hover:text-white",
       "hover:bg-primary-800",

@@ -9,7 +9,7 @@ module Form
     end
 
     def classes
-      "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      "block mb-2 text-sm font-medium text-neutral-900 dark:text-white"
     end
   end
 end

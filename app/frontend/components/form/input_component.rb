@@ -56,7 +56,7 @@ module Form
     end
 
     def light_border_style
-      "border-neutral-300 focus:ring-blue-500 focus:border-blue-500"
+      "border-neutral-300 focus:ring-primary-500 focus:border-primary-500"
     end
 
     def dark_border_style
