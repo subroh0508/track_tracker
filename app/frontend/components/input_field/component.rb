@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Form
+module InputField
   class Component < ViewComponent::Base
     renders_many :items
     renders_one :button, Button::Component

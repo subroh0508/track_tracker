@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe Form::Component, type: :component do
-  it "renders form" do
+RSpec.describe InputField::Component, type: :component do
+  it "renders input field" do
     render_inline described_class.new(classes: "max-w-sm mx-auto") do |c|
       c.with_item do
         [
@@ -40,7 +40,7 @@ RSpec.describe Form::Component, type: :component do
     expect(page).to have_selector("input[id='password']")
   end
 
-  it "renders form" do
+  it "renders input field with button" do
     render_inline described_class.new do |c|
       c.with_item do
         [

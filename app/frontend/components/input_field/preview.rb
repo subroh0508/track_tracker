@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module Form
+module InputField
   class Preview < ViewComponent::Preview
     def default
-      render Form::Component.new(classes: "max-w-sm mx-auto") do |c|
+      render InputField::Component.new(classes: "max-w-sm mx-auto") do |c|
         c.with_item do
           [
             c.render(Form::LabelComponent.new(
