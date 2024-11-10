@@ -37,6 +37,8 @@ group :development, :test do
   gem "actioncable"
 
   gem "rspec-rails"
+
+  gem "capybara"
 end
 
 group :development do
