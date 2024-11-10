@@ -8,16 +8,21 @@ module Button
   class Component < ViewComponent::Base
     attr_reader :variant, :type
 
-    def initialize(variant: Button::TEXT, type: "button")
+    def initialize(
+      variant: Button::TEXT,
+      type: "button",
+      classes: "px-5 py-2.5"
+    )
       @variant = variant
       @type = type
+      @classes = classes
     end
 
     def classes
       [
+        @classes,
         text_style,
         border,
-        padding,
       ].join(" ")
     end
 

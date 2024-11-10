@@ -8,17 +8,19 @@ module Form
       type: "text",
       id: "",
       placeholder: nil,
-      required: false
+      required: false,
+      classes: ""
     )
       @type = type
       @id = id
       @placeholder = placeholder
       @required = required
+      @classes = classes
     end
 
     def classes
       [
-        "block w-full p-2.5",
+        @classes,
         text_style,
         border_style,
       ].join(" ")

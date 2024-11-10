@@ -8,12 +8,14 @@ module InputField
           [
             c.render(Form::LabelComponent.new(
               label_for: "email",
+              classes: "block",
             )) { "Email" },
             c.render(Form::InputComponent.new(
               type: "email",
               id: "email",
               placeholder: "name@example.com",
               required: true,
+              classes: "block w-full p-2.5",
             )),
           ].join.html_safe
         end
@@ -22,10 +24,12 @@ module InputField
           [
             c.render(Form::LabelComponent.new(
               label_for: "name",
+              classes: "block",
             )) { "Name" },
             c.render(Form::InputComponent.new(
               type: "text",
               id: "name",
+              classes: "block w-full p-2.5",
             )),
           ].join.html_safe
         end

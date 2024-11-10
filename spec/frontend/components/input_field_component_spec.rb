@@ -9,10 +9,12 @@ RSpec.describe InputField::Component, type: :component do
         [
           c.render(Form::LabelComponent.new(
             label_for: "id",
+            classes: "block",
           )) { "ID" },
           c.render(Form::InputComponent.new(
             type: "text",
             id: "id",
+            classes: "block w-full p-2.5",
           )),
         ].join.html_safe
       end
@@ -21,10 +23,12 @@ RSpec.describe InputField::Component, type: :component do
         [
           c.render(Form::LabelComponent.new(
             label_for: "password",
+            classes: "block",
           )) { "Password" },
           c.render(Form::InputComponent.new(
             type: "password",
             id: "password",
+            classes: "block w-full p-2.5",
           )),
         ].join.html_safe
       end
@@ -46,10 +50,12 @@ RSpec.describe InputField::Component, type: :component do
         [
           c.render(Form::LabelComponent.new(
             label_for: "email",
+            classes: "block",
           )) { "Email" },
           c.render(Form::InputComponent.new(
             type: "email",
             id: "email",
+            classes: "block w-full p-2.5",
           )),
         ].join.html_safe
       end

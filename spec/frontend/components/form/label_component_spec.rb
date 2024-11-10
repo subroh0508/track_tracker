@@ -11,7 +11,6 @@ RSpec.describe Form::LabelComponent, type: :component do
 
     expect(page).to have_text(caption)
     expect(page.find("label")["class"]).to include(
-      "block",
       "text-neutral-900",
       "dark:text-white",
     )
