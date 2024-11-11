@@ -35,6 +35,7 @@ module Api
           title: item["snippet"]["title"],
           channel_title: item["snippet"]["channelTitle"],
           video_id: item["id"]["videoId"],
+          thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
         }
       }
     end
