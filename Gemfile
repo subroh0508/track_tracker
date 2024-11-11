@@ -19,6 +19,8 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem "http"
+
 gem "bootsnap", require: false
 
 gem "kamal", require: false
