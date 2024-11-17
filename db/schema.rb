@@ -25,7 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000003) do
   end
 
   create_table "playlists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.integer "type", null: false
+    t.integer "type", default: 0, null: false
     t.string "youtube_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

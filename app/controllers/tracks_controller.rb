@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
   def search
-    client = Api::Youtube.new
+    client = Api::Youtube::Search.new
 
     if params.key?(:query)
       @youtube_tracks = client.search(

@@ -1,8 +1,12 @@
 class Playlist < ApplicationRecord
-  enum type: { album: 0, official: 1, user: 2 }
+  enum :type, { album: 0, official: 1, user: 2 }
 
   has_many :translations, class_name: 'Translations::Playlist'
   has_many :tracks, through: :playlist_tracks
+
+  def title(locale)
+    translations.find_by!(locale: locale).title
+  end
 
   def build(params)
     playlist = Playlist.new(

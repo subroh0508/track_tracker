@@ -1,4 +1,32 @@
-<div>
-  <h1 class="font-bold text-4xl">Playlist#show</h1>
-  <p>Find me in app/views/playlist/show.html.erb</p>
+<%= render SearchInput::Component.new(
+  id: "youtube_id",
+  label: "Go",
+  placeholder: "Input YouTube Playlist ID...",
+  url: "show",
+  method: "get",
+  data: { turbo_frame: "playlist" },
+  classes: "max-w-3xl mx-auto mb-5",
+) %>
+<div class="max-w-3xl mx-auto">
+  <%= turbo_frame_tag "playlist" do %>
+    <% if @response.present? %>
+      <%= render Card::Component.new(
+        classes: "max-w-3xl mb-5",
+      ) do |component| %>
+        <% component.with_header do %>
+          <%= @response[:title] %>
+        <% end %>
+        <% component.with_description do %>
+          <iframe allowfullscreen
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            src="http://www.youtube.com/embed/videoseries?list=<%= @response[:youtube_id] %>"
+            width="100%"
+            height="381">
+          </iframe>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

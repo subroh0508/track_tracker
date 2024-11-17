@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get "playlists/search"
   get "playlists/show"
+  get "playlists/show/:id", to: "playlists#show"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
