@@ -27,7 +27,7 @@ RSpec.describe Card::Component, type: :component do
 
   it "renders card with image" do
     render_inline described_class.new(classes: "max-w-sm") do |c|
-      c.with_image do
+      c.with_thumbnail do
         c.render(Card::ImageComponent.new(src: "https://example.com/image.jpg"))
       end
       c.with_header { title }
