@@ -9,7 +9,7 @@ class PlaylistsController < ApplicationController
             id: track.id,
             title: track.localized_title("ja"),
           }
-        }
+        },
       }
     }
   end
