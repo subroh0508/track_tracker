@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_17_000002) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_17_000003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "playlist_tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "sort", null: false
+    t.uuid "playlist_id", null: false
+    t.uuid "track_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_playlist_tracks_on_playlist_id"
+    t.index ["track_id"], name: "index_playlist_tracks_on_track_id"
+  end
 
   create_table "playlists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "type", null: false
@@ -45,6 +55,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000002) do
     t.index ["track_id"], name: "index_translations_tracks_on_track_id"
   end
 
+  add_foreign_key "playlist_tracks", "playlists"
+  add_foreign_key "playlist_tracks", "tracks"
   add_foreign_key "translations_playlists", "playlists"
   add_foreign_key "translations_tracks", "tracks"
 end
