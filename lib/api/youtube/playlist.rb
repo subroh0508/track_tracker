@@ -5,22 +5,16 @@ require "json"
 
 module Api
   module Youtube
-    class Playlist
+    class Playlist < Api::Youtube::Base
       BASE_URL = "https://www.googleapis.com/youtube/v3/playlists"
 
       private_constant :BASE_URL
-
-      def initialize
-        @api_key = ENV["YOUTUBE_API_KEY"]
-        @logger = Logger.new(STDOUT)
-        @http = HTTP.use(logging: { logger: logger })
-      end
 
       def fetch(id)
         params = {
           key: api_key,
           id: id,
-          part: "snippet,localizations",
+          part: "snippet,localizations,contentDetails",
         }
 
         response = http.get(BASE_URL, params: params)
@@ -30,13 +24,12 @@ module Api
           {
             id: item["id"],
             title: localized_title(item, "ja"),
+            item_count: item["contentDetails"]["itemCount"],
           }
         }
       end
 
       private
-
-      attr_reader :api_key, :logger, :http
 
       def localized_title(item, locale)
         value = item.dig("localizations", locale)

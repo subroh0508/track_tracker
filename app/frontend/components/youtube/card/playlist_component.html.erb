@@ -11,6 +11,12 @@
     <%= title %>
   <% end %>
   <% component.with_description do %>
-
+    <% if tracks.present? %>
+      <ol>
+        <% tracks.each_with_index do |track, i| %>
+          <li><%= "#{i + 1}. #{track[:title]}" %></li>
+        <% end %>
+      </ol>
+    <% end %>
   <% end %>
 <% end %>

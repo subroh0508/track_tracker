@@ -5,16 +5,10 @@ require "json"
 
 module Api
   module Youtube
-    class Search
+    class Search < Api::Youtube::Base
       BASE_URL = "https://www.googleapis.com/youtube/v3/search"
 
       private_constant :BASE_URL
-
-      def initialize
-        @api_key = ENV["YOUTUBE_API_KEY"]
-        @logger = Logger.new(STDOUT)
-        @http = HTTP.use(logging: { logger: logger })
-      end
 
       def search(type, keyword)
         [] if keyword.blank?
@@ -45,8 +39,6 @@ module Api
       end
 
       private
-
-      attr_reader :api_key, :logger, :http
 
       def build_params_for_playlist(keyword)
         {
