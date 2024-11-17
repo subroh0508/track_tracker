@@ -3,6 +3,13 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
+  get "tracks/search"
+
+  get "playlists", to: "playlists#index"
+  get "playlists/search"
+  get "playlists/show/:id", to: "playlists#show"
+  post "playlists/save", to: "playlists#create"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

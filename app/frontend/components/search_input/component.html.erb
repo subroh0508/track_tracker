@@ -1,4 +1,4 @@
-<form class="<%= classes %>">
+<%= form_with url: url, method: method.to_sym, data: data, class: classes do |_| %>
   <%= render Form::LabelComponent.new(
     label_for: id,
     classes: "sr-only",
@@ -16,7 +16,7 @@
       id: id,
       placeholder: placeholder,
       classes: "block w-full p-4 ps-10",
-      ) %>
+    ) %>
     <%= render Button::Component.new(
       variant: Button::CONTAINED,
       type: "submit",
@@ -25,4 +25,4 @@
       <%= label %>
     <% end %>
   </div>
-</form>
+<% end %>

@@ -1,0 +1,39 @@
+<%= render SearchInput::Component.new(
+  id: "youtube_id",
+  label: "Go",
+  placeholder: "Input YouTube Playlist ID...",
+  url: "search",
+  method: "get",
+  data: { turbo_frame: "playlists" },
+  classes: "max-w-3xl mx-auto mb-5",
+) %>
+<div class="max-w-3xl mx-auto">
+  <%= turbo_frame_tag "playlists" do %>
+    <%= form_with url: "save", method: :post, class: "max-w-3xl mx-auto mb-5" do |f| %>
+      <% @playlists.each do |playlist| %>
+        <%= f.hidden_field "playlists[][id]", value: playlist[:youtube_id] %>
+        <%= f.hidden_field "playlists[][title]", value: playlist[:title] %>
+        <% playlist[:tracks].each do |track| %>
+          <%= f.hidden_field "playlists[][tracks][][id]", value: track[:id] %>
+          <%= f.hidden_field "playlists[][tracks][][title]", value: track[:title] %>
+        <% end %>
+      <% end %>
+      <%= render Button::Component.new(
+        variant: Button::CONTAINED,
+        type: "submit",
+        classes: "end-2.5 bottom-2.5 px-4 py-2"
+      ) do %>
+        Save
+      <% end %>
+    <% end %>
+
+    <% @playlists.each do |playlist| %>
+      <%= render Youtube::Card::PlaylistComponent.new(
+        id: playlist[:youtube_id],
+        title: playlist[:title],
+        tracks: playlist[:tracks],
+        classes: "max-w-3xl mb-5",
+      )%>
+    <% end %>
+  <% end %>
+</div>
