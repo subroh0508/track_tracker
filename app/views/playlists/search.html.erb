@@ -1,25 +1,20 @@
 <%= render SearchInput::Component.new(
-  id: "query",
-  label: "Search",
-  placeholder: "Search playlists...",
+  id: "youtube_id",
+  label: "Go",
+  placeholder: "Input YouTube Playlist ID...",
   url: "search",
   method: "get",
   data: { turbo_frame: "playlists" },
-  classes: "max-w-sm mx-auto mb-5",
+  classes: "max-w-3xl mx-auto mb-5",
 ) %>
-<div class="max-w-sm mx-auto">
+<div class="max-w-3xl mx-auto">
   <%= turbo_frame_tag "playlists" do %>
-    <% @youtube_playlists.each do |youtube_playlist| %>
-      <%= render Card::Component.new(
-        classes: "max-w-sm mb-5",
-      ) do |component| %>
-        <% component.with_image(
-          src: youtube_playlist[:thumbnail_url],
-        ) %>
-        <% component.with_header do %>
-          <%= youtube_playlist[:title] %>
-        <% end %>
-      <% end %>
+    <% @playlists.each do |playlist| %>
+      <%= render Youtube::Card::PlaylistComponent.new(
+        id: playlist[:youtube_id],
+        title: playlist[:title],
+        classes: "max-w-3xl mb-5",
+      )%>
     <% end %>
   <% end %>
 </div>

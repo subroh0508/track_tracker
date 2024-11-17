@@ -2,7 +2,7 @@
 
 module Card
   class Component < ViewComponent::Base
-    renders_one :image, Card::ImageComponent
+    renders_one :thumbnail
     renders_one :header, Card::HeaderComponent
     renders_one :description
 
@@ -22,7 +22,7 @@ module Card
     private
 
     def padding
-      image? ? "" : "p-6"
+      thumbnail? ? "" : "p-6"
     end
 
     def background

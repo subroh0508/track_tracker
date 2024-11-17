@@ -12,8 +12,12 @@
     <% @youtube_tracks.each do |youtube_track| %>
       <%= render Card::Component.new(
         classes: "max-w-sm mb-5",
-        ) do |component| %>
-        <% component.with_image(src: youtube_track[:thumbnail_url]) %>
+      ) do |component| %>
+        <% component.with_thumbnail do %>
+          <%= render Card::ImageComponent.new(
+            src: youtube_track[:thumbnail_url],
+          )%>
+        <% end %>
         <% component.with_header do %>
           <%= youtube_track[:title] %>
         <% end %>

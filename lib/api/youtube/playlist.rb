@@ -31,7 +31,7 @@ module Api
             id: item["id"],
             title: item["snippet"]["title"],
           }
-        }[0]
+        }
       end
 
       private
