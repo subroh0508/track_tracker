@@ -15,4 +15,8 @@ class Track < ApplicationRecord
       track
     end
   end
+
+  def localized_title(locale)
+    translations.find_by!(locale: locale).title
+  end
 end

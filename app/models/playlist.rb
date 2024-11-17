@@ -38,7 +38,7 @@ class Playlist < ApplicationRecord
     end
   end
 
-  def title(locale)
+  def localized_title(locale)
     translations.find_by!(locale: locale).title
   end
 end

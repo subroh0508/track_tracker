@@ -1,4 +1,19 @@
 class PlaylistsController < ApplicationController
+  def index
+    @playlists = Playlist.all.map { |playlist|
+      {
+        youtube_id: playlist.youtube_id,
+        title: playlist.localized_title("ja"),
+        tracks: playlist.tracks.map { |track|
+          {
+            id: track.id,
+            title: track.localized_title("ja"),
+          }
+        }
+      }
+    }
+  end
+
   def search
     if params.key?(:youtube_id)
       @playlists = search_playlists(params[:youtube_id])
@@ -41,7 +56,7 @@ class PlaylistsController < ApplicationController
     playlist = Playlist.find(params[:id])
 
     @playlist = {
-      title: playlist.title(locale: 'ja'),
+      title: playlist.localized_title("ja"),
       youtube_id: playlist.youtube_id,
     }
   end

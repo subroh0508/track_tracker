@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get "tracks/search"
 
+  get "playlists", to: "playlists#index"
   get "playlists/search"
   get "playlists/show/:id", to: "playlists#show"
   post "playlists/save", to: "playlists#create"

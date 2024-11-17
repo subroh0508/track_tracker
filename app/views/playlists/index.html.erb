@@ -1,0 +1,8 @@
+<% @playlists.each do |playlist| %>
+  <%= render Youtube::Card::PlaylistComponent.new(
+    id: playlist[:youtube_id],
+    title: playlist[:title],
+    tracks: playlist[:tracks],
+    classes: "max-w-3xl mb-5",
+  )%>
+<% end %>
