@@ -20,7 +20,7 @@ module Api
         params = {
           key: api_key,
           id: id,
-          part: "snippet,player",
+          part: "snippet,localizations",
         }
 
         response = http.get(BASE_URL, params: params)
@@ -29,7 +29,7 @@ module Api
         json["items"].map { |item|
           {
             id: item["id"],
-            title: item["snippet"]["title"],
+            title: localized_title(item, "ja"),
           }
         }
       end
@@ -37,6 +37,16 @@ module Api
       private
 
       attr_reader :api_key, :logger, :http
+
+      def localized_title(item, locale)
+        value = item.dig("localizations", locale)
+
+        if value.present?
+          value["title"]
+        else
+          item["snippet"]["title"]
+        end
+      end
     end
   end
 end
