@@ -22,14 +22,15 @@ module Api
     def search(type, keyword)
       [] if keyword.blank?
 
-      params = {
-        key: api_key,
-        q: keyword,
-        type: type,
-        videoCategoryId: "10",
-        maxResults: 10,
-        part: "snippet",
-      }
+      params =
+        case type
+        when TYPE_PLAYLIST
+          build_params_for_playlist(keyword)
+        when TYPE_CHANNEL
+          build_params_for_channel(keyword)
+        else
+          build_params_for_video(keyword)
+        end
 
       response = http.get(SEARCH_API, params: params)
       json = JSON.parse(response.body)
@@ -49,6 +50,37 @@ module Api
     private
 
     attr_reader :api_key, :logger, :http
+
+    def build_params_for_playlist(keyword)
+      {
+        key: api_key,
+        q: keyword,
+        type: TYPE_PLAYLIST,
+        maxResults: 10,
+        part: "snippet",
+      }
+    end
+
+    def build_params_for_channel(keyword)
+      {
+        key: api_key,
+        q: keyword,
+        type: TYPE_CHANNEL,
+        maxResults: 10,
+        part: "snippet",
+      }
+    end
+
+    def build_params_for_video(keyword)
+      {
+        key: api_key,
+        q: keyword,
+        type: TYPE_VIDEO,
+        videoCategoryId: "10",
+        maxResults: 10,
+        part: "snippet",
+      }
+    end
 
     def build_response_for_playlist(item)
       {
