@@ -18,6 +18,7 @@ module.exports = {
         primary: colors.blue,
         secondary: colors.amber,
         neutral: colors.gray,
+        youtube: '#FF0000',
       },
     },
   },
