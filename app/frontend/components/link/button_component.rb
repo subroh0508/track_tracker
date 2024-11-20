@@ -7,10 +7,12 @@ module Link
     def initialize(
       href: "#",
       active: false,
+      active_color: { text: "text-white", background: "bg-primary-700" },
       classes: "px-4 py-3"
     )
       super(href: href, classes: classes)
       @active = active
+      @active_color = active_color
     end
 
     protected
@@ -23,7 +25,7 @@ module Link
     end
 
     def active_text_style
-      "text-white bg-youtube"
+      "#{active_color[:text]} #{active_color[:background]}"
     end
 
     def light_text_style
@@ -33,5 +35,9 @@ module Link
     def dark_text_style
       "dark:text-neutral-400 dark:bg-neutral-800 dark:hover:text-white dark:hover:bg-neutral-700"
     end
+
+    private
+
+    attr_reader :active_color
   end
 end
