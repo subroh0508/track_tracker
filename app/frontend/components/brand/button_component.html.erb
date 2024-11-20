@@ -1,0 +1,8 @@
+<%= render Link::ButtonComponent.new(
+  href: href,
+  active: active,
+  classes: classes,
+) do %>
+  <i class="me-2 <%= icon %>"></i>
+  <%= brand %>
+<% end %>

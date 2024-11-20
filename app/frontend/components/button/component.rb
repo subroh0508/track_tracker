@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module Button
-  TEXT = "text"
-  CONTAINED = "contained"
-  OUTLINED = "outlined"
-
   class Component < ViewComponent::Base
     attr_reader :variant, :type
 
