@@ -40,8 +40,14 @@ module TrackTracker
     config.generators.system_tests = nil
 
     config.view_component.view_component_path = "app/frontend/components"
-    config.eager_load_paths << Rails.root.join("app", "frontend", "components")
-    config.view_component.preview_paths << Rails.root.join("app", "frontend", "components")
+    config.eager_load_paths.push(
+      Rails.root.join("app", "frontend", "components"),
+      Rails.root.join("app", "frontend", "sections"),
+    )
+    config.view_component.preview_paths.push(
+      Rails.root.join("app", "frontend", "components"),
+      Rails.root.join("app", "frontend", "sections"),
+    )
 
     config.lookbook.preview_layout = "lookbook/component_preview"
     config.lookbook.preview_display_options = {
