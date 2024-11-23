@@ -1,5 +1,6 @@
 class Track < ApplicationRecord
   has_many :translations, class_name: "Translations::Track"
+  has_one :artist
 
   class << self
     def build(params)

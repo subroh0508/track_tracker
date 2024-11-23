@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_17_000003) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_17_000004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "artists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "youtube_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "playlist_tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "sort", null: false
@@ -33,8 +39,21 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000003) do
 
   create_table "tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "youtube_id"
+    t.string "spotify_id"
+    t.string "apple_music_id"
+    t.uuid "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_tracks_on_artist_id"
+  end
+
+  create_table "translations_artists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "locale", null: false
+    t.uuid "artist_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_translations_artists_on_artist_id"
   end
 
   create_table "translations_playlists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -57,6 +76,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000003) do
 
   add_foreign_key "playlist_tracks", "playlists"
   add_foreign_key "playlist_tracks", "tracks"
+  add_foreign_key "tracks", "artists"
+  add_foreign_key "translations_artists", "artists"
   add_foreign_key "translations_playlists", "playlists"
   add_foreign_key "translations_tracks", "tracks"
 end
