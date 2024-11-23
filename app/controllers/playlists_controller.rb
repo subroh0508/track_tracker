@@ -74,15 +74,14 @@ class PlaylistsController < ApplicationController
   private
 
   def search_playlists(youtube_id)
-    playlist_client = Api::Youtube::Playlist.new
-    playlist_item_client = Api::Youtube::PlaylistItem.new
+    client = Api::YoutubeClient.new
 
-    playlist_client.fetch(youtube_id).
+    client.fetch_playlists(youtube_id).
       map { |playlist|
         {
           title: playlist[:title],
           youtube_id: playlist[:id],
-          tracks: playlist_item_client.fetch(
+          tracks: client.fetch_playlist_items(
             playlist[:id],
             playlist[:item_count],
           ),
