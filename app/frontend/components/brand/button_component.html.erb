@@ -1,0 +1,12 @@
+<%= render Link::ButtonComponent.new(
+  href: href,
+  active: active,
+  active_color: {
+    text: active_text_color,
+    background: active_background_color,
+  },
+  classes: classes,
+) do %>
+  <i class="me-2 fa-brands <%= icon %> fa-lg"></i>
+  <%= brand %>
+<% end %>

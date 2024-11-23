@@ -8,6 +8,7 @@ RSpec.describe Card::HeaderComponent, type: :component do
   it "renders card header" do
     render_inline(described_class.new) { title }
 
+    expect(page).to have_text(title)
     expect(page.find("h5")["class"]).to include(
       "text-neutral-900",
       "dark:text-white",
