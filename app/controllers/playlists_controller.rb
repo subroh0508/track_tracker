@@ -2,6 +2,7 @@ class PlaylistsController < ApplicationController
   def index
     @playlists = Playlist.all.map { |playlist|
       {
+        id: playlist.id,
         youtube_id: playlist.youtube_id,
         title: playlist.localized_title("ja"),
         tracks: playlist.tracks.map { |track|
@@ -53,11 +54,20 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    playlist = Playlist.find(params[:id])
+    playlist = Playlist.preload(playlist_tracks: :track).find(params[:id])
 
     @playlist = {
       title: playlist.localized_title("ja"),
-      youtube_id: playlist.youtube_id,
+      brand: params[:brand],
+      tracks: playlist.playlist_tracks.
+        map { |playlist_track|
+          {
+            index: playlist_track.sort,
+            title: playlist_track.track.localized_title("ja"),
+            thumbnail_url: nil,
+            artist: nil,
+          }
+        },
     }
   end
 

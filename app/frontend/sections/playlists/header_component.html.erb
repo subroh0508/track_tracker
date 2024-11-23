@@ -5,17 +5,17 @@
   <div class="flex items-center justify-center gap-x-4">
     <%= render Brand::ButtonComponent.new(
       brand: Brand::YOUTUBE_MUSIC,
-      href: "/show?brand=#{Playlist::Brand::QUERY_YOUTUBE_MUSIC}",
+      href: "#{id}?brand=#{Playlist::Brand::QUERY_YOUTUBE_MUSIC}",
       active: active_brand == Playlist::Brand::QUERY_YOUTUBE_MUSIC,
     ) %>
     <%= render Brand::ButtonComponent.new(
       brand: Brand::SPOTIFY,
-      href: "/show?brand=#{Playlist::Brand::QUERY_SPOTIFY}",
+      href: "#{id}?brand=#{Playlist::Brand::QUERY_SPOTIFY}",
       active: active_brand == Playlist::Brand::QUERY_SPOTIFY,
     ) %>
     <%= render Brand::ButtonComponent.new(
       brand: Brand::APPLE_MUSIC,
-      href: "/show?brand=#{Playlist::Brand::QUERY_APPLE_MUSIC}",
+      href: "#{id}?brand=#{Playlist::Brand::QUERY_APPLE_MUSIC}",
       active: active_brand == Playlist::Brand::QUERY_APPLE_MUSIC,
     ) %>
   </div>
