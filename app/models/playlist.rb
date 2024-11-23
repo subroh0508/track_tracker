@@ -17,7 +17,7 @@ class Playlist < ApplicationRecord
     def build(params)
       playlist = Playlist.new(
         type: type_to_enum(params[:type]),
-        youtube_id: params[:youtube_id],
+        youtube_playlist_id: params[:youtube_playlist_id],
       )
 
       playlist.translations.build(

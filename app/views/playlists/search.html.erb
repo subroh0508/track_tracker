@@ -9,7 +9,7 @@
 ) %>
 <div class="max-w-3xl mx-auto">
   <%= turbo_frame_tag "playlists" do %>
-    <%= form_with url: "save", method: :post, class: "max-w-3xl mx-auto mb-5" do |f| %>
+    <%= form_with url: "/playlists", method: :post, class: "max-w-3xl mx-auto mb-5" do |f| %>
       <% @playlists.each do |playlist| %>
         <%= f.hidden_field "playlists[][youtube_playlist_id]", value: playlist[:youtube_playlist_id] %>
         <%= f.hidden_field "playlists[][title]", value: playlist[:title] %>

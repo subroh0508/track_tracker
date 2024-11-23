@@ -3,12 +3,18 @@ class PlaylistsController < ApplicationController
     @playlists = Playlist.all.map { |playlist|
       {
         id: playlist.id,
-        youtube_id: playlist.youtube_id,
+        youtube_playlist_id: playlist.youtube_playlist_id,
         title: playlist.localized_title("ja"),
         tracks: playlist.tracks.map { |track|
           {
             id: track.id,
+            youtube_video_id: track.youtube_video_id,
             title: track.localized_title("ja"),
+            artist: {
+              id: track.artist.id,
+              youtube_channel_id: track.artist.youtube_channel_id,
+              name: track.artist.localized_name("ja"),
+            },
           }
         },
       }
@@ -29,19 +35,25 @@ class PlaylistsController < ApplicationController
     playlists = params[:playlists].map { |playlist_param|
       playlist = Playlist.build({
         type: "album",
-        youtube_id: playlist_param[:id],
+        youtube_playlist_id: playlist_param[:youtube_playlist_id],
         title: playlist_param[:title],
         locale: "ja",
       })
 
       track_relations = playlist_param[:tracks].map.with_index(1) { |track_param, i|
+        artist_param = track_param[:artist]
         track = Track.build({
-          youtube_id: track_param[:id],
+          youtube_video_id: track_param[:youtube_video_id],
           title: track_param[:title],
           locale: "ja",
+          artist: {
+            youtube_channel_id: artist_param[:youtube_channel_id],
+            name: artist_param[:name],
+            locale: "ja",
+          },
         })
 
-        track_relation = PlaylistTrack.new(sort: i)
+        track_relation = PlaylistTrack.new(position: track_param[:position])
         track_relation.track = track
         track_relation
       }
@@ -64,10 +76,10 @@ class PlaylistsController < ApplicationController
       tracks: playlist.playlist_tracks.
         map { |playlist_track|
           {
-            index: playlist_track.sort,
+            position: playlist_track.position + 1,
             title: playlist_track.track.localized_title("ja"),
             thumbnail_url: nil,
-            artist: nil,
+            artist: playlist_track.track.artist.localized_name("ja"),
           }
         },
     }
