@@ -27,7 +27,9 @@ module Api
           {
             id: item["snippet"]["resourceId"]["videoId"],
             title: item["snippet"]["title"],
-            thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
+            position: item["snippet"]["position"],
+            thumbnail_url: item["snippet"]["thumbnails"]["default"]["url"],
+            video_owner_channel_id: item["snippet"]["videoOwnerChannelId"],
           }
         }
       end

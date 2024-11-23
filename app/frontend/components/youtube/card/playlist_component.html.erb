@@ -3,7 +3,7 @@
 ) do |component| %>
   <% component.with_thumbnail do %>
     <div class="p-5">
-      ID: <%= id %>
+      Playlist ID: <%= id %>
     </div>
     <%= render Youtube::PlaylistIframeComponent.new(id: id) %>
   <% end %>

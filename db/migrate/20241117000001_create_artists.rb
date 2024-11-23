@@ -1,7 +1,7 @@
 class CreateArtists < ActiveRecord::Migration[8.0]
   def change
     create_table :artists, id: :uuid do |t|
-      t.string :youtube_id
+      t.string :youtube_channel_id
 
       t.timestamps
     end

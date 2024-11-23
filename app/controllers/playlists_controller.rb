@@ -17,7 +17,9 @@ class PlaylistsController < ApplicationController
 
   def search
     if params.key?(:youtube_id)
-      @playlists = search_playlists(params[:youtube_id])
+      client = Api::YoutubeClient.new
+
+      @playlists = client.search_playlists(params[:youtube_id])
     else
       @playlists = []
     end
