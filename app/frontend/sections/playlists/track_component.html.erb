@@ -1,0 +1,16 @@
+<div class="flex items-center px-4">
+  <span class="<%= index_style %>">
+    <%= track[:index] %>
+  </span>
+  <div class="flex items-center px-4">
+    <% if track[:thumbnail_url].present? %>
+      <img class="h-10 w-10 me-3 <%= thumbnail_style %>"
+        src="<%= track[:thumbnail_url] %>"
+        alt="">
+    <% end %>
+    <%= render List::ItemComponent.new(
+      header: track[:title],
+      description: track[:artist],
+    ) %>
+  </div>
+</div>

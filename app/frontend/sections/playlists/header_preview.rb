@@ -11,6 +11,6 @@ class Playlists::HeaderPreview < ViewComponent::Preview
     render Playlists::HeaderComponent.new(
       title: playlist_title,
       active_brand: brand,
-      )
+    )
   end
 end
