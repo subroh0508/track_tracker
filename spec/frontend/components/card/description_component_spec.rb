@@ -8,6 +8,7 @@ RSpec.describe Card::DescriptionComponent, type: :component do
   it "renders card description" do
     render_inline(described_class.new) { description }
 
+    expect(page).to have_text(description)
     expect(page.find("p")["class"]).to include(
       "text-neutral-700",
       "dark:text-neutral-400",
