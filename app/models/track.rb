@@ -8,13 +8,10 @@ class Track < ApplicationRecord
         youtube_video_id: params[:youtube_video_id],
       )
 
-      unless track.translations.exists?(locale: params[:locale])
-        track.translations.build(
-          title: params[:title],
-          locale: params[:locale],
-        )
-      end
-
+      track.build_translation(
+        title: params[:title],
+        locale: params[:locale],
+      )
       track.artist = Artist.build(params[:artist])
 
       track
@@ -23,5 +20,16 @@ class Track < ApplicationRecord
 
   def localized_title(locale)
     translations.find_by!(locale: locale).title
+  end
+
+  private
+
+  def build_translation(title, locale)
+    return if translations.exists?(locale: locale)
+
+    translations.build(
+      title: title,
+      locale: locale,
+    )
   end
 end

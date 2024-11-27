@@ -10,12 +10,10 @@ class Artist < ApplicationRecord
         youtube_channel_id: params[:youtube_channel_id],
       )
 
-      unless artist.translations.exists?(locale: params[:locale])
-        artist.translations.build(
-          name: params[:name],
-          locale: params[:locale],
-        )
-      end
+      artist.build_translation(
+        name: params[:name],
+        locale: params[:locale],
+      )
 
       artist
     end
@@ -23,5 +21,16 @@ class Artist < ApplicationRecord
 
   def localized_name(locale)
     translations.find_by!(locale: locale).name
+  end
+
+  private
+
+  def build_translation(name, locale)
+    return if translations.exists?(locale: locale)
+
+    translations.build(
+      name: name,
+      locale: locale,
+    )
   end
 end
