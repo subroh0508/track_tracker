@@ -4,14 +4,16 @@ class Track < ApplicationRecord
 
   class << self
     def build(params)
-      track = Track.new(
+      track = Track..find_or_initialize_by(
         youtube_video_id: params[:youtube_video_id],
       )
 
-      track.translations.build(
-        title: params[:title],
-        locale: params[:locale],
-      )
+      unless track.translations.exists?(locale: params[:locale])
+        track.translations.build(
+          title: params[:title],
+          locale: params[:locale],
+        )
+      end
 
       track.artist = Artist.build(params[:artist])
 

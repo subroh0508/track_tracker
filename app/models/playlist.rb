@@ -15,15 +15,17 @@ class Playlist < ApplicationRecord
 
   class << self
     def build(params)
-      playlist = Playlist.new(
+      playlist = Playlist.find_or_initialize_by(
         type: type_to_enum(params[:type]),
         youtube_playlist_id: params[:youtube_playlist_id],
       )
 
-      playlist.translations.build(
-        title: params[:title],
-        locale: params[:locale],
-      )
+      unless playlist.translations.exists?(locale: params[:locale])
+        playlist.translations.build(
+          title: params[:title],
+          locale: params[:locale],
+        )
+      end
 
       playlist
     end

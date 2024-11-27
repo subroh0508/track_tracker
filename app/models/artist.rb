@@ -6,14 +6,16 @@ class Artist < ApplicationRecord
 
   class << self
     def build(params)
-      artist = Artist.new(
+      artist = Artist.find_or_initialize_by(
         youtube_channel_id: params[:youtube_channel_id],
       )
 
-      artist.translations.build(
-        name: params[:name],
-        locale: params[:locale],
-      )
+      unless artist.translations.exists?(locale: params[:locale])
+        artist.translations.build(
+          name: params[:name],
+          locale: params[:locale],
+        )
+      end
 
       artist
     end
