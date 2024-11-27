@@ -14,19 +14,24 @@ class Playlist < ApplicationRecord
   has_many :tracks, through: :playlist_tracks
 
   class << self
-    def build(params)
+    def build(params, type, locale = "ja")
       playlist = Playlist.find_or_initialize_by(
-        type: type_to_enum(params[:type]),
+        type: type,
         youtube_playlist_id: params[:youtube_playlist_id],
       )
 
-      playlist.build_translation(
-        title: params[:title],
-        locale: params[:locale],
+      build_translation(
+        playlist,
+        params[:title],
+        locale,
       )
 
       params[:tracks].each do |track|
-        playlist.build_playlist_track(track)
+        build_playlist_track(
+          playlist,
+          track,
+          locale,
+        )
       end
 
       playlist
@@ -46,31 +51,32 @@ class Playlist < ApplicationRecord
         throw ArgumentError
       end
     end
+
+    def build_translation(playlist, title, locale)
+      return if playlist.translations.exists?(locale: locale)
+
+      playlist.translations.build(
+        title: title,
+        locale: locale,
+      )
+    end
+
+    def build_playlist_track(playlist, params, locale)
+      track = Track.build(
+        params,
+        locale,
+      )
+
+      return if playlist.playlist_tracks.exists?(track: track)
+
+      playlist.playlist_tracks.build(
+        position: params[:position],
+        track: track,
+      )
+    end
   end
 
   def localized_title(locale)
     translations.find_by!(locale: locale).title
-  end
-
-  private
-
-  def build_translation(title, locale)
-    return if translations.exists?(locale: locale)
-
-    translations.build(
-      title: title,
-      locale: locale,
-    )
-  end
-
-  def build_playlist_track(params)
-    track = Track.build(params)
-
-    return if playlist_tracks.exists?(track: track)
-
-    playlist_tracks.build(
-      position: params[:position],
-      track: track,
-    )
   end
 end

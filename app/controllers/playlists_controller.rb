@@ -33,18 +33,16 @@ class PlaylistsController < ApplicationController
 
   def create
     playlists = params[:playlists].map { |playlist_param|
-      Playlist.build({
-        type: "album",
-        youtube_playlist_id: playlist_param[:youtube_playlist_id],
-        title: playlist_param[:title],
-        locale: "ja",
-        tracks: playlist_param[:tracks],
-      })
+      Playlist.build(
+        playlist_param,
+        "album",
+        "ja",
+      )
     }
 
     playlists.each(&:save!)
 
-    render status: :ok
+    redirect_to action: "index", status: :ok
   end
 
   def show

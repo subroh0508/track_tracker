@@ -5,32 +5,33 @@ class Artist < ApplicationRecord
   has_many :tracks
 
   class << self
-    def build(params)
+    def build(params, locale = "ja")
       artist = Artist.find_or_initialize_by(
         youtube_channel_id: params[:youtube_channel_id],
       )
 
-      artist.build_translation(
-        name: params[:name],
-        locale: params[:locale],
+      build_translation(
+        artist,
+        params[:name],
+        locale,
       )
 
       artist
+    end
+
+    private
+
+    def build_translation(artist, name, locale)
+      return if artist.translations.exists?(locale: locale)
+
+      artist.translations.build(
+        name: name,
+        locale: locale,
+      )
     end
   end
 
   def localized_name(locale)
     translations.find_by!(locale: locale).name
-  end
-
-  private
-
-  def build_translation(name, locale)
-    return if translations.exists?(locale: locale)
-
-    translations.build(
-      name: name,
-      locale: locale,
-    )
   end
 end

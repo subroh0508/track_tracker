@@ -3,33 +3,37 @@ class Track < ApplicationRecord
   belongs_to :artist
 
   class << self
-    def build(params)
+    def build(params, locale = "ja")
       track = Track.find_or_initialize_by(
         youtube_video_id: params[:youtube_video_id],
       )
 
-      track.build_translation(
-        title: params[:title],
-        locale: params[:locale],
+      build_translation(
+        track,
+        params[:title],
+        locale,
       )
-      track.artist = Artist.build(params[:artist])
+      track.artist = Artist.build(
+        params[:artist],
+        locale,
+      )
 
       track
+    end
+
+    private
+
+    def build_translation(track, title, locale)
+      return if track.translations.exists?(locale: locale)
+
+      track.translations.build(
+        title: title,
+        locale: locale,
+      )
     end
   end
 
   def localized_title(locale)
     translations.find_by!(locale: locale).title
-  end
-
-  private
-
-  def build_translation(title, locale)
-    return if translations.exists?(locale: locale)
-
-    translations.build(
-      title: title,
-      locale: locale,
-    )
   end
 end
