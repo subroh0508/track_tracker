@@ -4,7 +4,7 @@ class Track < ApplicationRecord
 
   class << self
     def build(params)
-      track = Track..find_or_initialize_by(
+      track = Track.find_or_initialize_by(
         youtube_video_id: params[:youtube_video_id],
       )
 

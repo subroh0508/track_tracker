@@ -14,5 +14,7 @@ class CreatePlaylists < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
+
+    add_index :playlists, :youtube_playlist_id, unique: true
   end
 end

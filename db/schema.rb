@@ -18,6 +18,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000004) do
     t.string "youtube_channel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["youtube_channel_id"], name: "index_artists_on_youtube_channel_id", unique: true
   end
 
   create_table "playlist_tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -35,6 +36,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000004) do
     t.string "youtube_playlist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["youtube_playlist_id"], name: "index_playlists_on_youtube_playlist_id", unique: true
   end
 
   create_table "tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -44,7 +46,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000004) do
     t.uuid "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["apple_music_id"], name: "index_tracks_on_apple_music_id", unique: true
     t.index ["artist_id"], name: "index_tracks_on_artist_id"
+    t.index ["spotify_id"], name: "index_tracks_on_spotify_id", unique: true
+    t.index ["youtube_video_id"], name: "index_tracks_on_youtube_video_id", unique: true
   end
 
   create_table "translations_artists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

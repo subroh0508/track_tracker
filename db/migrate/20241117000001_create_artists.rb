@@ -13,5 +13,7 @@ class CreateArtists < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
+
+    add_index :artists, :youtube_channel_id, unique: true
   end
 end

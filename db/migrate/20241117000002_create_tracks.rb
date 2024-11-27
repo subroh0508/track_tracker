@@ -16,5 +16,9 @@ class CreateTracks < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
+
+    add_index :tracks, :youtube_video_id, unique: true
+    add_index :tracks, :spotify_id, unique: true
+    add_index :tracks, :apple_music_id, unique: true
   end
 end
