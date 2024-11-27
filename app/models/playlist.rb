@@ -20,11 +20,13 @@ class Playlist < ApplicationRecord
         youtube_playlist_id: params[:youtube_playlist_id],
       )
 
-      unless playlist.translations.exists?(locale: params[:locale])
-        playlist.translations.build(
-          title: params[:title],
-          locale: params[:locale],
-        )
+      playlist.build_translation(
+        title: params[:title],
+        locale: params[:locale],
+      )
+
+      params[:tracks].each do |track|
+        playlist.build_playlist_track(track)
       end
 
       playlist
@@ -48,5 +50,27 @@ class Playlist < ApplicationRecord
 
   def localized_title(locale)
     translations.find_by!(locale: locale).title
+  end
+
+  private
+
+  def build_translation(title, locale)
+    return if translations.exists?(locale: locale)
+
+    translations.build(
+      title: title,
+      locale: locale,
+    )
+  end
+
+  def build_playlist_track(params)
+    track = Track.build(params)
+
+    return if playlist_tracks.exists?(track: track)
+
+    playlist_tracks.build(
+      position: params[:position],
+      track: track,
+    )
   end
 end

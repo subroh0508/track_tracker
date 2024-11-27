@@ -33,33 +33,13 @@ class PlaylistsController < ApplicationController
 
   def create
     playlists = params[:playlists].map { |playlist_param|
-      playlist = Playlist.build({
+      Playlist.build({
         type: "album",
         youtube_playlist_id: playlist_param[:youtube_playlist_id],
         title: playlist_param[:title],
         locale: "ja",
+        tracks: playlist_param[:tracks],
       })
-
-      track_relations = playlist_param[:tracks].map.with_index(1) { |track_param, i|
-        artist_param = track_param[:artist]
-        track = Track.build({
-          youtube_video_id: track_param[:youtube_video_id],
-          title: track_param[:title],
-          locale: "ja",
-          artist: {
-            youtube_channel_id: artist_param[:youtube_channel_id],
-            name: artist_param[:name],
-            locale: "ja",
-          },
-        })
-
-        track_relation = PlaylistTrack.new(position: track_param[:position])
-        track_relation.track = track
-        track_relation
-      }
-
-      playlist.playlist_tracks = track_relations
-      playlist
     }
 
     playlists.each(&:save!)
