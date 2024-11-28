@@ -14,7 +14,7 @@ class Playlist < ApplicationRecord
   has_many :tracks, through: :playlist_tracks
 
   class << self
-    def build(params, type, locale = "ja")
+    def find_or_build_by(params, type, locale = "ja")
       playlist = Playlist.find_or_initialize_by(
         type: type,
         youtube_playlist_id: params[:youtube_playlist_id],
@@ -25,14 +25,6 @@ class Playlist < ApplicationRecord
         params[:title],
         locale,
       )
-
-      params[:tracks].each do |track|
-        build_playlist_track(
-          playlist,
-          track,
-          locale,
-        )
-      end
 
       playlist
     end
@@ -60,20 +52,15 @@ class Playlist < ApplicationRecord
         locale: locale,
       )
     end
+  end
 
-    def build_playlist_track(playlist, params, locale)
-      track = Track.build(
-        params,
-        locale,
-      )
+  def build_playlist_track(track, position)
+    return if playlist_tracks.exists?(track: track)
 
-      return if playlist.playlist_tracks.exists?(track: track)
-
-      playlist.playlist_tracks.build(
-        position: params[:position],
-        track: track,
-      )
-    end
+    playlist_tracks.build(
+      position: position,
+      track: track,
+    )
   end
 
   def localized_title(locale)

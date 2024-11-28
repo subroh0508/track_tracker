@@ -32,15 +32,10 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    playlists = params[:playlists].map { |playlist_param|
-      Playlist.build(
-        playlist_param,
-        "album",
-        "ja",
-      )
-    }
-
-    playlists.each(&:save!)
+    Playlists::YoutubeImportService.new(
+      "ja",
+      "album",
+    ).execute!(params[:playlists])
 
     redirect_to action: "index", status: :ok
   end

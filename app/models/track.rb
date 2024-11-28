@@ -3,7 +3,7 @@ class Track < ApplicationRecord
   belongs_to :artist
 
   class << self
-    def build(params, locale = "ja")
+    def find_or_build_by(params, locale = "ja")
       track = Track.find_or_initialize_by(
         youtube_video_id: params[:youtube_video_id],
       )
@@ -11,10 +11,6 @@ class Track < ApplicationRecord
       build_translation(
         track,
         params[:title],
-        locale,
-      )
-      track.artist = Artist.build(
-        params[:artist],
         locale,
       )
 
