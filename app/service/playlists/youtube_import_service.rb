@@ -21,7 +21,7 @@ module Playlists
 
     private
 
-    attr_reader :locale, :type, :track_cache
+    attr_reader :locale, :type, :track_cache, :artist_cache
 
     def find_or_build_playlist(params)
       playlist = Playlist.find_or_build_by(
@@ -51,29 +51,52 @@ module Playlists
         params,
         locale,
       ).tap { |o|
-        o.artist = find_or_build_artist(params[:artist])
+        o.artist = find_or_build_artist(
+          o,
+          params[:artist],
+        )
       }
       track_cache[track.youtube_video_id] = track
 
       track
     end
 
-    def find_or_build_artist(params)
-      Artist.find_or_build_by(
+    def find_or_build_artist(track, params)
+      if track.artist.present?
+        return track.artist
+      end
+
+      if artist_cache.exists?(params[:youtube_channel_id])
+        return artist_cache.find_by(params[:youtube_channel_id])
+      end
+
+      artist = Artist.find_or_build_by(
         Streaming::Artists::KEY_YOUTUBE_MUSIC,
         params,
         locale,
       )
+      artist_cache[artist.youtube_channel_id] = artist
+
+      artist
     end
 
     def reset_cache(playlists_params)
+      track_params_array = playlists_params.map { |playlist_params|
+        playlist_params[:tracks]
+      }.flatten
+
       @track_cache = Streaming::Tracks::Cache.new(
         Streaming::Tracks::KEY_YOUTUBE_MUSIC,
-        playlists_params.map { |playlist_params|
-          playlist_params[:tracks].map { |track_params|
-            track_params[:youtube_video_id]
-          }
-        }.flatten,
+        track_params_array.map { |track_params|
+          track_params[:youtube_video_id]
+        },
+      )
+
+      @artist_cache = Streaming::Artists::Cache.new(
+        Streaming::Artists::KEY_YOUTUBE_MUSIC,
+        track_params_array.map { |track_params|
+          track_params[:artist][:youtube_channel_id]
+        },
       )
     end
   end
