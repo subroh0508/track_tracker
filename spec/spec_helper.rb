@@ -2,6 +2,8 @@ require "view_component/test_helpers"
 require "view_component/system_test_helpers"
 require "capybara/rspec"
 
+require "test_prof/recipes/rspec/let_it_be"
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

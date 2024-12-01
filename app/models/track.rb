@@ -20,7 +20,13 @@ class Track < ApplicationRecord
     private
 
     def build_translation(track, title, locale)
-      return if track.translations.exists?(locale: locale)
+      translation = track.translations.find_by(locale: locale)
+      if translation.present?
+        translation.title = title
+        track.translations << translation
+
+        return translation
+      end
 
       track.translations.build(
         title: title,
