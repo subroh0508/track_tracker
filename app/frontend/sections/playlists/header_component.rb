@@ -2,13 +2,15 @@
 
 module Playlists
   class HeaderComponent < ViewComponent::Base
-    attr_reader :title, :active_brand
+    attr_reader :id, :title, :active_brand
 
     def initialize(
+      id: nil,
       title: "",
       active_brand: "",
       classes: ""
     )
+      @id = id
       @title = title
       @active_brand = active_brand
       @classes = classes

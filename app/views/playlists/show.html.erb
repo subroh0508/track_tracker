@@ -1,5 +1,10 @@
-<%= render Youtube::Card::PlaylistComponent.new(
-  id: @playlist[:youtube_id],
-  title: @playlist[:title],
-  classes: "max-w-3xl mb-5",
-)%>
+<div class="max-w-3xl">
+  <%= render Playlists::HeaderComponent.new(
+    title: @playlist[:title],
+    active_brand: @playlist[:brand],
+    classes: "mb-6",
+  ) %>
+  <%= render Playlists::TracksComponent.new(
+    @playlist[:tracks],
+  ) %>
+</div>

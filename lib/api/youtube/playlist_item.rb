@@ -5,12 +5,14 @@ require "json"
 
 module Api
   module Youtube
-    class PlaylistItem < Api::Youtube::Base
+    module PlaylistItem
+      include Api::Youtube::Base
+
       BASE_URL = "https://www.googleapis.com/youtube/v3/playlistItems"
 
       private_constant :BASE_URL
 
-      def fetch(playlist_id, count)
+      def fetch_playlist_items(playlist_id, count)
         params = {
           key: api_key,
           playlistId: playlist_id,
@@ -25,7 +27,9 @@ module Api
           {
             id: item["snippet"]["resourceId"]["videoId"],
             title: item["snippet"]["title"],
-            thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
+            position: item["snippet"]["position"],
+            thumbnail_url: item["snippet"]["thumbnails"]["default"]["url"],
+            video_owner_channel_id: item["snippet"]["videoOwnerChannelId"],
           }
         }
       end

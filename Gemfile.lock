@@ -111,6 +111,11 @@ GEM
     erubi (1.13.0)
     et-orbi (1.2.11)
       tzinfo
+    factory_bot (6.5.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
+      railties (>= 5.0.0)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-x86_64-linux-gnu)
     ffi-compiler (1.3.2)
@@ -350,6 +355,7 @@ GEM
       tailwindcss-ruby
     tailwindcss-ruby (3.4.14-aarch64-linux)
     tailwindcss-ruby (3.4.14-x86_64-linux)
+    test-prof (1.4.2)
     thor (1.3.2)
     thruster (0.1.9-aarch64-linux)
     thruster (0.1.9-x86_64-linux)
@@ -389,6 +395,7 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  factory_bot_rails
   http
   importmap-rails
   kamal
@@ -405,6 +412,7 @@ DEPENDENCIES
   solid_queue
   stimulus-rails
   tailwindcss-rails
+  test-prof
   thruster
   turbo-rails
   tzinfo-data

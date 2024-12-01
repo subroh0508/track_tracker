@@ -5,7 +5,9 @@ require "json"
 
 module Api
   module Youtube
-    class Search < Api::Youtube::Base
+    module Search
+      include Api::Youtube::Base
+
       BASE_URL = "https://www.googleapis.com/youtube/v3/search"
 
       private_constant :BASE_URL
@@ -15,9 +17,9 @@ module Api
 
         params =
           case type
-          when Api::Youtube::TYPE_PLAYLIST
+          when Api::Youtube::Base::TYPE_PLAYLIST
             build_params_for_playlist(keyword)
-          when Api::Youtube::TYPE_CHANNEL
+          when Api::Youtube::Base::TYPE_CHANNEL
             build_params_for_channel(keyword)
           else
             build_params_for_video(keyword)
@@ -28,9 +30,9 @@ module Api
 
         json["items"].map { |item|
           case type
-          when Api::Youtube::TYPE_PLAYLIST
+          when Api::Youtube::Base::TYPE_PLAYLIST
             build_response_for_playlist(item)
-          when Api::Youtube::TYPE_CHANNEL
+          when Api::Youtube::Base::TYPE_CHANNEL
             build_response_for_channel(item)
           else
             build_response_for_video(item)
@@ -44,7 +46,7 @@ module Api
         {
           key: api_key,
           q: keyword,
-          type: Api::Youtube::TYPE_PLAYLIST,
+          type: Api::Youtube::Base::TYPE_PLAYLIST,
           maxResults: 10,
           part: "snippet",
         }
@@ -54,7 +56,7 @@ module Api
         {
           key: api_key,
           q: keyword,
-          type: Api::Youtube::TYPE_CHANNEL,
+          type: Api::Youtube::Base::TYPE_CHANNEL,
           maxResults: 10,
           part: "snippet",
         }
@@ -64,7 +66,7 @@ module Api
         {
           key: api_key,
           q: keyword,
-          type: Api::Youtube::TYPE_VIDEO,
+          type: Api::Youtube::Base::TYPE_VIDEO,
           videoCategoryId: "10",
           maxResults: 10,
           part: "snippet",
@@ -75,7 +77,7 @@ module Api
         {
           id: item["id"]["playlistId"],
           title: item["snippet"]["title"],
-          type: Api::Youtube::TYPE_PLAYLIST,
+          type: Api::Youtube::Base::TYPE_PLAYLIST,
           thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
         }
       end
@@ -84,7 +86,7 @@ module Api
         {
           id: item["id"]["channelId"],
           title: item["snippet"]["title"],
-          type: Api::Youtube::TYPE_CHANNEL,
+          type: Api::Youtube::Base::TYPE_CHANNEL,
           thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
         }
       end
@@ -93,7 +95,7 @@ module Api
         {
           id: item["id"]["videoId"],
           title: item["snippet"]["title"],
-          type: Api::Youtube::TYPE_VIDEO,
+          type: Api::Youtube::Base::TYPE_VIDEO,
           thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
         }
       end

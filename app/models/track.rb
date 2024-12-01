@@ -1,18 +1,37 @@
 class Track < ApplicationRecord
   has_many :translations, class_name: "Translations::Track"
+  belongs_to :artist
 
   class << self
-    def build(params)
-      track = Track.new(
-        youtube_id: params[:youtube_id],
+    def find_or_build_by(params, locale = "ja")
+      track = Track.find_or_initialize_by(
+        youtube_video_id: params[:youtube_video_id],
       )
 
-      track.translations.build(
-        title: params[:title],
-        locale: params[:locale],
+      build_translation(
+        track,
+        params[:title],
+        locale,
       )
 
       track
+    end
+
+    private
+
+    def build_translation(track, title, locale)
+      translation = track.translations.find_by(locale: locale)
+      if translation.present?
+        translation.title = title
+        track.translations << translation
+
+        return translation
+      end
+
+      track.translations.build(
+        title: title,
+        locale: locale,
+      )
     end
   end
 

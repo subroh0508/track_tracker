@@ -1,0 +1,17 @@
+<div class="flex <%= classes %>">
+  <div>
+    <% tracks.each do |track| %>
+      <div class="flex justify-end items-center mb-4 <%= index_style %>">
+        <%= track[:position] %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <% tracks.each do |track| %>
+      <%= render Playlists::TrackComponent.new(
+        track,
+        classes: "mb-4 #{content_style}",
+    ) %>
+    <% end %>
+  </div>
+</div>

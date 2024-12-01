@@ -14,15 +14,16 @@ class Playlist < ApplicationRecord
   has_many :tracks, through: :playlist_tracks
 
   class << self
-    def build(params)
-      playlist = Playlist.new(
-        type: type_to_enum(params[:type]),
-        youtube_id: params[:youtube_id],
+    def find_or_build_by(params, type, locale = "ja")
+      playlist = Playlist.find_or_initialize_by(
+        type: type,
+        youtube_playlist_id: params[:youtube_playlist_id],
       )
 
-      playlist.translations.build(
-        title: params[:title],
-        locale: params[:locale],
+      build_translation(
+        playlist,
+        params[:title],
+        locale,
       )
 
       playlist
@@ -30,18 +31,29 @@ class Playlist < ApplicationRecord
 
     private
 
-    def type_to_enum(type)
-      case type
-      when "album"
-        0
-      when "official"
-        1
-      when "user"
-        2
-      else
-        throw ArgumentError
+    def build_translation(playlist, title, locale)
+      translation = playlist.translations.find_by(locale: locale)
+      if translation.present?
+        translation.title = title
+        playlist.translations << translation
+
+        return translation
       end
+
+      playlist.translations.build(
+        title: title,
+        locale: locale,
+      )
     end
+  end
+
+  def build_playlist_track(track, position)
+    return if playlist_tracks.exists?(track: track)
+
+    playlist_tracks.build(
+      position: position,
+      track: track,
+    )
   end
 
   def localized_title(locale)

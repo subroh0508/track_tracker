@@ -2,7 +2,11 @@
 
 module Api
   module Youtube
-    class Base
+    module Base
+      TYPE_PLAYLIST = "playlist"
+      TYPE_CHANNEL = "channel"
+      TYPE_VIDEO = "video"
+
       def initialize
         @api_key = ENV["YOUTUBE_API_KEY"]
         @logger = Logger.new(STDOUT)
