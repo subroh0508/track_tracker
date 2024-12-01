@@ -31,6 +31,14 @@ class PlaylistsController < ApplicationController
     end
   end
 
+  def spotify
+    client = Api::SpotifyClient.new
+
+    @json = client.fetch_album(
+      "48KseHW22uKEJjgTKZCtk7",
+      "ja",
+    )
+  end
   def create
     Playlists::YoutubeImportService.new(
       "ja",

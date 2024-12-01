@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get "playlists", to: "playlists#index"
   get "playlists/search"
+  get "playlists/spotify"
   get "playlists/:id", to: "playlists#show"
   post "playlists", to: "playlists#create"
 

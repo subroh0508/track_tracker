@@ -11,8 +11,10 @@ module Api
 
       private_constant :ENDPOINT
 
-      def fetch_album(id)
-        response = send_request { |http| http.get("#{ENDPOINT}/#{id}") }
+      def fetch_album(id, locale)
+        response = send_request { |http|
+          http.get("#{ENDPOINT}/#{id}", params: { market: locale.upcase })
+        }
         JSON.parse(response.body)
       end
     end
