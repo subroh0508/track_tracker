@@ -31,21 +31,14 @@ class Playlist < ApplicationRecord
 
     private
 
-    def type_to_enum(type)
-      case type
-      when "album"
-        0
-      when "official"
-        1
-      when "user"
-        2
-      else
-        throw ArgumentError
-      end
-    end
-
     def build_translation(playlist, title, locale)
-      return if playlist.translations.exists?(locale: locale)
+      translation = playlist.translations.find_by(locale: locale)
+      if translation.present?
+        translation.title = title
+        playlist.translations << translation
+
+        return translation
+      end
 
       playlist.translations.build(
         title: title,

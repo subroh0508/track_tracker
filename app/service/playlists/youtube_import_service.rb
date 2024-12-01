@@ -4,7 +4,7 @@ module Playlists
   class YoutubeImportService
     def initialize(locale, type)
       @locale = locale
-      @type = type
+      @type = Playlist.types[type.to_sym]
     end
 
     def execute!(playlists_params)
