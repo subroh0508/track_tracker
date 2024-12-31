@@ -4,9 +4,13 @@ class AlbumsController < ApplicationController
   def search
     client = Api::SpotifyClient.new
 
-    @json = client.search_album(
-      "Today Is A Beautiful Day",
-      "jp",
-    )
+    if params.key?(:query)
+      @albums = client.search_album(
+        params[:query],
+        "jp",
+      )
+    else
+      @albums = []
+    end
   end
 end
