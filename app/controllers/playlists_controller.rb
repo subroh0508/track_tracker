@@ -36,9 +36,10 @@ class PlaylistsController < ApplicationController
 
     @json = client.fetch_album(
       "48KseHW22uKEJjgTKZCtk7",
-      "ja",
+      "jp",
     )
   end
+
   def create
     Playlists::YoutubeImportService.new(
       "ja",
