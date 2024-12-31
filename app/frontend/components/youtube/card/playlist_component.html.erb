@@ -8,7 +8,9 @@
     <%= render Youtube::PlaylistIframeComponent.new(id: id) %>
   <% end %>
   <% component.with_header do %>
-    <%= title %>
+    <%= render Card::HeaderComponent.new do %>
+      <%= title %>
+    <% end %>
   <% end %>
   <% component.with_description do %>
     <% if tracks.present? %>
