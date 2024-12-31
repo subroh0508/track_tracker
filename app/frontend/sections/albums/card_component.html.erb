@@ -1,0 +1,17 @@
+<%= render Card::Component.new(
+  classes: classes,
+) do |component| %>
+  <% component.with_thumbnail do %>
+    <%= render Card::ImageComponent.new(
+      src: thumbnail_url,
+    )%>
+  <% end %>
+  <% component.with_header do %>
+    <%= title %>
+  <% end %>
+  <% component.with_description do %>
+    <%= render Card::DescriptionComponent.new do %>
+      <%= year %>
+    <% end %>
+  <% end %>
+<% end %>

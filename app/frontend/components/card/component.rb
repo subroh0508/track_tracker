@@ -28,7 +28,6 @@ module Card
     def background
       [
         "rounded-lg",
-        "shadow",
         light_background,
         dark_background,
       ].join(" ")
