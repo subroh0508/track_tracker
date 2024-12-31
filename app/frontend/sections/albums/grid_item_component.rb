@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Albums
-  class CardComponent < ViewComponent::Base
+  class GridItemComponent < ViewComponent::Base
     attr_reader :thumbnail_url, :title, :year, :artist
 
     def initialize(
@@ -18,14 +18,6 @@ module Albums
 
     def classes
       "max-w-sm"
-    end
-
-    def header_classes
-      "line-clamp-2"
-    end
-
-    def description_classes
-      "line-clamp-2"
     end
 
     def description

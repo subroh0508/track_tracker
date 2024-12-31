@@ -17,7 +17,7 @@ module Albums
         @classes,
         "grid",
         "grid-cols-auto-fit-180",
-        "gap-4",
+        "gap-6",
       ].join(" ")
     end
   end

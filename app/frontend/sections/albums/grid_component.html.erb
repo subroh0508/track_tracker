@@ -1,6 +1,6 @@
 <div class="<%= classes %>">
   <% items.each do |item| %>
-    <%= render Albums::CardComponent.new(
+    <%= render Albums::GridItemComponent.new(
       thumbnail_url: item[:thumbnail_url],
       title: item[:title],
       year: item[:year],
