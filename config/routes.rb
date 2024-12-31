@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   get "albums/search"
 
-  get "tracks/search"
-
   get "playlists", to: "playlists#index"
   get "playlists/search"
   get "playlists/spotify"
