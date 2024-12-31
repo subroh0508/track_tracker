@@ -14,7 +14,9 @@ RSpec.describe Card::Component, type: :component do
 
   it "renders card" do
     render_inline described_class.new(classes: "max-w-sm") do |c|
-      c.with_header { title }
+      c.with_header do
+        c.render(Card::HeaderComponent.new) { title }
+      end
       c.with_description do
         c.render(Card::DescriptionComponent.new) { description }
       end
@@ -30,7 +32,9 @@ RSpec.describe Card::Component, type: :component do
       c.with_thumbnail do
         c.render(Card::ImageComponent.new(src: "https://example.com/image.jpg"))
       end
-      c.with_header { title }
+      c.with_header do
+        c.render(Card::HeaderComponent.new) { title }
+      end
       c.with_description do
         c.render(Card::DescriptionComponent.new) { description }
       end

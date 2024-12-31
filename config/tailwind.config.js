@@ -22,6 +22,9 @@ module.exports = {
         spotify: '#1ED760',
         applemusic: '#FC3C44',
       },
+      gridTemplateColumns: {
+        'auto-fit-180': 'repeat(auto-fit, minmax(180px, 1fr))',
+      },
     },
   },
   plugins: [

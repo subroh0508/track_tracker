@@ -3,7 +3,7 @@
 module Card
   class Component < ViewComponent::Base
     renders_one :thumbnail
-    renders_one :header, Card::HeaderComponent
+    renders_one :header
     renders_one :description
 
     def initialize(classes: "")
@@ -28,7 +28,6 @@ module Card
     def background
       [
         "rounded-lg",
-        "shadow",
         light_background,
         dark_background,
       ].join(" ")

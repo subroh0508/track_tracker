@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlaylistsController < ApplicationController
   def index
     @playlists = Playlist.all.map { |playlist|
@@ -29,6 +31,15 @@ class PlaylistsController < ApplicationController
     else
       @playlists = []
     end
+  end
+
+  def spotify
+    client = Api::SpotifyClient.new
+
+    @json = client.fetch_album(
+      "48KseHW22uKEJjgTKZCtk7",
+      "jp",
+    )
   end
 
   def create

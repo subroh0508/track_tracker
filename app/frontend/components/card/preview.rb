@@ -5,7 +5,11 @@ class Card::Preview < ViewComponent::Preview
   # @!group Style
   def default
     render Card::Component.new(classes: "max-w-sm") do |c|
-      c.with_header { "illumination STARS" }
+      c.with_header do
+        c.render Card::HeaderComponent.new do
+          "illumination STARS"
+        end
+      end
       c.with_description do
         c.render Card::DescriptionComponent.new do
           "Infinite Possibilities, Shining in Their Eyes"
@@ -19,7 +23,11 @@ class Card::Preview < ViewComponent::Preview
       c.with_thumbnail do
         c.render Card::ImageComponent.new(src: "https://i.ytimg.com/vi/Bsm9rQc7uew/hq720.jpg")
       end
-      c.with_header { "Shinography" }
+      c.with_header do
+        c.render Card::HeaderComponent.new do
+          "Shinography"
+        end
+      end
       c.with_description do
         c.render Card::DescriptionComponent.new do
           "SHINY COLORS - Topic"

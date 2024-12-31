@@ -3,10 +3,11 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  get "tracks/search"
+  get "albums/search"
 
   get "playlists", to: "playlists#index"
   get "playlists/search"
+  get "playlists/spotify"
   get "playlists/:id", to: "playlists#show"
   post "playlists", to: "playlists#create"
 

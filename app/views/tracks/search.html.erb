@@ -19,7 +19,9 @@
           )%>
         <% end %>
         <% component.with_header do %>
-          <%= youtube_track[:title] %>
+          <%= render Card::HeaderComponent.new do %>
+            <%= youtube_track[:title] %>
+          <% end %>
         <% end %>
         <% component.with_description do %>
           <%= render Card::DescriptionComponent.new do %>

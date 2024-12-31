@@ -20,6 +20,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 gem "http"
+gem "base64"
 
 gem "bootsnap", require: false
 

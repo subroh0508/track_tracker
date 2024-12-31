@@ -1,0 +1,16 @@
+<%= render SearchInput::Component.new(
+  id: "query",
+  label: "Go",
+  placeholder: "Input Album Title...",
+  url: "search",
+  method: "get",
+  data: { turbo_frame: "albums" },
+  classes: "max-w-3xl mx-auto mb-5",
+) %>
+<div class="max-w-3xl mx-auto">
+  <%= turbo_frame_tag "albums" do %>
+    <%= render Albums::GridComponent.new(
+      items: @albums,
+    ) %>
+  <% end %>
+</div>
