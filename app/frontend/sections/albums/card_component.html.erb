@@ -7,11 +7,17 @@
     )%>
   <% end %>
   <% component.with_header do %>
-    <%= title %>
+    <%= render Card::SmallHeaderComponent.new(
+      classes: header_classes,
+    ) do %>
+      <%= title %>
+    <% end %>
   <% end %>
   <% component.with_description do %>
-    <%= render Card::DescriptionComponent.new do %>
-      <%= year %>
+    <%= render Card::DescriptionComponent.new(
+      classes: description_classes,
+    ) do %>
+      <%= description %>
     <% end %>
   <% end %>
 <% end %>

@@ -23,7 +23,7 @@ module.exports = {
         applemusic: '#FC3C44',
       },
       gridTemplateColumns: {
-        'auto-fit-200': 'repeat(auto-fit, minmax(200px, 1fr))',
+        'auto-fit-180': 'repeat(auto-fit, minmax(180px, 1fr))',
       },
     },
   },

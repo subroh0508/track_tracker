@@ -17,7 +17,19 @@ module Albums
     end
 
     def classes
-      "max-w-sm mb-5"
+      "max-w-sm"
+    end
+
+    def header_classes
+      "line-clamp-2"
+    end
+
+    def description_classes
+      "line-clamp-2"
+    end
+
+    def description
+      [year.to_s, artist].reject(&:blank?).join(" • ")
     end
   end
 end
