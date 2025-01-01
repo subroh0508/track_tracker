@@ -7,7 +7,7 @@ module Link
     def initialize(
       href: "#",
       active: false,
-      active_color: { text: "text-white", background: "bg-primary-700" },
+      active_color: { text: "text-white", background_style: "bg-primary-700" },
       classes: "px-4 py-3"
     )
       super(href: href, classes: classes)
@@ -25,7 +25,7 @@ module Link
     end
 
     def active_text_style
-      "#{active_color[:text]} #{active_color[:background]}"
+      "#{active_color[:text]} #{active_color[:background_style]}"
     end
 
     def light_text_style
