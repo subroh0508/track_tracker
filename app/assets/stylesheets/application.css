@@ -9,6 +9,10 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+html {
+  overflow-y: scroll;
+}
+
 .youtube-iframe {
   width: 100%;
   height: auto;

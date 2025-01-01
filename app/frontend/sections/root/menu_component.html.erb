@@ -1,0 +1,11 @@
+<ul class="<%= classes %>">
+  <% menus.each do |menu| %>
+    <li>
+      <a class="<%= menu_classes(menu[:is_active]) %>"
+        href="<%= menu[:href] %>"
+      >
+        <%= menu[:label] %>
+      </a>
+    </li>
+  <% end %>
+</ul>

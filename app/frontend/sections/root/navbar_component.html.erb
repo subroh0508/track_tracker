@@ -1,0 +1,10 @@
+<nav class="<%= nav_classes %>">
+  <div class="<%= classes %>">
+    <a href="<%= root_path %>" class="<%= logo_classes %>">
+      <%= render Root::LogoComponent.new %>
+    </a>
+    <div class="<%= menus_classes %>">
+      <%= render Root::MenuComponent.new(menus: menus) %>
+    </div>
+  </div>
+</nav>
