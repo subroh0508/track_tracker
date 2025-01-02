@@ -2,24 +2,38 @@
 
 module Link
   class ButtonComponent < Link::Component
-    attr_reader :active
+    attr_reader :active, :shape, :size
 
     def initialize(
       href: "#",
       active: false,
       active_color: { text: "text-white", background_style: "bg-primary-700" },
-      classes: "px-4 py-3"
+      shape: Link::Button::ROUNDED,
+      size: Link::Button::BASE,
+      classes: ""
     )
       super(href: href, classes: classes)
       @active = active
       @active_color = active_color
+      @shape = shape
+      @size = size
+    end
+
+    def classes
+      [
+        @classes,
+        "inline-flex",
+        "items-center",
+        size,
+        text_style,
+      ].join(" ")
     end
 
     protected
 
     def text_style
       [
-        "rounded-lg",
+        shape,
         active ? active_text_style : "#{light_text_style} #{dark_text_style}",
       ].join(" ")
     end

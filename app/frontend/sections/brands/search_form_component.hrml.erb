@@ -1,0 +1,29 @@
+<div>
+  <%= render SearchInput::Component.new(
+    id: "query",
+    label: "Go",
+    placeholder: "Input Album Title...",
+    url: "search",
+    method: "get",
+    data: { turbo_frame: "brands" },
+    classes: "mb-5",
+  ) %>
+  <div class="flex items-center justify-between">
+    <span>
+      <i class="<%= icon_spotify_classes %>"></i>
+      <i class="<%= icon_youtube_classes %>"></i>
+      <i class="<%= icon_apple_classes %>"></i>
+    </span>
+    <div class="flex">
+      <div>
+        アルバム
+      </div>
+      <div>
+        アーティスト
+      </div>
+      <div>
+        曲
+      </div>
+    </div>
+  </div>
+</div>

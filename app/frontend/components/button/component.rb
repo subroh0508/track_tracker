@@ -2,21 +2,26 @@
 
 module Button
   class Component < ViewComponent::Base
-    attr_reader :variant, :type
+    attr_reader :variant, :type, :shape, :size
 
     def initialize(
       variant: Button::TEXT,
       type: "button",
-      classes: "px-5 py-2.5"
+      shape: Button::ROUNDED,
+      size: Button::BASE,
+      classes: ""
     )
       @variant = variant
       @type = type
+      @shape = shape
+      @size = size
       @classes = classes
     end
 
     def classes
       [
         @classes,
+        size,
         text_style,
         border,
       ].join(" ")
@@ -38,12 +43,8 @@ module Button
       ].join(" ")
     end
 
-    def padding
-      "px-5 py-2.5"
-    end
-
     def common_text_style
-      "text-sm font-medium"
+      "font-medium"
     end
 
     def light_text_style
@@ -68,25 +69,21 @@ module Button
       end
     end
 
-    def common_border
-      "rounded-lg"
-    end
-
     def light_border
       case variant
       when OUTLINED
-        "#{common_border} border border-primary-700 hover:bg-primary-800"
+        "#{shape} border border-primary-700 hover:bg-primary-800"
       else
-        common_border
+        shape
       end
     end
 
     def dark_border
       case variant
       when OUTLINED
-        "#{common_border} border dark:border-primary-500 dark:hover:border-primary-700"
+        "#{shape} border dark:border-primary-500 dark:hover:border-primary-700"
       else
-        common_border
+        shape
       end
     end
   end
