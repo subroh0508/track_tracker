@@ -4,12 +4,12 @@
   placeholder: "Input Album Title...",
   url: "search",
   method: "get",
-  data: { turbo_frame: "albums" },
+  data: { turbo_frame: "brands" },
   classes: "max-w-3xl mx-auto mb-5",
 ) %>
 <div class="max-w-3xl mx-auto">
-  <%= turbo_frame_tag "albums" do %>
-    <%= render Albums::GridComponent.new(
+  <%= turbo_frame_tag "brands" do %>
+    <%= render Brands::GridComponent.new(
       items: @albums,
     ) %>
   <% end %>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AlbumsController < ApplicationController
+class BrandsController < ApplicationController
   def search
     client = Api::SpotifyClient.new
 

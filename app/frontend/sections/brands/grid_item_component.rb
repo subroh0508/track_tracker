@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Albums
+module Brands
   class GridItemComponent < ViewComponent::Base
     attr_reader :thumbnail_url, :title, :year, :artist
 

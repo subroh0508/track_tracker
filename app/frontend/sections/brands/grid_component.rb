@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Albums
+module Brands
   class GridComponent < ViewComponent::Base
     attr_reader :items
 
@@ -16,7 +16,7 @@ module Albums
       [
         @classes,
         "grid",
-        "grid-cols-auto-fit-180",
+        "grid-cols-auto-fill-180",
         "gap-6",
       ].join(" ")
     end
