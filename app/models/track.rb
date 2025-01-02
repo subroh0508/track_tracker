@@ -3,7 +3,7 @@ class Track < ApplicationRecord
   has_many :track_artists
   has_many :artists, through: :track_artists
 
-    class << self
+  class << self
     def find_or_build_by(
       key,
       params,

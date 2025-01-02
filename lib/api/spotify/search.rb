@@ -11,7 +11,9 @@ module Api
 
       private_constant :ENDPOINT
 
-      def search_album(query, locale)
+      def search_albums(query, locale)
+        return [] if query.blank?
+
         search(
           Api::Spotify::TYPE_ALBUM,
           query,

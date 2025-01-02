@@ -7,39 +7,35 @@ module Api
     include Api::Youtube::PlaylistItem
     include Api::Youtube::Search
 
-    def search_playlists(youtube_id)
-      fetch_playlists(youtube_id).
+    def search_albums(query)
+      youtube_music_ids = search_playlists(query).
+        map { |summary| summary[:youtube_music_id] }
+
+      fetch_playlists(youtube_music_ids)
+=begin
         map { |playlist|
-          {
-            youtube_playlist_id: playlist[:id],
-            title: playlist[:title],
+          item_count = playlist.delete(:item_count)
+
+          playlist.merge(
             tracks: fetch_tracks(
-              playlist[:id],
-              playlist[:item_count],
-            ),
-          }
+              playlist[:youtube_music_id],
+              item_count,
+            )
+          )
         }
+=end
     end
 
     private
 
-    def fetch_tracks(id, tracks_count)
+    def fetch_tracks(playlist_id, tracks_count)
       fetch_playlist_items(
-        id,
+        playlist_id,
         tracks_count,
       ).map { |item|
-        channel = fetch_channels(item[:video_owner_channel_id])[0]
+        video_owner_channel_id = item.delete(:video_owner_channel_id)
 
-        {
-          youtube_video_id: item[:id],
-          title: item[:title],
-          position: item[:position],
-          thumbnail_url: item[:thumbnail_url],
-          artist: {
-            youtube_channel_id: channel[:id],
-            name: channel[:title],
-          },
-        }
+        item.merge(artists: fetch_channels(video_owner_channel_id))
       }
     end
   end

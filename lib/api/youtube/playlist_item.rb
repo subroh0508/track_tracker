@@ -25,9 +25,9 @@ module Api
 
         json["items"].map { |item|
           {
-            id: item["snippet"]["resourceId"]["videoId"],
+            youtube_music_id: item["snippet"]["resourceId"]["videoId"],
             title: item["snippet"]["title"],
-            position: item["snippet"]["position"],
+            track_number: item["snippet"]["position"],
             thumbnail_url: item["snippet"]["thumbnails"]["default"]["url"],
             video_owner_channel_id: item["snippet"]["videoOwnerChannelId"],
           }

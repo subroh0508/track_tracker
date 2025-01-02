@@ -13,6 +13,8 @@ module Api
       private_constant :BASE_URL
 
       def fetch_playlists(id)
+        return [] unless id.present?
+
         params = {
           key: api_key,
           id: id,
@@ -24,8 +26,14 @@ module Api
 
         json["items"].map { |item|
           {
-            id: item["id"],
+            youtube_music_id: item["id"],
             title: localized_title(item, "ja"),
+            thumbnail_url: detect_thumbnail(item["snippet"], "high"),
+            year: item["snippet"]["publishedAt"][0..3],
+            artists: [{
+              youtube_music_id: item["snippet"]["channelId"],
+              name: item["snippet"]["channelTitle"],
+            }],
             item_count: item["contentDetails"]["itemCount"],
           }
         }

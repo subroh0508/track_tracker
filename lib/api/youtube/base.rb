@@ -15,6 +15,10 @@ module Api
 
       protected
 
+      def detect_thumbnail(snippets, size)
+        snippets["thumbnails"][size]["url"]
+      end
+
       attr_reader :api_key, :logger, :http
     end
   end

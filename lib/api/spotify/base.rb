@@ -41,7 +41,7 @@ module Api
           spotify_id: json["id"],
           title: json["name"],
           thumbnail_url: detect_image(json["images"], 300)&.[]("url"),
-          year: json["release_date"].split("-")[0],
+          year: json["release_date"][0..3],
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
           tracks: json["tracks"]&.[]("items")&.map { |track| to_track_hash(track) },
         }

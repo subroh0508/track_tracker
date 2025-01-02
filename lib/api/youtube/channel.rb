@@ -24,8 +24,8 @@ module Api
 
         json["items"].map { |item|
           {
-            id: item["id"],
-            title: localized_title(item, "ja"),
+            youtube_music_id: item["id"],
+            name: localized_title(item, "ja"),
           }
         }
       end
