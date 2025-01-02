@@ -9,9 +9,10 @@
     <%= render Button::Component.new(
       variant: Button::CONTAINED,
       type: "submit",
+      disabled: disabled?,
       icon: "fas fa-floppy-disk fa-lg",
     ) do %>
-      登録
+      <%= button_label %>
     <% end %>
   </div>
 <% end %>

@@ -7,13 +7,29 @@ class BrandsController < ApplicationController
     @query = query
 
     if params.key?(:query)
-      @albums = client.search_album(
+      results = client.search_album(
         params[:query],
         "jp",
-      )
+      ).reduce({}) { |acc, result|
+        acc.merge(result[brand_key] => result)
+      }
     else
-      @albums = []
+      results = {}
     end
+
+    records = Playlist.where(
+      brand_key => results.keys,
+    ).reduce({}) { |acc, record|
+      acc.merge(record.public_send(brand_key.to_s) => record.id)
+    }
+
+    @albums = results.map { |key, value|
+      if records.key?(key)
+        value.merge(id: records[key])
+      else
+        value
+      end
+    }
   end
 
   def register
@@ -55,5 +71,18 @@ class BrandsController < ApplicationController
 
   def query
     params[:query] || ""
+  end
+
+  def brand_key
+    case brand
+    when Api::SPOTIFY
+      Streaming::KEY_SPOTIFY
+    when Api::YOUTUBE_MUSIC
+      Streaming::KEY_YOUTUBE_MUSIC
+    when Api::APPLE_MUSIC
+      Streaming::KEY_APPLE_MUSIC
+    else
+      throw ArgumentError.new("Unknown brand: #{brand}")
+    end
   end
 end

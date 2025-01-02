@@ -15,5 +15,13 @@ module Brands
       @brand_id = brand_id
       @classes = classes
     end
+
+    def disabled?
+      id.present?
+    end
+
+    def button_label
+      disabled? ? "登録済" : "登録"
+    end
   end
 end
