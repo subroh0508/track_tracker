@@ -9,7 +9,7 @@ RSpec.describe Brand::ButtonComponent, type: :component do
     let(:icon) { args[2] }
 
     let(:href) { "/example" }
-    let(:icon_classes) { ["fa-brands", icon, "fa-lg"] }
+    let(:icon_classes) { ["fab", icon, "fa-lg"] }
 
     it "renders brand button when deactivate" do
       render_inline(described_class.new(

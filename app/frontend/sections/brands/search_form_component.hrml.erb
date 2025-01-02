@@ -12,21 +12,21 @@
     <span>
       <%= render Link::IconComponent.new(
         href: href_spotify,
-        icon: "fa-spotify fa-lg",
+        icon: "fab fa-spotify fa-lg",
         active: brand == Api::SPOTIFY,
         active_text_color: "text-spotify",
         classes: "me-2",
       ) %>
       <%= render Link::IconComponent.new(
         href: href_youtube_music,
-        icon: "fa-youtube fa-lg",
+        icon: "fab fa-youtube fa-lg",
         active: brand == Api::YOUTUBE_MUSIC,
         active_text_color: "text-youtubemusic",
         classes: "me-2",
       ) %>
       <%= render Link::IconComponent.new(
         href: href_apple_music,
-        icon: "fa-apple fa-lg",
+        icon: "fab fa-apple fa-lg",
         active: brand == Api::APPLE_MUSIC,
         active_text_color: "text-applemusic",
         classes: "me-2",

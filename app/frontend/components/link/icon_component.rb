@@ -8,7 +8,7 @@ module Link
       href: "#",
       icon: "",
       active: false,
-      active_text_color: "bg-neutral-200 dark:bg-neutral-700",
+      active_text_color: "text-neutral-900 dark:text-white",
       classes: ""
     )
       super(href: href, classes: classes)
