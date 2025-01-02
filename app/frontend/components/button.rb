@@ -8,6 +8,6 @@ module Button
   ROUNDED = "rounded-lg".freeze
   PILLS = "rounded-full".freeze
 
-  BASE = "px-5 py-2.5 text-sm"
-  EXTRA_SMALL = "px-3 py-2 text-xs"
+  BASE = "px-5 py-2.5 text-sm".freeze
+  EXTRA_SMALL = "px-3 py-2 text-xs".freeze
 end

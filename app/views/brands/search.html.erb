@@ -1,8 +1,10 @@
 <div class="flex">
-  <div class="w-32">
-
+  <div class="w-72 me-3">
+    <%= turbo_frame_tag "selections" do %>
+      <%= render Brands::SelectionListComponent.new %>
+    <% end %>
   </div>
-  <div>
+  <div class="grow">
     <%= turbo_frame_tag "brands" do %>
       <%= render Brands::SearchFormComponent.new(
         base_url: "/brands/search",
@@ -12,6 +14,7 @@
         classes: "mb-3",
       ) %>
       <%= render Brands::GridComponent.new(
+        register_path: "/brands/register/#{@brand}/#{@type}?query=#{@query}",
         items: @albums,
       ) %>
     <% end %>

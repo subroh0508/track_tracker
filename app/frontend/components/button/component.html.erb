@@ -1,3 +1,10 @@
-<button type="<%= type %>" class="<%= classes %>">
+<button
+  type="<%= type %>"
+  class="<%= classes %>"
+  <%= disabled? ? "disabled" : nil %>
+>
+  <% if icon? %>
+    <i class="me-2 <%= icon %>"></i>
+  <% end %>
   <%= content %>
 </button>

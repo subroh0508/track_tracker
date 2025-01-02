@@ -1,6 +1,11 @@
 <div class="<%= classes %>">
   <% items.each do |item| %>
     <%= render Brands::GridItemComponent.new(
+      register_path: register_path,
+      id: item[:id],
+      spotify_id: item[:spotify_id],
+      youtube_video_id: item[:youtube_video_id],
+      apple_music_id: item[:apple_music_id],
       thumbnail_url: item[:thumbnail_url],
       title: item[:title],
       year: item[:year],

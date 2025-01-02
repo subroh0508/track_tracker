@@ -18,6 +18,12 @@ class BrandsController < ApplicationController
     end
   end
 
+  def register
+    puts params
+
+    redirect_to "/brands/search/#{brand}/#{type}?query=#{query}"
+  end
+
   private
 
   def brand

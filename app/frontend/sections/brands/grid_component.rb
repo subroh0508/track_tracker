@@ -2,12 +2,14 @@
 
 module Brands
   class GridComponent < ViewComponent::Base
-    attr_reader :items
+    attr_reader :register_path, :items
 
     def initialize(
+      register_path: "",
       items: [],
       classes: ""
     )
+      @register_path = register_path
       @items = items
       @classes = classes
     end

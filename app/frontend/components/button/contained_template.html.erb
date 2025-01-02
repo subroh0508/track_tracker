@@ -1,0 +1,36 @@
+<div class="flex flex-row gap-1">
+  <%= render Button::Component.new(
+    variant: Button::CONTAINED,
+    disabled: false,
+    shape: Button::ROUNDED,
+    size: Button::BASE,
+  ) do %>
+    Contained Button
+  <% end %>
+  <%= render Button::Component.new(
+    variant: Button::CONTAINED,
+    disabled: false,
+    icon: "fas fa-paper-plane fa-lg",
+    shape: Button::ROUNDED,
+    size: Button::BASE,
+  ) do %>
+    Contained Button
+  <% end %>
+  <%= render Button::Component.new(
+    variant: Button::CONTAINED,
+    disabled: true,
+    shape: Button::ROUNDED,
+    size: Button::BASE,
+  ) do %>
+    Contained Button
+  <% end %>
+  <%= render Button::Component.new(
+    variant: Button::CONTAINED,
+    disabled: true,
+    icon: "fas fa-share fa-lg",
+    shape: Button::ROUNDED,
+    size: Button::BASE,
+  ) do %>
+    Contained Button
+  <% end %>
+</div>

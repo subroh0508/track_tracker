@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
 
   get "brands/search(/:brand)(/:type)", to: "brands#search"
+  post "brands/register(/:brand)(/:type)", to: "brands#register"
 
   get "playlists", to: "playlists#index"
   get "playlists/search"

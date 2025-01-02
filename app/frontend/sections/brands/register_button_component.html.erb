@@ -1,0 +1,19 @@
+<%= form_with class: classes,
+  method: :post,
+  url: url do |f|
+%>
+  <%= f.hidden_field "id", value: id %>
+  <%= f.hidden_field "spotify_id", value: spotify_id %>
+  <%= f.hidden_field "youtube_video_id", value: youtube_video_id %>
+  <%= f.hidden_field "apple_music_id", value: apple_music_id %>
+
+  <div class="flex justify-end">
+    <%= render Button::Component.new(
+      variant: Button::CONTAINED,
+      type: "submit",
+      icon: "fas fa-floppy-disk fa-lg",
+    ) do %>
+      登録
+    <% end %>
+  </div>
+<% end %>

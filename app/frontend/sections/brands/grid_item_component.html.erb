@@ -1,6 +1,16 @@
-<%= render Grid::ItemComponent.new(
-  classes: classes,
-  thumbnail: thumbnail_url,
-  header: title,
-  description: description,
-) %>
+<div class="flex flex-col">
+  <%= render Grid::ItemComponent.new(
+    classes: classes,
+    thumbnail: thumbnail_url,
+    header: title,
+    description: description,
+  ) %>
+  <%= render Brands::RegisterButtonComponent.new(
+    url: register_path,
+    id: id,
+    spotify_id: spotify_id,
+    youtube_video_id: youtube_video_id,
+    apple_music_id: apple_music_id,
+    classes: "flex justify-end mt-auto",
+  ) %>
+</div>
