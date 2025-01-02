@@ -14,10 +14,15 @@ class Playlist < ApplicationRecord
   has_many :tracks, through: :playlist_tracks
 
   class << self
-    def find_or_build_by(params, type, locale = "ja")
+    def find_or_build_by(
+      key,
+      params,
+      type,
+      locale = "ja"
+    )
       playlist = Playlist.find_or_initialize_by(
-        type: type,
-        youtube_playlist_id: params[:youtube_playlist_id],
+        :type => type,
+        key => params[key],
       )
 
       build_translation(
@@ -47,12 +52,13 @@ class Playlist < ApplicationRecord
     end
   end
 
-  def build_playlist_track(track, position)
+  def build_playlist_track(track, track_number, thumbnail_url)
     return if playlist_tracks.exists?(track: track)
 
     playlist_tracks.build(
-      position: position,
       track: track,
+      track_number: track_number,
+      thumbnail_url: thumbnail_url,
     )
   end
 

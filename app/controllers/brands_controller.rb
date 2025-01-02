@@ -31,7 +31,10 @@ class BrandsController < ApplicationController
       throw ArgumentError.new("Unknown brand: #{brand}")
     end
 
-    puts @json
+    Playlists::SpotifyImportService.new(
+      "ja",
+      "album",
+    ).execute!([@json])
 
     redirect_to "/brands/search/#{brand}/#{type}?query=#{query}"
   end

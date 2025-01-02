@@ -43,14 +43,7 @@ module Api
           thumbnail_url: detect_image(json["images"], 300)&.[]("url"),
           year: json["release_date"].split("-")[0],
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
-          tracks: json["tracks"]&.[]("items")&.map { |track|
-            {
-              spotify_id: track["id"],
-              title: track["name"],
-              track_number: track["track_number"],
-              artists: track["artists"].map { |artist| to_artist_hash(artist) },
-            }
-          },
+          tracks: json["tracks"]&.[]("items")&.map { |track| to_track_hash(track) },
         }
 
         if json.key?("tracks")
@@ -87,7 +80,7 @@ module Api
           spotify_id: json["id"],
           title: json["name"],
           track_number: json["track_number"],
-          artist: json["artists"].map { |artist| to_artist_hash(artist) },
+          artists: json["artists"].map { |artist| to_artist_hash(artist) },
         }
       end
 
