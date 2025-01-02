@@ -6,7 +6,7 @@
     url: "search",
     method: "get",
     data: { turbo_frame: "brands" },
-    classes: "mb-5",
+    classes: "mb-3",
   ) %>
   <div class="flex items-center justify-between">
     <span>
@@ -14,16 +14,25 @@
       <i class="<%= icon_youtube_classes %>"></i>
       <i class="<%= icon_apple_classes %>"></i>
     </span>
-    <div class="flex">
-      <div>
+    <div class="flex gap-2">
+      <%= render Link::ChipComponent.new(
+        href: "#",
+        active: true,
+      ) do %>
         アルバム
-      </div>
-      <div>
+      <% end %>
+      <%= render Link::ChipComponent.new(
+        href: "#",
+        active: false,
+      ) do %>
         アーティスト
-      </div>
-      <div>
+      <% end %>
+      <%= render Link::ChipComponent.new(
+        href: "#",
+        active: false,
+      ) do %>
         曲
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

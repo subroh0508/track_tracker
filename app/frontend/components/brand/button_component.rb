@@ -2,18 +2,27 @@
 
 module Brand
   class ButtonComponent < ViewComponent::Base
-    attr_reader :brand, :href, :active, :classes
+    attr_reader :brand, :href, :active, :size
 
     def initialize(
       brand: nil,
       href: "#",
       active: false,
-      classes: "px-4 py-3"
+      size: Link::Button::BASE,
+      classes: ""
     )
       @brand = brand
       @href = href
       @active = active
+      @size = size
       @classes = classes
+    end
+
+    def classes
+      [
+        @classes,
+        size,
+      ].join(" ")
     end
 
     def icon
