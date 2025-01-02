@@ -34,6 +34,7 @@ module Api
       def to_album_hash(json)
         json["albums"]["items"].map { |item|
           {
+            spotify_id: item["id"],
             title: item["name"],
             thumbnail_url: detect_image(item["images"], 300)&.[]("url"),
             year: item["release_date"].split("-")[0],

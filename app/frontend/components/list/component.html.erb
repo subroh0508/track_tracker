@@ -1,0 +1,24 @@
+<% if index_range.present? %>
+  <div class="flex">
+    <div>
+      <% index_range.each do |index| %>
+        <div class="<%= index_classes %>">
+          <%= index %>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <% items.each do |item| %>
+        <div class="<%= item_classes %>">
+          <%= item %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <% items.each do |item| %>
+    <div class="<%= item_classes %>">
+      <%= item %>
+    </div>
+  <% end %>
+<% end %>

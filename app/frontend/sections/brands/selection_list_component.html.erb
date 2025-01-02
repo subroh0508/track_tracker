@@ -1,0 +1,36 @@
+<div>
+  <h3 class="<%= header_classes %>">
+    <%= header_text %>
+  </h3>
+  <%= render List::Component.new(
+    index_range: 1..items.size,
+    classes: "h-20",
+  ) do |component| %>
+    <% items.each do |item| %>
+      <% component.with_item do %>
+        <div class="flex items-center">
+          <img class="<%= thumbnail_classes %>"
+            src="<%= item[:thumbnail_url] %>"
+            alt="">
+          <div class="w-full">
+            <%= render List::ItemComponent.new(
+              header: item[:title],
+              description: item[:artist],
+            ) %>
+            <div class="flex items-center justify-end mt-2">
+              <% if item.key?(:spotify_id) %>
+                <i class="me-2 fab fa-spotify fa-lg text-spotify"></i>
+              <% end %>
+              <% if item.key?(:youtube_video_id) %>
+                <i class="me-2 fab fa-youtube fa-lg text-youtubemusic"></i>
+              <% end %>
+              <% if item.key?(:apple_music_id) %>
+                <i class="me-2 fab fa-apple fa-lg text-applemusic"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
