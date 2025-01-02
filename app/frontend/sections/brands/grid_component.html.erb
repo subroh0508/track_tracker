@@ -3,13 +3,11 @@
     <%= render Brands::GridItemComponent.new(
       register_path: register_path,
       id: item[:id],
-      spotify_id: item[:spotify_id],
-      youtube_video_id: item[:youtube_video_id],
-      apple_music_id: item[:apple_music_id],
+      brand_id: brand_id(item),
       thumbnail_url: item[:thumbnail_url],
       title: item[:title],
       year: item[:year],
-      artist: item[:artist],
+      artists: item[:artists],
     ) %>
   <% end %>
 </div>

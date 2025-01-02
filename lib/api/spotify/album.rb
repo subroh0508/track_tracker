@@ -15,7 +15,7 @@ module Api
         response = send_request { |http|
           http.get("#{ENDPOINT}/#{id}", params: { market: locale.upcase })
         }
-        JSON.parse(response.body)
+        to_album_hash(JSON.parse(response.body))
       end
     end
   end

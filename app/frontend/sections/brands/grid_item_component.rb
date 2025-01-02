@@ -2,29 +2,25 @@
 
 module Brands
   class GridItemComponent < ViewComponent::Base
-    attr_reader :register_path, :id, :spotify_id, :youtube_video_id, :apple_music_id,
-                :thumbnail_url, :title, :year, :artist
+    attr_reader :register_path, :id, :brand_id,
+                :thumbnail_url, :title, :year, :artists
 
     def initialize(
       register_path: "",
       id: nil,
-      spotify_id: nil,
-      youtube_video_id: nil,
-      apple_music_id: nil,
+      brand_id: nil,
       thumbnail_url: "",
       title: "",
       year: 0,
-      artist: ""
+      artists: ""
     )
       @register_path = register_path
       @id = id
-      @spotify_id = spotify_id
-      @youtube_video_id = youtube_video_id
-      @apple_music_id = apple_music_id
+      @brand_id = brand_id
       @thumbnail_url = thumbnail_url
       @title = title
       @year = year
-      @artist = artist
+      @artists = artists
     end
 
     def classes
@@ -32,7 +28,10 @@ module Brands
     end
 
     def description
-      [year.to_s, artist].reject(&:blank?).join(" • ")
+      [
+        year.to_s,
+        artists.map { |artist| artist[:name] }.join(","),
+      ].reject(&:blank?).join(" • ")
     end
   end
 end

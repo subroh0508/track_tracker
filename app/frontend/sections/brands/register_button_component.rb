@@ -2,22 +2,17 @@
 
 module Brands
   class RegisterButtonComponent < ViewComponent::Base
-    attr_reader :url, :id, :spotify_id, :youtube_video_id, :apple_music_id,
-                :classes
+    attr_reader :url, :id, :brand_id, :classes
 
     def initialize(
       url: "",
       id: nil,
-      spotify_id: nil,
-      youtube_video_id: nil,
-      apple_music_id: nil,
+      brand_id: nil,
       classes: ""
     )
       @url = url
       @id = id
-      @spotify_id = spotify_id
-      @youtube_video_id = youtube_video_id
-      @apple_music_id = apple_music_id
+      @brand_id = brand_id
       @classes = classes
     end
   end

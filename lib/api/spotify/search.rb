@@ -12,7 +12,16 @@ module Api
       private_constant :ENDPOINT
 
       def search_album(query, locale)
-        to_album_hash(search(Api::Spotify::TYPE_ALBUM, query, locale))
+        search(
+          Api::Spotify::TYPE_ALBUM,
+          query,
+          locale,
+        ).dig(
+          "albums",
+          "items",
+        ).map { |item|
+          to_album_hash(item)
+        }
       end
 
       private
@@ -28,23 +37,8 @@ module Api
             },
           )
         }
+
         JSON.parse(response.body)
-      end
-
-      def to_album_hash(json)
-        json["albums"]["items"].map { |item|
-          {
-            spotify_id: item["id"],
-            title: item["name"],
-            thumbnail_url: detect_image(item["images"], 300)&.[]("url"),
-            year: item["release_date"].split("-")[0],
-            artist: item["artists"].map { |artist| artist["name"] },
-          }
-        }
-      end
-
-      def detect_image(images, size)
-        images.detect { |image| image["height"] == size && image["width"] == size }
       end
     end
   end
