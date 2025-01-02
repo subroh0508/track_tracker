@@ -1,8 +1,9 @@
 class Track < ApplicationRecord
   has_many :translations, class_name: "Translations::Track"
-  belongs_to :artist
+  has_many :track_artists
+  has_many :artists, through: :track_artists
 
-  class << self
+    class << self
     def find_or_build_by(params, locale = "ja")
       track = Track.find_or_initialize_by(
         youtube_video_id: params[:youtube_video_id],
