@@ -14,7 +14,9 @@
         classes: "mb-3",
       ) %>
       <%= render Brands::GridComponent.new(
-        register_path: "/brands/register/#{@brand}/#{@type}?query=#{@query}",
+        register_path: "/brands/register/#{@brand}/#{@type}",
+        brand: @brand,
+        query: @query,
         items: @albums,
       ) %>
     <% end %>

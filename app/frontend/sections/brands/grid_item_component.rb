@@ -2,13 +2,14 @@
 
 module Brands
   class GridItemComponent < ViewComponent::Base
-    attr_reader :register_path, :id, :brand_id,
+    attr_reader :register_path, :id, :brand_id, :query,
                 :thumbnail_url, :title, :year, :artists
 
     def initialize(
       register_path: "",
       id: nil,
       brand_id: nil,
+      query: "",
       thumbnail_url: "",
       title: "",
       year: 0,
@@ -17,6 +18,7 @@ module Brands
       @register_path = register_path
       @id = id
       @brand_id = brand_id
+      @query = query
       @thumbnail_url = thumbnail_url
       @title = title
       @year = year

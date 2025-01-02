@@ -4,6 +4,7 @@
 %>
   <%= f.hidden_field "id", value: id %>
   <%= f.hidden_field "brand_id", value: brand_id %>
+  <%= f.hidden_field "query", value: query %>
 
   <div class="flex justify-end">
     <%= render Button::Component.new(

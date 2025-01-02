@@ -2,16 +2,18 @@
 
 module Brands
   class GridComponent < ViewComponent::Base
-    attr_reader :register_path, :brand, :items
+    attr_reader :register_path, :brand, :query, :items
 
     def initialize(
       register_path: "",
       brand: Api::SPOTIFY,
+      query: "",
       items: [],
       classes: ""
     )
       @register_path = register_path
       @brand = brand
+      @query = query
       @items = items
       @classes = classes
     end
