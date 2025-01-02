@@ -2,19 +2,21 @@
 
 module Form
   class InputComponent < ViewComponent::Base
-    attr_reader :type, :id, :placeholder
+    attr_reader :type, :id, :placeholder, :value
 
     def initialize(
       type: "text",
       id: "",
       placeholder: nil,
       required: false,
+      value: nil,
       classes: ""
     )
       @type = type
       @id = id
       @placeholder = placeholder
       @required = required
+      @value = value
       @classes = classes
     end
 

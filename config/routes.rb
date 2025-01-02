@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  get "brands/search"
+  get "brands/search(/:brand)(/:type)", to: "brands#search"
 
   get "playlists", to: "playlists#index"
   get "playlists/search"

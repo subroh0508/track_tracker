@@ -2,6 +2,10 @@
 
 class BrandsController < ApplicationController
   def search
+    @brand = brand
+    @type = type
+    @query = query
+
     client = Api::SpotifyClient.new
 
     if params.key?(:query)
@@ -12,5 +16,19 @@ class BrandsController < ApplicationController
     else
       @albums = []
     end
+  end
+
+  private
+
+  def brand
+    params[:brand] || Api::SPOTIFY
+  end
+
+  def type
+    params[:type] || Api::TYPE_ALBUM
+  end
+
+  def query
+    params[:query] || ""
   end
 end

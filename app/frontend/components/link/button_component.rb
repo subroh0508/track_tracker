@@ -43,7 +43,7 @@ module Link
     end
 
     def light_text_style
-      "text-neutral-500 bg-neutral-50 hover:text-neutral-900 hover:bg-neutral-100"
+      "text-neutral-500 bg-neutral-50 hover:text-neutral-900 hover:bg-neutral-200"
     end
 
     def dark_text_style

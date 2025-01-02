@@ -15,6 +15,7 @@
       type: type,
       id: id,
       placeholder: placeholder,
+      value: value,
       classes: "block w-full p-4 ps-10",
     ) %>
     <%= render Button::Component.new(
@@ -26,4 +27,5 @@
       <%= label %>
     <% end %>
   </div>
+  <%= content %>
 <% end %>

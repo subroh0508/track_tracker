@@ -1,38 +1,56 @@
-<div>
-  <%= render SearchInput::Component.new(
-    id: "query",
-    label: "Go",
-    placeholder: "Input Album Title...",
-    url: "search",
-    method: "get",
-    data: { turbo_frame: "brands" },
-    classes: "mb-3",
-  ) %>
-  <div class="flex items-center justify-between">
+<%= render SearchInput::Component.new(
+  id: "query",
+  label: "Go",
+  placeholder: "Search...",
+  value: query,
+  url: "search",
+  method: "get",
+  data: { turbo_frame: "brands" },
+  classes: classes,
+) do %>
+  <div class="flex items-center justify-between mt-3">
     <span>
-      <i class="<%= icon_spotify_classes %>"></i>
-      <i class="<%= icon_youtube_classes %>"></i>
-      <i class="<%= icon_apple_classes %>"></i>
+      <%= render Link::IconComponent.new(
+        href: href_spotify,
+        icon: "fa-spotify fa-lg",
+        active: brand == Api::SPOTIFY,
+        active_text_color: "text-spotify",
+        classes: "me-2",
+      ) %>
+      <%= render Link::IconComponent.new(
+        href: href_youtube_music,
+        icon: "fa-youtube fa-lg",
+        active: brand == Api::YOUTUBE_MUSIC,
+        active_text_color: "text-youtubemusic",
+        classes: "me-2",
+      ) %>
+      <%= render Link::IconComponent.new(
+        href: href_apple_music,
+        icon: "fa-apple fa-lg",
+        active: brand == Api::APPLE_MUSIC,
+        active_text_color: "text-applemusic",
+        classes: "me-2",
+      ) %>
     </span>
     <div class="flex gap-2">
       <%= render Link::ChipComponent.new(
-        href: "#",
-        active: true,
+        href: href_album,
+        active: type == Api::TYPE_ALBUM,
       ) do %>
         アルバム
       <% end %>
       <%= render Link::ChipComponent.new(
-        href: "#",
-        active: false,
+        href: href_artist,
+        active: type == Api::TYPE_ARTIST,
       ) do %>
         アーティスト
       <% end %>
       <%= render Link::ChipComponent.new(
-        href: "#",
-        active: false,
+        href: href_track,
+        active: type == Api::TYPE_TRACK,
       ) do %>
         曲
       <% end %>
     </div>
   </div>
-</div>
+<% end %>

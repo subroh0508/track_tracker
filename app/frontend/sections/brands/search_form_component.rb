@@ -2,46 +2,44 @@
 
 module Brands
   class SearchFormComponent < ViewComponent::Base
-    attr_reader :current_brand
+    attr_reader :base_url, :brand, :type, :query, :classes
 
     def initialize(
-      current_brand: Api::SPOTIFY
+      base_url: "",
+      brand: Api::SPOTIFY,
+      type: Api::TYPE_ALBUM,
+      query: nil,
+      classes: ""
     )
-      @current_brand = current_brand
+      @base_url = base_url
+      @brand = brand
+      @type = type
+      @query = query
+      @classes = classes
     end
 
-    def icon_spotify_classes
-      [
-        icon_classes,
-        "fa-spotify",
-        current_brand == Api::SPOTIFY ? "text-spotify" : "text-neutral-400",
-      ].join(" ")
+    def href_spotify
+      "#{base_url}/#{Api::SPOTIFY}/#{type}?query=#{query}"
     end
 
-    def icon_youtube_classes
-      [
-        icon_classes,
-        "fa-youtube",
-        current_brand == Api::YOUTUBE_MUSIC ? "text-youtubemusic" : "text-neutral-400",
-      ].join(" ")
+    def href_youtube_music
+      "#{base_url}/#{Api::YOUTUBE_MUSIC}/#{type}?query=#{query}"
     end
 
-    def icon_apple_classes
-      [
-        icon_classes,
-        "fa-apple",
-        current_brand == Api::APPLE_MUSIC ? "text-applemusic" : "text-neutral-400",
-      ].join(" ")
+    def href_apple_music
+      "#{base_url}/#{Api::APPLE_MUSIC}/#{type}?query=#{query}"
     end
 
-    private
+    def href_album
+      "#{base_url}/#{brand}/album?query=#{query}"
+    end
 
-    def icon_classes
-      %w[
-        me-2
-        fa-brands
-        fa-lg
-      ].join(" ")
+    def href_artist
+      "#{base_url}/#{brand}/artist?query=#{query}"
+    end
+
+    def href_track
+      "#{base_url}/#{brand}/track?query=#{query}"
     end
   end
 end
