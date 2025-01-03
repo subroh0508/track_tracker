@@ -10,7 +10,7 @@ class StreamingTracksController < ApplicationController
     @type = type
     @query = query
 
-    @albums = Brands::SearchService.new("jp").execute!(
+    @albums = StreamingTracks::SearchService.new("jp").execute!(
       brand,
       type,
       query,

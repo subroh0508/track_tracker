@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Brands
+module StreamingTracks
   class SearchService
     def initialize(locale)
       @locale = locale
