@@ -24,6 +24,14 @@ module StreamingTracks
       def url
         "#{base_url}/#{brand}/#{Api::TYPE_ARTIST}/search"
       end
+
+      def label
+        "アーティスト名#{visible? ? "" : "でフィルタ"}"
+      end
+
+      def visible?
+        type == Api::TYPE_ARTIST
+      end
     end
   end
 end

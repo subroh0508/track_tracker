@@ -1,21 +1,30 @@
-<%= form_with url: url, method: :get, data: data, class: classes do |_| %>
-  <div class="flex items-center justify-between mb-2">
-    <%= render Form::LabelComponent.new(
-      label_for: "query",
-      classes: "block",
-    ) do %>
-      アーティスト名
-    <% end %>
-    <%= render Input::ToggleComponent.new(
-      checked: type == Api::TYPE_ARTIST,
-    ) %>
-  </div>
-  <%= render Input::Component.new(
-    type: "search",
-    id: "query",
-    disabled: type != Api::TYPE_ARTIST,
-    icon: "fas fa-user",
-    button_label: "Go",
-    value: query,
+<div class="relative">
+  <%= form_with url: url, method: :get, data: data, class: classes do |_| %>
+    <div>
+      <div class="flex items-center justify-between mb-2">
+        <%= render Form::LabelComponent.new(
+          label_for: "query",
+          classes: "block",
+        ) do %>
+          <%= label %>
+        <% end %>
+      </div>
+      <% if visible? %>
+        <%= render Input::Component.new(
+          type: "search",
+          id: "query",
+          icon: "fas fa-user",
+          button_label: "Go",
+          value: query,
+        ) %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= render StreamingTracks::Artist::ToggleComponent.new(
+    base_url: base_url,
+    brand: brand,
+    type: type,
+    checked: type == Api::TYPE_ARTIST,
+    classes: "absolute top-0 end-0",
   ) %>
-<% end %>
+</div>
