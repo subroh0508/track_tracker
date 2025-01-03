@@ -1,17 +1,20 @@
-<%= form_with url: url, method: :get, data: data, class: classes do |_| %>
-  <%= content %>
-  <%= render Form::LabelComponent.new(
-    label_for: "query",
-    classes: "block",
-  ) do %>
-    アルバム名
-  <% end %>
-  <%= render Input::Component.new(
-    type: "search",
-    id: "query",
-    placeholder: "Search albums by title",
-    icon: "fas fa-magnifying-glass",
-    button_label: "Go",
-    value: query,
-  ) %>
-<% end %>
+<div>
+  <div class="flex flex-col gap-3 mb-4">
+    <%= render StreamingTracks::SearchForm::BrandTabs.new(
+      brand: brand,
+    ) %>
+
+    <%= render StreamingTracks::Album::SearchFormComponent.new(
+      base_url: "/streaming_tracks/register",
+      brand: brand,
+      query: query,
+      data: data,
+    ) %>
+    <%= render StreamingTracks::Artist::SearchFormComponent.new(
+      base_url: "/streaming_tracks/register",
+      brand: brand,
+      query: query,
+      data: data,
+    ) %>
+  </div>
+</div>

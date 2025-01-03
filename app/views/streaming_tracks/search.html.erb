@@ -6,8 +6,7 @@
   </div>
   <div class="grow">
     <%= turbo_frame_tag "brands" do %>
-      <%= render StreamingTracks::SearchFormComponent.new(
-        base_url: "/brands/search",
+      <%= render StreamingTracks::SearchForm::Component.new(
         brand: @brand,
         type: @type,
         query: @query,

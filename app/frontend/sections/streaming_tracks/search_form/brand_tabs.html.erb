@@ -1,0 +1,14 @@
+<span class="<%= classes %>">
+  <%= render Brand::ButtonComponent.new(
+    brand: Api::SPOTIFY,
+    active: brand == Api::SPOTIFY,
+  ) %>
+  <%= render Brand::ButtonComponent.new(
+    brand: Api::YOUTUBE_MUSIC,
+    active: brand == Api::YOUTUBE_MUSIC,
+  ) %>
+  <%= render Brand::ButtonComponent.new(
+    brand: Api::APPLE_MUSIC,
+    active: brand == Api::APPLE_MUSIC,
+  ) %>
+</span>
