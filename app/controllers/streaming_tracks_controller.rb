@@ -10,18 +10,12 @@ class StreamingTracksController < ApplicationController
     @type = type
     @query = query
 
-    @albums = search_service.execute!(
-      brand,
-      type,
-      query,
-      options: {
-        artist_id: params[:artist],
-      },
-    )
-    @artist = fetch_artist_service.execute!(
-      brand,
-      params[:artist],
-    )
+    @albums = StreamingTracks::SearchService.new("jp").
+      execute!(
+        brand,
+        type,
+        query,
+      )
   end
 
   def register
@@ -31,8 +25,6 @@ class StreamingTracksController < ApplicationController
         params[:brand_id],
         "jp",
       )
-    when Api::YOUTUBE_MUSIC
-      @json = nil
     when Api::APPLE_MUSIC
       @json = nil
     else
@@ -51,14 +43,6 @@ class StreamingTracksController < ApplicationController
 
   def client
     @client ||= Api::SpotifyClient.new
-  end
-
-  def search_service
-    @search_service ||= StreamingTracks::SearchService.new("jp")
-  end
-
-  def fetch_artist_service
-    @fetch_artist_service ||= StreamingTracks::FetchArtistService.new("jp")
   end
 
   def brand

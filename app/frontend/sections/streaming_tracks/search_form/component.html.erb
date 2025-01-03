@@ -6,20 +6,11 @@
     query: query,
     data: data,
   ) %>
-  <%= render StreamingTracks::Artist::SearchFormComponent.new(
-    base_url: StreamingTracks::BASE_URL,
-    brand: brand,
-    type: type,
-    query: artist_query,
-    artist: artist,
-    data: data,
-  ) %>
   <%= render StreamingTracks::Album::SearchFormComponent.new(
     base_url: StreamingTracks::BASE_URL,
     brand: brand,
     type: type,
     query: album_query,
-    artist: artist,
     data: data,
   ) %>
 </div>

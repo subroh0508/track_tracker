@@ -35,10 +35,6 @@ module StreamingTracks
         "#{base_url}/#{Api::SPOTIFY}/#{type}/search?query=#{query}"
       end
 
-      def href_youtube_music
-        "#{base_url}/#{Api::YOUTUBE_MUSIC}/#{type}/search?query=#{query}"
-      end
-
       def href_apple_music
         "#{base_url}/#{Api::APPLE_MUSIC}/#{type}/search?query=#{query}"
       end

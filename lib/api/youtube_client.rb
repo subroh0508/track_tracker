@@ -7,23 +7,14 @@ module Api
     include Api::Youtube::PlaylistItem
     include Api::Youtube::Search
 
-    def search_albums(
-      query,
-      options: {
-        artist_id: nil,
+    def search_albums(query)
+      youtube_music_ids = search_playlists(
+        query,
+      ).map { |summary|
+        summary[:youtube_music_id]
       }
-    )
-      if options[:artist_id].blank?
-        youtube_music_ids = search_playlists(
-          query,
-          ).map { |summary|
-          summary[:youtube_music_id]
-        }
 
-        fetch_playlists(id: youtube_music_ids)
-      else
-        fetch_playlists(channel_id: options[:artist_id])
-      end
+      fetch_playlists(id: youtube_music_ids)
 =begin
         map { |playlist|
           item_count = playlist.delete(:item_count)
