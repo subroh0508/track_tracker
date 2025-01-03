@@ -8,10 +8,16 @@ RSpec.describe Track, type: :model do
   }
 
   describe ".find_or_build_by" do
-    subject { described_class.find_or_build_by(params, locale) }
+    subject {
+      described_class.find_or_build_by(
+        Streaming::KEY_YOUTUBE_MUSIC,
+        params,
+        locale,
+      )
+    }
 
-    context "with youtube_video_id" do
-      let(:youtube_video_id) { "xxx" }
+    context "with youtube_music_id" do
+      let(:youtube_music_id) { "xxx" }
 
       context "when the track does not exist" do
         let(:title) { "曲名" }
@@ -19,7 +25,7 @@ RSpec.describe Track, type: :model do
 
         let(:params) {
           {
-            youtube_video_id: youtube_video_id,
+            youtube_music_id: youtube_music_id,
             title: title,
           }
         }
@@ -27,8 +33,8 @@ RSpec.describe Track, type: :model do
         it {
           expect(subject).to have_attributes(
             id: nil,
-            youtube_video_id: youtube_video_id,
-            artist: nil,
+            youtube_music_id: youtube_music_id,
+            artists: [],
           )
           expect(subject.translations).to contain_exactly(
             have_attributes(
@@ -46,7 +52,7 @@ RSpec.describe Track, type: :model do
 
           let(:params) {
             {
-              youtube_video_id: track_without_translation_en.youtube_video_id,
+              youtube_music_id: track_without_translation_en.youtube_music_id,
               title: title,
             }
           }
@@ -54,7 +60,7 @@ RSpec.describe Track, type: :model do
           it {
             expect(subject).to have_attributes(
               id: track_without_translation_en.id,
-              youtube_video_id: track_without_translation_en.youtube_video_id,
+              youtube_music_id: track_without_translation_en.youtube_music_id,
             )
             expect(subject.translations).to contain_exactly(
               have_attributes(
@@ -71,7 +77,7 @@ RSpec.describe Track, type: :model do
 
           let(:params) {
             {
-              youtube_video_id: track_without_translation_en.youtube_video_id,
+              youtube_music_id: track_without_translation_en.youtube_music_id,
               title: title,
             }
           }
@@ -79,8 +85,8 @@ RSpec.describe Track, type: :model do
           it {
             expect(subject).to have_attributes(
               id: track_without_translation_en.id,
-              youtube_video_id: track_without_translation_en.youtube_video_id,
-              artist: be_present,
+              youtube_music_id: track_without_translation_en.youtube_music_id,
+              artists: [be_present],
             )
             expect(subject.translations).to contain_exactly(
               have_attributes(

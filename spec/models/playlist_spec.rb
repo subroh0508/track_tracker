@@ -10,14 +10,15 @@ RSpec.describe Playlist, type: :model do
 
     subject {
       described_class.find_or_build_by(
+        Streaming::KEY_YOUTUBE_MUSIC,
         params,
         Playlist.types[type.to_sym],
         locale,
       )
     }
 
-    context "with youtube_playlist_id" do
-      let(:youtube_playlist_id) { "xxx" }
+    context "with youtube_music_id" do
+      let(:youtube_music_id) { "xxx" }
 
       context "when the playlist does not exist" do
         let(:title) { "プレイリスト名" }
@@ -26,7 +27,7 @@ RSpec.describe Playlist, type: :model do
 
         let(:params) {
           {
-            youtube_playlist_id: youtube_playlist_id,
+            youtube_music_id: youtube_music_id,
             title: title,
           }
         }
@@ -35,7 +36,7 @@ RSpec.describe Playlist, type: :model do
           expect(subject).to have_attributes(
             id: nil,
             type: type,
-            youtube_playlist_id: youtube_playlist_id,
+            youtube_music_id: youtube_music_id,
           )
           expect(subject.translations).to contain_exactly(
             have_attributes(
@@ -54,7 +55,7 @@ RSpec.describe Playlist, type: :model do
 
           let(:params) {
             {
-              youtube_playlist_id: playlist_without_translation_en.youtube_playlist_id,
+              youtube_music_id: playlist_without_translation_en.youtube_music_id,
               title: title,
             }
           }
@@ -63,7 +64,7 @@ RSpec.describe Playlist, type: :model do
             expect(subject).to have_attributes(
               id: playlist_without_translation_en.id,
               type: type,
-              youtube_playlist_id: playlist_without_translation_en.youtube_playlist_id,
+              youtube_music_id: playlist_without_translation_en.youtube_music_id,
             )
             expect(subject.translations).to contain_exactly(
               have_attributes(
@@ -81,7 +82,7 @@ RSpec.describe Playlist, type: :model do
 
           let(:params) {
             {
-              youtube_playlist_id: playlist_without_translation_en.youtube_playlist_id,
+              youtube_music_id: playlist_without_translation_en.youtube_music_id,
               title: title,
             }
           }
@@ -90,7 +91,7 @@ RSpec.describe Playlist, type: :model do
             expect(subject).to have_attributes(
               id: playlist_without_translation_en.id,
               type: type,
-              youtube_playlist_id: playlist_without_translation_en.youtube_playlist_id,
+              youtube_music_id: playlist_without_translation_en.youtube_music_id,
             )
             expect(subject.translations).to contain_exactly(
               have_attributes(
@@ -123,20 +124,21 @@ RSpec.describe Playlist, type: :model do
         playlist.build_playlist_track(
           track,
           position + 1,
+          "https://example.com/image.jpg",
         )
       end
 
       expect(playlist.playlist_tracks).to contain_exactly(
         have_attributes(
-          position: 1,
+          track_number: 1,
           track: tracks[0],
         ),
         have_attributes(
-          position: 2,
+          track_number: 2,
           track: tracks[1],
         ),
         have_attributes(
-          position: 3,
+          track_number: 3,
           track: tracks[2],
         ),
       )

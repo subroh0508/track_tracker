@@ -19,7 +19,7 @@ RSpec.describe Link::ButtonComponent, type: :component do
       "text-neutral-500",
       "bg-neutral-50",
       "hover:text-neutral-900",
-      "hover:bg-neutral-100",
+      "hover:bg-neutral-200",
       "dark:text-neutral-400",
       "dark:bg-neutral-800",
       "dark:hover:text-white",

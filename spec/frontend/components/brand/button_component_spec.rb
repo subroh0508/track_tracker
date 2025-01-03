@@ -36,17 +36,17 @@ RSpec.describe Brand::ButtonComponent, type: :component do
   end
 
   it_behaves_like "button renders", [
-    Brand::YOUTUBE_MUSIC,
+    Api::YOUTUBE_MUSIC,
     %w[text-white bg-youtubemusic],
     "fa-youtube",
   ]
   it_behaves_like "button renders", [
-    Brand::SPOTIFY,
+    Api::SPOTIFY,
     %w[text-black bg-spotify],
     "fa-spotify",
   ]
   it_behaves_like "button renders", [
-    Brand::APPLE_MUSIC,
+    Api::APPLE_MUSIC,
     %w[text-white bg-applemusic],
     "fa-apple",
   ]

@@ -58,7 +58,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000004) do
     t.index ["track_id"], name: "index_track_artists_on_track_id"
   end
 
-  create_table "streaming_tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "spotify_id"
     t.string "youtube_music_id"
     t.string "apple_music_id"
@@ -97,10 +97,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_17_000004) do
   end
 
   add_foreign_key "playlist_tracks", "playlists"
-  add_foreign_key "playlist_tracks", "streaming_tracks"
+  add_foreign_key "playlist_tracks", "tracks"
   add_foreign_key "track_artists", "artists"
-  add_foreign_key "track_artists", "streaming_tracks"
+  add_foreign_key "track_artists", "tracks"
   add_foreign_key "translations_artists", "artists"
   add_foreign_key "translations_playlists", "playlists"
-  add_foreign_key "translations_tracks", "streaming_tracks"
+  add_foreign_key "translations_tracks", "tracks"
 end

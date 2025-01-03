@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :playlist do
     type { Playlist.types[:album] }
-    youtube_playlist_id { ("a".."z").to_a.shuffle[0..7].join }
+    youtube_music_id { ("a".."z").to_a.shuffle[0..7].join }
 
     trait :with_translations do
       after(:build) do |playlist|
