@@ -26,6 +26,13 @@ module Api
 =end
     end
 
+    def search_artists(query)
+      youtube_music_ids = search_channels(query).
+        map { |summary| summary[:youtube_music_id] }
+
+      fetch_channels(youtube_music_ids)
+    end
+
     private
 
     def fetch_tracks(playlist_id, tracks_count)

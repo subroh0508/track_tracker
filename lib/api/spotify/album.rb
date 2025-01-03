@@ -6,6 +6,7 @@ module Api
   module Spotify
     module Album
       include Api::Spotify::Base
+      include Api::Spotify::JsonToHash
 
       ENDPOINT = "#{Api::Spotify::Base::BASE_ENDPOINT}/albums".freeze
 

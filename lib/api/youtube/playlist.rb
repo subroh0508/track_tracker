@@ -13,7 +13,7 @@ module Api
       private_constant :BASE_URL
 
       def fetch_playlists(id)
-        return [] unless id.present?
+        return [] if id.blank?
 
         params = {
           key: api_key,

@@ -17,6 +17,7 @@
       <%= render Brands::GridComponent.new(
         register_path: "/brands/register/#{@brand}/#{@type}",
         brand: @brand,
+        type: @type,
         query: @query,
         items: @albums,
       ) %>

@@ -1,14 +1,28 @@
 <div class="<%= classes %>">
   <% items.each do |item| %>
-    <%= render Brands::GridItemComponent.new(
-      register_path: register_path,
-      id: item[:id],
-      brand_id: brand_id(item),
-      query: query,
-      thumbnail_url: item[:thumbnail_url],
-      title: item[:title],
-      year: item[:year],
-      artists: item[:artists],
-    ) %>
+    <% case type %>
+    <% when Api::TYPE_ALBUM %>
+      <%= render Brands::GridItemComponent.new(
+        register_path: register_path,
+        id: item[:id],
+        brand_id: brand_id(item),
+        query: query,
+        thumbnail_url: item[:thumbnail_url],
+        title: item[:title],
+        year: item[:year],
+        artists: item[:artists],
+      ) %>
+    <% when Api::TYPE_ARTIST %>
+      <%= render Brands::Artist::GridItemComponent.new(
+        register_path: register_path,
+        id: item[:id],
+        brand_id: brand_id(item),
+        query: query,
+        thumbnail_url: item[:thumbnail_url],
+        name: item[:name],
+      ) %>
+    <% else %>
+      <span>Unknown type: <%= type %></span>
+    <% end %>
   <% end %>
 </div>

@@ -16,6 +16,10 @@ module Api
         search(Api::Youtube::Base::TYPE_PLAYLIST, query)
       end
 
+      def search_channels(query)
+        search(Api::Youtube::Base::TYPE_CHANNEL, query)
+      end
+
       private
 
       def search(type, query)

@@ -23,7 +23,7 @@ module Brands
       when Api::TYPE_ALBUM
         results = search_albums(brand, query)
       when Api::TYPE_ARTIST
-        results = []
+        results = search_artists(brand, query)
       when Api::TYPE_TRACK
         results = []
       else
@@ -49,12 +49,26 @@ module Brands
       end
     end
 
+    def search_artists(brand, query)
+      case brand
+      when Api::SPOTIFY
+        spotify_client.search_artists(query, locale)
+      when Api::YOUTUBE_MUSIC
+        youtube_client.search_artists(query)
+      when Api::APPLE_MUSIC
+        []
+        # apple_client.search_albums(query)
+      else
+        raise ArgumentError, "Unknown brand: #{brand}"
+      end
+    end
+
     def search_from_db(brand, brand_ids)
       brand_key = brand_key(brand)
 
       Playlist.where(
         brand_key => brand_ids,
-        ).reduce({}) { |acc, record|
+      ).reduce({}) { |acc, record|
         acc.merge(record.public_send(brand_key.to_s) => record.id)
       }
     end
