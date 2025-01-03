@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Input
-  class Component < ViewComponent::Base
-    attr_reader :type, :id, :placeholder, :icon, :button_label, :value
+  class BaseComponent < ViewComponent::Base
+    attr_reader :type, :id, :placeholder, :value
 
     def initialize(
       type: "text",
@@ -10,8 +10,6 @@ module Input
       placeholder: nil,
       required: false,
       disabled: false,
-      icon: nil,
-      button_label: nil,
       value: nil,
       classes: ""
     )
@@ -20,16 +18,15 @@ module Input
       @placeholder = placeholder
       @required = required
       @disabled = disabled
-      @icon = icon
-      @button_label = button_label
       @value = value
       @classes = classes
     end
 
     def classes
       [
-        plain? ? "" : "flex items-center gap-2",
         @classes,
+        text_style,
+        border_style,
       ].join(" ")
     end
 
@@ -39,18 +36,6 @@ module Input
 
     def disabled?
       @disabled
-    end
-
-    def icon?
-      icon.present?
-    end
-
-    def button?
-      button_label.present?
-    end
-
-    def plain?
-      !icon? && !button?
     end
 
     private

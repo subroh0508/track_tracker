@@ -1,15 +1,13 @@
-<%= render SearchInput::Component.new(
-  id: "query",
-  label: "Go",
-  placeholder: "Search...",
-  value: query,
-  url: url,
-  method: "get",
+<%= render Brands::SearchForm::Component.new(
+  base_url: base_url,
+  brand: brand,
+  type: type,
+  query: query,
   data: data,
   classes: classes,
 ) do %>
-  <div class="flex items-center justify-between mt-3">
-    <span>
+  <div class="flex items-center justify-between mb-3">
+    <span class="flex items-center">
       <%= render Link::IconComponent.new(
         href: href_spotify,
         icon: "fab fa-spotify fa-lg",

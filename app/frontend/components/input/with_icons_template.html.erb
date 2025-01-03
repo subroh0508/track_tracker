@@ -1,0 +1,29 @@
+<div class="flex flex-row gap-1">
+  <%= render Input::Component.new(
+    type: type,
+    id: "with-icon-input",
+    placeholder: placeholder,
+    required: false,
+    disabled: false,
+    icon: "fas fa-at fa-lg",
+    value: nil,
+  ) %>
+  <%= render Input::Component.new(
+    type: type,
+    id: "required-with-icon-input",
+    placeholder: placeholder,
+    required: true,
+    disabled: false,
+    icon: "fas fa-at fa-lg",
+    value: nil,
+  ) %>
+  <%= render Input::Component.new(
+    type: type,
+    id: "disabled-with-icon-input",
+    placeholder: placeholder,
+    required: false,
+    disabled: true,
+    icon: "fas fa-at fa-lg",
+    value: nil,
+  ) %>
+</div>
