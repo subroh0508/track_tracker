@@ -36,7 +36,7 @@ class StreamingTracksController < ApplicationController
       "album",
     ).execute!([@json])
 
-    redirect_to "/brands/search/#{brand}/#{type}?query=#{query}"
+    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{query}"
   end
 
   private

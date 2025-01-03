@@ -14,7 +14,7 @@
         classes: "mb-5",
       ) %>
       <%= render StreamingTracks::GridComponent.new(
-        register_path: "/brands/register/#{@brand}/#{@type}",
+        register_path: "/streaming_tracks/register/#{@brand}/#{@type}",
         brand: @brand,
         type: @type,
         query: @query,

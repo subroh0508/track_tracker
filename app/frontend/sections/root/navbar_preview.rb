@@ -12,7 +12,7 @@ class Root::NavbarPreview < ViewComponent::Preview
           is_active: false,
         },
         {
-          href: "/brands/search",
+          href: "/streaming_tracks/register",
           label: "楽曲登録",
           is_active: true,
         },
