@@ -1,10 +1,15 @@
 <%= form_with url: url, method: :get, data: data, class: classes do |_| %>
-  <%= render Form::LabelComponent.new(
-    label_for: "query",
-    classes: "block",
-  ) do %>
-    アーティスト名
-  <% end %>
+  <div class="flex items-center justify-between mb-2">
+    <%= render Form::LabelComponent.new(
+      label_for: "query",
+      classes: "block",
+    ) do %>
+      アーティスト名
+    <% end %>
+    <%= render Input::ToggleComponent.new(
+      checked: type == Api::TYPE_ARTIST,
+    ) %>
+  </div>
   <%= render Input::Component.new(
     type: "search",
     id: "query",

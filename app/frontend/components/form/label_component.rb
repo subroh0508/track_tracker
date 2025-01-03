@@ -13,7 +13,7 @@ module Form
     end
 
     def classes
-      "#{@classes} mb-2 text-sm font-medium text-neutral-900 dark:text-white"
+      "#{@classes} text-sm font-medium text-neutral-900 dark:text-white"
     end
   end
 end

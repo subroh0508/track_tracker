@@ -39,4 +39,10 @@ class Input::Preview < ViewComponent::Preview
       locals: { placeholder: placeholder, type: type, button_label: button_label },
     )
   end
+
+  def toggle
+    render_with_template(
+      template: "input/toggles_template",
+    )
+  end
 end
