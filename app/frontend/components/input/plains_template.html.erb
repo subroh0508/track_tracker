@@ -1,0 +1,26 @@
+<div class="flex flex-row gap-1">
+  <%= render Input::Component.new(
+    type: type,
+    id: "plain-input",
+    placeholder: placeholder,
+    required: false,
+    disabled: false,
+    value: nil,
+  ) %>
+  <%= render Input::Component.new(
+    type: type,
+    id: "required-plain-input",
+    placeholder: placeholder,
+    required: true,
+    disabled: false,
+    value: nil,
+  ) %>
+  <%= render Input::Component.new(
+    type: type,
+    id: "disabled-plain-input",
+    placeholder: placeholder,
+    required: false,
+    disabled: true,
+    value: nil,
+  ) %>
+</div>
