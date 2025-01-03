@@ -48,6 +48,7 @@ module StreamingTracks
         spotify_client.search_albums(
           query,
           locale,
+          options: options,
         )
       when Api::YOUTUBE_MUSIC
         youtube_client.search_albums(

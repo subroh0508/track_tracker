@@ -8,20 +8,15 @@ module Api
       include Api::Spotify::Base
       include Api::Spotify::JsonToHash
 
-      ENDPOINT = "#{Api::Spotify::Base::BASE_ENDPOINT}/search".freeze
-
       RESULT_KEY_ALBUMS = "albums".freeze
       RESULT_KEY_ARTISTS = "artists".freeze
       RESULT_KEY_TRACKS = "streaming_tracks".freeze
 
-      private_constant :ENDPOINT,
-                       :RESULT_KEY_ALBUMS,
+      private_constant :RESULT_KEY_ALBUMS,
                        :RESULT_KEY_ARTISTS,
                        :RESULT_KEY_TRACKS
 
       def search_albums(query, locale)
-        return [] if query.blank?
-
         search(
           Api::Spotify::TYPE_ALBUM,
           query,
@@ -48,9 +43,9 @@ module Api
       def search(type, query, locale, result_key)
         return [] if query.blank?
 
-        response = send_request { |http|
+        response = send_request { |http, base_url|
           http.get(
-            "#{ENDPOINT}",
+            "#{base_url}/search",
             params: {
               q: query,
               type: type,

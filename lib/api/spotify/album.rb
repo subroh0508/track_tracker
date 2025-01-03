@@ -8,15 +8,32 @@ module Api
       include Api::Spotify::Base
       include Api::Spotify::JsonToHash
 
-      ENDPOINT = "#{Api::Spotify::Base::BASE_ENDPOINT}/albums".freeze
-
-      private_constant :ENDPOINT
-
       def fetch_album(id, locale)
-        response = send_request { |http|
-          http.get("#{ENDPOINT}/#{id}", params: { market: locale.upcase })
+        response = send_request { |http, base_url|
+          http.get(
+            "#{base_url}/albums/#{id}",
+            params: {
+              market: locale.upcase,
+            },
+          )
         }
         to_album_hash(JSON.parse(response.body))
+      end
+
+      def fetch_albums_from_artist(artist_id, locale)
+        response = send_request { |http, base_url|
+          http.get(
+            "#{base_url}/artists/#{artist_id}/albums",
+            params: {
+              include_groups: "album,single,appears_on,compilation",
+              market: locale.upcase,
+            },
+          )
+        }
+
+        JSON.parse(response.body)["items"].map { |item|
+          to_album_hash(item)
+        }
       end
     end
   end

@@ -8,7 +8,7 @@ module Api
       BASE_ENDPOINT = "https://api.spotify.com/v1".freeze
       TOKEN_URL = "https://accounts.spotify.com/api/token".freeze
 
-      private_constant :TOKEN_URL
+      private_constant :BASE_ENDPOINT, :TOKEN_URL
 
       @@spotify_access_token = nil
 
@@ -26,11 +26,17 @@ module Api
           reset_access_token
         end
 
-        response = yield(http.auth("Bearer #{access_token}"))
+        response = yield(
+          http.auth("Bearer #{access_token}"),
+          BASE_ENDPOINT
+        )
 
         if response.status.unauthorized?
           reset_access_token
-          yield(http.auth("Bearer #{access_token}"))
+          yield(
+            http.auth("Bearer #{access_token}"),
+            BASE_ENDPOINT
+          )
         else
           response
         end
