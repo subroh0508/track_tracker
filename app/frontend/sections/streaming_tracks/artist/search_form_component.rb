@@ -3,17 +3,19 @@
 module StreamingTracks
   module Artist
     class SearchFormComponent < ViewComponent::Base
-      attr_reader :base_url, :brand, :query, :data, :classes
+      attr_reader :base_url, :brand, :type, :query, :data, :classes
 
       def initialize(
         base_url: "",
         brand: Api::SPOTIFY,
+        type: Api::TYPE_ARTIST,
         query: nil,
         data: {},
         classes: ""
       )
         @base_url = base_url
         @brand = brand
+        @type = type
         @query = query
         @data = data
         @classes = classes

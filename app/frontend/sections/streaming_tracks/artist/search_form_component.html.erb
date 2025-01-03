@@ -1,5 +1,4 @@
 <%= form_with url: url, method: :get, data: data, class: classes do |_| %>
-  <%= content %>
   <%= render Form::LabelComponent.new(
     label_for: "query",
     classes: "block",
@@ -9,8 +8,8 @@
   <%= render Input::Component.new(
     type: "search",
     id: "query",
-    placeholder: "Search albums by title",
-    icon: "fas fa-magnifying-glass",
+    disabled: type != Api::TYPE_ARTIST,
+    icon: "fas fa-user",
     button_label: "Go",
     value: query,
   ) %>

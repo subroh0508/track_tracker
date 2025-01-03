@@ -11,7 +11,7 @@
         type: @type,
         query: @query,
         data: { turbo_frame: "brands", turbo_action: :advance },
-        classes: "mb-3",
+        classes: "mb-5",
       ) %>
       <%= render StreamingTracks::GridComponent.new(
         register_path: "/brands/register/#{@brand}/#{@type}",

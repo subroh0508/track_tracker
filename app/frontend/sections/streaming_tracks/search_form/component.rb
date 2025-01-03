@@ -19,8 +19,25 @@ module StreamingTracks
         @classes = classes
       end
 
+      def classes
+        [
+          "flex",
+          "flex-col",
+          "gap-3",
+          @classes,
+        ].join(" ")
+      end
+
       def url
         "#{base_url}/#{brand}/#{type}?query=#{query}"
+      end
+
+      def artist_query
+        type == Api::TYPE_ARTIST ? query : nil
+      end
+
+      def album_query
+        type == Api::TYPE_ALBUM ? query : nil
       end
     end
   end
