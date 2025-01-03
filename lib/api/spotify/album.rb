@@ -9,6 +9,8 @@ module Api
       include Api::Spotify::JsonToHash
 
       def fetch_album(id, locale)
+        return nil if id.blank?
+
         response = send_request { |http, base_url|
           http.get(
             "#{base_url}/albums/#{id}",
@@ -21,6 +23,8 @@ module Api
       end
 
       def fetch_albums_from_artist(artist_id, locale)
+        return [] if artist_id.blank?
+
         response = send_request { |http, base_url|
           http.get(
             "#{base_url}/artists/#{artist_id}/albums",

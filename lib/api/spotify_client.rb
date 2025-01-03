@@ -3,6 +3,7 @@
 module Api
   class SpotifyClient
     include Api::Spotify::Album
+    include Api::Spotify::Artist
     include Api::Spotify::Search
 
     def search_albums(

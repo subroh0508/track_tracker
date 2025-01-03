@@ -13,9 +13,10 @@
         <%= render Input::Component.new(
           type: "search",
           id: "query",
+          disabled: disabled?,
           icon: "fas fa-user",
           button_label: "Go",
-          value: query,
+          value: value,
         ) %>
       <% end %>
     </div>

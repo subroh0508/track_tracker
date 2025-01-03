@@ -18,6 +18,10 @@ class StreamingTracksController < ApplicationController
         artist_id: params[:artist],
       },
     )
+    @artist = fetch_artist_service.execute!(
+      brand,
+      params[:artist],
+    )
   end
 
   def register
@@ -51,6 +55,10 @@ class StreamingTracksController < ApplicationController
 
   def search_service
     @search_service ||= StreamingTracks::SearchService.new("jp")
+  end
+
+  def fetch_artist_service
+    @fetch_artist_service ||= StreamingTracks::FetchArtistService.new("jp")
   end
 
   def brand
