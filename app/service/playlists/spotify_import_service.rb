@@ -2,7 +2,7 @@
 
 module Playlists
   class SpotifyImportService
-    KEY = Streaming::Artists::KEY_SPOTIFY
+    KEY = Streaming::KEY_SPOTIFY
 
     def initialize(locale, type)
       @locale = locale
