@@ -13,42 +13,34 @@ module Api
       private_constant :BASE_URL
 
       def search_playlists(query)
-        search(Api::Youtube::Base::TYPE_PLAYLIST, query)
-      end
-
-      def search_channels(query)
-        search(Api::Youtube::Base::TYPE_CHANNEL, query)
-      end
-
-      private
-
-      def search(type, query)
         return [] if query.blank?
 
-        params =
-          case type
-          when Api::Youtube::Base::TYPE_PLAYLIST
-            build_params_for_playlist(query)
-          when Api::Youtube::Base::TYPE_CHANNEL
-            build_params_for_channel(query)
-          else
-            build_params_for_video(query)
-          end
-
-        response = http.get(BASE_URL, params: params)
+        response = http.get(
+          BASE_URL,
+          params: build_params_for_playlist(query),
+        )
         json = JSON.parse(response.body)
 
         json["items"].map { |item|
-          case type
-          when Api::Youtube::Base::TYPE_PLAYLIST
-            build_response_for_playlist(item)
-          when Api::Youtube::Base::TYPE_CHANNEL
-            build_response_for_channel(item)
-          else
-            build_response_for_video(item)
-          end
+          build_response_for_playlist(item)
         }
       end
+
+      def search_channels(query)
+        return [] if query.blank?
+
+        response = http.get(
+          BASE_URL,
+          params: build_params_for_channel(query),
+        )
+        json = JSON.parse(response.body)
+
+        json["items"].map { |item|
+          build_response_for_channel(item)
+        }
+      end
+
+      private
 
       def build_params_for_playlist(query)
         {
@@ -70,17 +62,6 @@ module Api
         }
       end
 
-      def build_params_for_video(query)
-        {
-          key: api_key,
-          q: query,
-          type: Api::Youtube::Base::TYPE_VIDEO,
-          videoCategoryId: "10",
-          maxResults: 10,
-          part: "snippet",
-        }
-      end
-
       def build_response_for_playlist(item)
         {
           youtube_music_id: item["id"]["playlistId"],
@@ -92,14 +73,6 @@ module Api
       def build_response_for_channel(item)
         {
           youtube_music_id: item["id"]["channelId"],
-          title: item["snippet"]["title"],
-          thumbnail_url: detect_thumbnail(item["snippet"], "high"),
-        }
-      end
-
-      def build_response_for_video(item)
-        {
-          youtube_music_id: item["id"]["videoId"],
           title: item["snippet"]["title"],
           thumbnail_url: detect_thumbnail(item["snippet"], "high"),
         }

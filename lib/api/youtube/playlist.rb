@@ -12,14 +12,18 @@ module Api
 
       private_constant :BASE_URL
 
-      def fetch_playlists(id)
-        return [] if id.blank?
+      def fetch_playlists(
+        id: nil,
+        channel_id: nil
+      )
+        return [] if id.blank? && channel_id.blank?
 
         params = {
           key: api_key,
           id: id,
           part: "snippet,localizations,contentDetails",
-        }
+          channelId: channel_id,
+        }.compact
 
         response = http.get(BASE_URL, params: params)
         json = JSON.parse(response.body)

@@ -10,10 +10,13 @@ class StreamingTracksController < ApplicationController
     @type = type
     @query = query
 
-    @albums = StreamingTracks::SearchService.new("jp").execute!(
+    @albums = search_service.execute!(
       brand,
       type,
       query,
+      options: {
+        artist_id: params[:artist],
+      },
     )
   end
 
@@ -44,6 +47,10 @@ class StreamingTracksController < ApplicationController
 
   def client
     @client ||= Api::SpotifyClient.new
+  end
+
+  def search_service
+    @search_service ||= StreamingTracks::SearchService.new("jp")
   end
 
   def brand

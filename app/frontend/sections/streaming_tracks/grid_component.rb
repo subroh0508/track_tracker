@@ -2,7 +2,7 @@
 
 module StreamingTracks
   class GridComponent < ViewComponent::Base
-    attr_reader :register_path, :brand, :type, :query, :items
+    attr_reader :register_path, :brand, :type, :query, :items, :data
 
     def initialize(
       register_path: "",
@@ -10,6 +10,7 @@ module StreamingTracks
       type: Api::TYPE_ALBUM,
       query: "",
       items: [],
+      data: {},
       classes: ""
     )
       @register_path = register_path
@@ -17,6 +18,7 @@ module StreamingTracks
       @type = type
       @query = query
       @items = items
+      @data = data
       @classes = classes
     end
 

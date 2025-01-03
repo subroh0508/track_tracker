@@ -1,5 +1,9 @@
-<%= render Grid::ItemComponent.new(
-  classes: classes,
-  thumbnail: thumbnail_url,
-  header: name,
-) %>
+<%= link_to href,
+  data: data do %>
+  <%= render Grid::ItemComponent.new(
+    classes: classes,
+    thumbnail_url: thumbnail_url,
+    thumbnail_shape: Grid::THUMBNAIL_CIRCLE,
+    header: name,
+  ) %>
+<% end %>

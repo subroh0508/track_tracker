@@ -14,12 +14,14 @@
       ) %>
     <% when Api::TYPE_ARTIST %>
       <%= render StreamingTracks::Artist::GridItemComponent.new(
-        register_path: register_path,
+        base_url: StreamingTracks::BASE_URL,
         id: item[:id],
         brand_id: brand_id(item),
+        brand: brand,
         query: query,
         thumbnail_url: item[:thumbnail_url],
         name: item[:name],
+        data: data,
       ) %>
     <% else %>
       <span>Unknown type: <%= type %></span>

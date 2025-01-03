@@ -8,8 +8,15 @@ module StreamingTracks
       @youtube_client = Api::YoutubeClient.new
     end
 
-    def execute!(brand, type, query)
-      results = search(brand, type, query)
+    def execute!(
+      brand,
+      type,
+      query,
+      options: {
+        artist_id: nil,
+      }
+    )
+      results = search(brand, type, query, options)
       records = search_from_db(brand, results.keys)
       merge(results, records)
     end
@@ -18,10 +25,10 @@ module StreamingTracks
 
     attr_reader :locale, :spotify_client, :youtube_client
 
-    def search(brand, type, query)
+    def search(brand, type, query, options)
       case type
       when Api::TYPE_ALBUM
-        results = search_albums(brand, query)
+        results = search_albums(brand, query, options)
       when Api::TYPE_ARTIST
         results = search_artists(brand, query)
       when Api::TYPE_TRACK
@@ -35,12 +42,18 @@ module StreamingTracks
       }
     end
 
-    def search_albums(brand, query)
+    def search_albums(brand, query, options)
       case brand
       when Api::SPOTIFY
-        spotify_client.search_albums(query, locale)
+        spotify_client.search_albums(
+          query,
+          locale,
+        )
       when Api::YOUTUBE_MUSIC
-        youtube_client.search_albums(query)
+        youtube_client.search_albums(
+          query,
+          options: options,
+        )
       when Api::APPLE_MUSIC
         []
         # apple_client.search_albums(query)

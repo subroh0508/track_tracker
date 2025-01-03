@@ -1,7 +1,8 @@
 <div class="flex flex-col">
   <%= render Grid::ItemComponent.new(
     classes: classes,
-    thumbnail: thumbnail_url,
+    thumbnail_url: thumbnail_url,
+    thumbnail_shape: Grid::THUMBNAIL_ROUNDED,
     header: title,
     description: description,
   ) %>
