@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-3">
+  <div class="flex flex-row gap-1">
+    <%= render Link::ButtonComponent.new(active: true, shape: Link::Button::ROUNDED, size: Link::Button::BASE) do %>
+      Link Text
+    <% end %>
+    <%= render Link::ButtonComponent.new(active: true, shape: Link::Button::PILL, size: Link::Button::BASE) do %>
+      Link Text
+    <% end %>
+    <%= render Link::ButtonComponent.new(active: false, shape: Link::Button::ROUNDED, size: Link::Button::BASE) do %>
+      Link Text
+    <% end %>
+    <%= render Link::ButtonComponent.new(active: false, shape: Link::Button::PILL, size: Link::Button::BASE) do %>
+      Link Text
+    <% end %>
+  </div>
+  <div class="flex flex-row gap-1">
+    <%= render Link::ButtonComponent.new(active: true, shape: Link::Button::ROUNDED, size: Link::Button::EXTRA_SMALL) do %>
+      Link Text
+    <% end %>
+    <%= render Link::ButtonComponent.new(active: true, shape: Link::Button::PILL, size: Link::Button::EXTRA_SMALL) do %>
+      Link Text
+    <% end %>
+    <%= render Link::ButtonComponent.new(active: false, shape: Link::Button::ROUNDED, size: Link::Button::EXTRA_SMALL) do %>
+      Link Text
+    <% end %>
+    <%= render Link::ButtonComponent.new(active: false, shape: Link::Button::PILL, size: Link::Button::EXTRA_SMALL) do %>
+      Link Text
+    <% end %>
+  </div>
+</div>
+

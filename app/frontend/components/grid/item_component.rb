@@ -2,22 +2,24 @@
 
 module Grid
   class ItemComponent < ViewComponent::Base
-    attr_reader :thumbnail, :header, :description, :classes
+    attr_reader :thumbnail_url, :thumbnail_shape, :header, :description, :classes
 
     def initialize(
-      thumbnail: "",
+      thumbnail_url: "",
+      thumbnail_shape: Grid::THUMBNAIL_ROUNDED,
       header: "",
       description: "",
       classes: ""
     )
-      @thumbnail = thumbnail
+      @thumbnail_url = thumbnail_url
+      @thumbnail_shape = thumbnail_shape
       @header = header
       @description = description
       @classes = classes
     end
 
     def thumbnail_classes
-      "rounded-lg"
+      thumbnail_shape
     end
 
     def header_classes

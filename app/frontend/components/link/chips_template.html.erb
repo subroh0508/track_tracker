@@ -1,0 +1,8 @@
+<div class="flex flex-row gap-1">
+  <%= render Link::ChipComponent.new(active: true) do %>
+    Link Text
+  <% end %>
+  <%= render Link::ChipComponent.new(active: false) do %>
+    Link Text
+  <% end %>
+</div>

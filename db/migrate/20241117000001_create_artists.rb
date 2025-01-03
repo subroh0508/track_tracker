@@ -1,7 +1,9 @@
 class CreateArtists < ActiveRecord::Migration[8.0]
   def change
     create_table :artists, id: :uuid do |t|
-      t.string :youtube_channel_id
+      t.string :spotify_id
+      t.string :youtube_music_id
+      t.string :apple_music_id
 
       t.timestamps
     end
@@ -14,6 +16,8 @@ class CreateArtists < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    # add_index :artists, :youtube_channel_id, unique: true
+    add_index :artists, :spotify_id, unique: true
+    # add_index :artists, :youtube_music_id, unique: true
+    add_index :artists, :apple_music_id, unique: true
   end
 end

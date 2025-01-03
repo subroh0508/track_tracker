@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :artist do
-    youtube_channel_id { ("a".."z").to_a.shuffle[0..7].join }
+    youtube_music_id { ("a".."z").to_a.shuffle[0..7].join }
 
     trait :with_translations do
       after(:build) do |artist|

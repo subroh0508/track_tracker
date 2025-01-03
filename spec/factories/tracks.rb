@@ -2,14 +2,14 @@
 
 FactoryBot.define do
   factory :track do
-    youtube_video_id { ("a".."z").to_a.shuffle[0..7].join }
+    youtube_music_id { ("a".."z").to_a.shuffle[0..7].join }
 
     trait :with_translations do
       after(:build) do |track|
         track.translations << build(:translation_track_ja)
         track.translations << build(:translation_track_en)
 
-        track.artist = build(:artist, :with_translations)
+        track.artists << build(:artist, :with_translations)
       end
     end
 
@@ -17,7 +17,7 @@ FactoryBot.define do
       after(:build) do |track|
         track.translations << build(:translation_track_ja)
 
-        track.artist = build(:artist, :without_translation_en)
+        track.artists << build(:artist, :without_translation_en)
       end
     end
   end

@@ -1,0 +1,26 @@
+<div class="flex flex-col gap-3">
+  <%= render Input::ToggleComponent.new(
+    checked: false,
+    disabled: false,
+  ) do %>
+    Toggle Button
+  <% end %>
+  <%= render Input::ToggleComponent.new(
+    checked: true,
+    disabled: false,
+  ) do %>
+    Toggle Button
+  <% end %>
+  <%= render Input::ToggleComponent.new(
+    checked: false,
+    disabled: true,
+  ) do %>
+    Toggle Button
+  <% end %>
+  <%= render Input::ToggleComponent.new(
+    checked: true,
+    disabled: true,
+  ) do %>
+    Toggle Button
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<label class="<%= classes %>">
+  <input type="checkbox"
+    value=""
+    class="sr-only peer"
+    <%= checked? ? "checked" : nil %>
+    <%= disabled? ? "disabled" : nil %>
+  >
+  <div class="<%= toggle_switch_classes %>"></div>
+  <% if content? %>
+    <span class="<%= label_classes %>">
+      <%= content %>
+    </span>
+  <% end %>
+</label>

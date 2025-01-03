@@ -2,7 +2,7 @@
 
 module SearchInput
   class Component < ViewComponent::Base
-    attr_reader :id, :label, :type, :placeholder,
+    attr_reader :id, :label, :type, :placeholder, :value,
                 :url, :method, :data, :classes
 
     def initialize(
@@ -10,6 +10,7 @@ module SearchInput
       label: "",
       type: "search",
       placeholder: nil,
+      value: nil,
       url: "",
       method: "",
       data: {},
@@ -19,6 +20,7 @@ module SearchInput
       @label = label
       @type = type
       @placeholder = placeholder
+      @value = value
       @url = url
       @method = method
       @data = data

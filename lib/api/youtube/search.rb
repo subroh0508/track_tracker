@@ -12,62 +12,51 @@ module Api
 
       private_constant :BASE_URL
 
-      def search(type, keyword)
-        [] if keyword.blank?
+      def search_playlists(query)
+        return [] if query.blank?
 
-        params =
-          case type
-          when Api::Youtube::Base::TYPE_PLAYLIST
-            build_params_for_playlist(keyword)
-          when Api::Youtube::Base::TYPE_CHANNEL
-            build_params_for_channel(keyword)
-          else
-            build_params_for_video(keyword)
-          end
-
-        response = http.get(BASE_URL, params: params)
+        response = http.get(
+          BASE_URL,
+          params: build_params_for_playlist(query),
+        )
         json = JSON.parse(response.body)
 
         json["items"].map { |item|
-          case type
-          when Api::Youtube::Base::TYPE_PLAYLIST
-            build_response_for_playlist(item)
-          when Api::Youtube::Base::TYPE_CHANNEL
-            build_response_for_channel(item)
-          else
-            build_response_for_video(item)
-          end
+          build_response_for_playlist(item)
+        }
+      end
+
+      def search_channels(query)
+        return [] if query.blank?
+
+        response = http.get(
+          BASE_URL,
+          params: build_params_for_channel(query),
+        )
+        json = JSON.parse(response.body)
+
+        json["items"].map { |item|
+          build_response_for_channel(item)
         }
       end
 
       private
 
-      def build_params_for_playlist(keyword)
+      def build_params_for_playlist(query)
         {
           key: api_key,
-          q: keyword,
+          q: query,
           type: Api::Youtube::Base::TYPE_PLAYLIST,
           maxResults: 10,
           part: "snippet",
         }
       end
 
-      def build_params_for_channel(keyword)
+      def build_params_for_channel(query)
         {
           key: api_key,
-          q: keyword,
+          q: query,
           type: Api::Youtube::Base::TYPE_CHANNEL,
-          maxResults: 10,
-          part: "snippet",
-        }
-      end
-
-      def build_params_for_video(keyword)
-        {
-          key: api_key,
-          q: keyword,
-          type: Api::Youtube::Base::TYPE_VIDEO,
-          videoCategoryId: "10",
           maxResults: 10,
           part: "snippet",
         }
@@ -75,28 +64,17 @@ module Api
 
       def build_response_for_playlist(item)
         {
-          id: item["id"]["playlistId"],
+          youtube_music_id: item["id"]["playlistId"],
           title: item["snippet"]["title"],
-          type: Api::Youtube::Base::TYPE_PLAYLIST,
-          thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
+          thumbnail_url: detect_thumbnail(item["snippet"], "high"),
         }
       end
 
       def build_response_for_channel(item)
         {
-          id: item["id"]["channelId"],
+          youtube_music_id: item["id"]["channelId"],
           title: item["snippet"]["title"],
-          type: Api::Youtube::Base::TYPE_CHANNEL,
-          thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
-        }
-      end
-
-      def build_response_for_video(item)
-        {
-          id: item["id"]["videoId"],
-          title: item["snippet"]["title"],
-          type: Api::Youtube::Base::TYPE_VIDEO,
-          thumbnail_url: item["snippet"]["thumbnails"]["high"]["url"],
+          thumbnail_url: detect_thumbnail(item["snippet"], "high"),
         }
       end
     end

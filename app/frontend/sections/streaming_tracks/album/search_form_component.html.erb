@@ -1,0 +1,16 @@
+<%= form_with url: url, method: :get, data: data, class: classes do |f| %>
+  <%= render Form::LabelComponent.new(
+    label_for: "query",
+    classes: "block mb-2",
+  ) do %>
+    アルバム名
+  <% end %>
+  <%= render Input::Component.new(
+    type: "search",
+    id: "query",
+    disabled: type != Api::TYPE_ALBUM,
+    icon: "fas fa-compact-disc",
+    button_label: "Go",
+    value: query,
+  ) %>
+<% end %>

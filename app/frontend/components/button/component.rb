@@ -2,91 +2,155 @@
 
 module Button
   class Component < ViewComponent::Base
-    attr_reader :variant, :type
+    attr_reader :variant, :icon, :type, :shape, :size
 
     def initialize(
       variant: Button::TEXT,
+      icon: nil,
+      disabled: false,
       type: "button",
-      classes: "px-5 py-2.5"
+      shape: Button::ROUNDED,
+      size: Button::BASE,
+      classes: ""
     )
       @variant = variant
+      @icon = icon
+      @disabled = disabled
       @type = type
+      @shape = shape
+      @size = size
       @classes = classes
     end
 
     def classes
       [
         @classes,
-        text_style,
-        border,
+        size,
+        disabled? ? disabled_text_style : text_style,
+        disabled? ? "cursor-not-allowed" : "",
+        disabled? ? disabled_border_style : border_style,
       ].join(" ")
+    end
+
+    def icon?
+      icon.present?
+    end
+
+    def disabled?
+      @disabled
     end
 
     private
 
     def text_style
       [
+        "font-medium",
         light_text_style,
         dark_text_style,
       ].join(" ")
     end
 
-    def border
+    def disabled_text_style
       [
-        light_border,
-        dark_border,
+        "font-medium",
+        disabled_light_text_style,
+        disabled_dark_text_style,
       ].join(" ")
     end
 
-    def padding
-      "px-5 py-2.5"
+    def border_style
+      [
+        shape,
+        light_border_style,
+        dark_border_style,
+      ].join(" ")
     end
 
-    def common_text_style
-      "text-sm font-medium"
+    def disabled_border_style
+      [
+        shape,
+        disabled_light_border_style,
+        disabled_dark_border_style,
+      ].join(" ")
     end
 
     def light_text_style
       case variant
       when CONTAINED
-        "#{common_text_style} text-white bg-primary-700 hover:bg-primary-800"
+        "text-white bg-primary-700 hover:bg-primary-800"
       when OUTLINED
-        "#{common_text_style} text-primary-700 hover:text-white hover:bg-primary-800"
+        "text-primary-700 hover:text-white hover:bg-primary-800"
       else
-        "#{common_text_style} text-primary-700 hover:bg-primary-100"
+        "text-primary-700 hover:bg-primary-100"
+      end
+    end
+
+    def disabled_light_text_style
+      case variant
+      when CONTAINED
+        "text-white bg-primary-400 cursor-not-allowed"
+      when OUTLINED
+        "text-neutral-300"
+      else
+        "text-neutral-300"
       end
     end
 
     def dark_text_style
       case variant
       when CONTAINED
-        "#{common_text_style} dark:bg-primary-600 dark:hover:bg-primary-700"
+        "dark:bg-primary-600 dark:hover:bg-primary-700"
       when OUTLINED
-        "#{common_text_style} dark:text-primary-500 dark:hover:text-white dark:hover:bg-primary-700"
+        "dark:text-primary-500 dark:hover:text-white dark:hover:bg-primary-700"
       else
-        "#{common_text_style} dark:text-primary-500 dark:hover:bg-primary-900"
+        "dark:text-primary-500 dark:hover:bg-primary-900"
       end
     end
 
-    def common_border
-      "rounded-lg"
-    end
-
-    def light_border
+    def disabled_dark_text_style
       case variant
+      when CONTAINED
+        "dark:bg-primary-400"
       when OUTLINED
-        "#{common_border} border border-primary-700 hover:bg-primary-800"
+        "dark:text-neutral-500"
       else
-        common_border
+        "dark:text-neutral-500"
       end
     end
 
-    def dark_border
+    def light_border_style
       case variant
       when OUTLINED
-        "#{common_border} border dark:border-primary-500 dark:hover:border-primary-700"
+        "border border-primary-700 hover:bg-primary-800"
       else
-        common_border
+        ""
+      end
+    end
+
+    def dark_border_style
+      case variant
+      when OUTLINED
+        "border dark:border-primary-500 dark:hover:border-primary-700"
+      else
+        ""
+      end
+    end
+
+    def disabled_light_border_style
+      case variant
+      when OUTLINED
+        "border border-neutral-300"
+      else
+        ""
+      end
+    end
+
+    def disabled_dark_border_style
+      case variant
+      when OUTLINED
+        "border dark:border-neutral-500"
+      else
+        ""
       end
     end
   end

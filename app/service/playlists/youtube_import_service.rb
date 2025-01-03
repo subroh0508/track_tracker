@@ -71,7 +71,7 @@ module Playlists
       end
 
       artist = Artist.find_or_build_by(
-        Streaming::Artists::KEY_YOUTUBE_MUSIC,
+        Streaming::KEY_YOUTUBE_MUSIC,
         params,
         locale,
       )
@@ -86,14 +86,14 @@ module Playlists
       }.flatten
 
       @track_cache = Streaming::Tracks::Cache.new(
-        Streaming::Tracks::KEY_YOUTUBE_MUSIC,
+        Streaming::KEY_YOUTUBE_MUSIC,
         track_params_array.map { |track_params|
           track_params[:youtube_video_id]
         },
       )
 
       @artist_cache = Streaming::Artists::Cache.new(
-        Streaming::Artists::KEY_YOUTUBE_MUSIC,
+        Streaming::KEY_YOUTUBE_MUSIC,
         track_params_array.map { |track_params|
           track_params[:artist][:youtube_channel_id]
         },

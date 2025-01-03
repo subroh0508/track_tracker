@@ -1,0 +1,8 @@
+<div class="flex flex-row gap-2">
+  <%= render Link::IconComponent.new(active: true, icon: "fas fa-house fa-lg") do %>
+    Link Text
+  <% end %>
+  <%= render Link::IconComponent.new(active: false, icon: "fas fa-image fa-lg") do %>
+    Link Text
+  <% end %>
+</div>

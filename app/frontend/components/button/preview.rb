@@ -4,27 +4,21 @@
 class Button::Preview < ViewComponent::Preview
   # @!group Variants
   def text
-    render Button::Component.new(
-      variant: Button::TEXT,
-    ) do
-      "Text"
-    end
+    render_with_template(
+      template: "button/text_template",
+    )
   end
 
   def contained
-    render Button::Component.new(
-      variant: Button::CONTAINED,
-    ) do
-      "Contained"
-    end
+    render_with_template(
+      template: "button/contained_template",
+    )
   end
 
   def outlined
-    render Button::Component.new(
-      variant: Button::OUTLINED,
-    ) do
-      "Outlined"
-    end
+    render_with_template(
+      template: "button/outlined_template",
+    )
   end
   # @!endgroup
 end

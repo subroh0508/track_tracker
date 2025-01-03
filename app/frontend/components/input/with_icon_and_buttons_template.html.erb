@@ -1,0 +1,32 @@
+<div class="flex flex-col gap-3">
+  <%= render Input::Component.new(
+    type: type,
+    id: "with-icon-button-input",
+    placeholder: placeholder,
+    required: false,
+    disabled: false,
+    icon: "fas fa-magnifying-glass fa-lg",
+    button_label: button_label,
+    value: nil,
+  ) %>
+  <%= render Input::Component.new(
+    type: type,
+    id: "required-with-icon-button-input",
+    placeholder: placeholder,
+    required: true,
+    disabled: false,
+    icon: "fas fa-magnifying-glass fa-lg",
+    button_label: button_label,
+    value: nil,
+  ) %>
+  <%= render Input::Component.new(
+    type: type,
+    id: "disabled-with-icon-button-input",
+    placeholder: placeholder,
+    required: false,
+    disabled: true,
+    icon: "fas fa-magnifying-glass fa-lg",
+    button_label: button_label,
+    value: nil,
+  ) %>
+</div>

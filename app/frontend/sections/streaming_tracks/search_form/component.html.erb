@@ -1,0 +1,16 @@
+<div class="<%= classes %>">
+  <%= render StreamingTracks::SearchForm::BrandTabs.new(
+    base_url: StreamingTracks::BASE_URL,
+    brand: brand,
+    type: type,
+    query: query,
+    data: data,
+  ) %>
+  <%= render StreamingTracks::Album::SearchFormComponent.new(
+    base_url: StreamingTracks::BASE_URL,
+    brand: brand,
+    type: type,
+    query: album_query,
+    data: data,
+  ) %>
+</div>

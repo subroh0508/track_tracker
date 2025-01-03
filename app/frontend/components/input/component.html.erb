@@ -1,0 +1,40 @@
+<% if plain? %>
+  <%= render Input::BaseComponent.new(
+    type: type,
+    id: id,
+    placeholder: placeholder,
+    required: required?,
+    disabled: disabled?,
+    value: value,
+    classes: classes,
+  ) %>
+<% else %>
+  <div class="<%= classes %>">
+    <div class="relative grow">
+      <% if icon? %>
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <i class="w-4 h-4 text-neutral-500 dark:text-neutral-400 <%= icon %>"></i>
+        </div>
+      <% end %>
+      <%= render Input::BaseComponent.new(
+        type: type,
+        id: id,
+        placeholder: placeholder,
+        required: required?,
+        disabled: disabled?,
+        value: value,
+        classes: "block w-full py-2 ps-10 pe-3",
+      ) %>
+    </div>
+    <% if button? %>
+      <%= render Button::Component.new(
+        variant: Button::CONTAINED,
+        type: "submit",
+        disabled: disabled?,
+        size: "px-4 py-2 text-sm",
+      ) do %>
+        <%= button_label %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

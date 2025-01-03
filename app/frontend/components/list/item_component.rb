@@ -13,11 +13,22 @@ module List
     end
 
     def header_style
-      "font-medium #{light_header_style} #{dark_header_style}"
+      [
+        "font-medium",
+        "line-clamp-1",
+        light_header_style,
+        dark_header_style,
+      ].join(" ")
     end
 
     def description_style
-      "text-sm font-normal #{light_description_style} #{dark_description_style}"
+      [
+        "text-sm",
+        "font-normal",
+        "line-clamp-1",
+        light_description_style,
+        dark_description_style,
+      ].join(" ")
     end
 
     private

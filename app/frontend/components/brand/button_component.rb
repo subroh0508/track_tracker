@@ -2,28 +2,52 @@
 
 module Brand
   class ButtonComponent < ViewComponent::Base
-    attr_reader :brand, :href, :active, :classes
+    attr_reader :brand, :href, :active, :size, :data
 
     def initialize(
       brand: nil,
       href: "#",
       active: false,
-      classes: "px-4 py-3"
+      size: Link::Button::BASE,
+      data: {},
+      classes: ""
     )
       @brand = brand
       @href = href
       @active = active
+      @size = size
+      @data = data
       @classes = classes
+    end
+
+    def classes
+      [
+        @classes,
+        size,
+      ].join(" ")
     end
 
     def icon
       case brand
-      when YOUTUBE_MUSIC
+      when Api::YOUTUBE_MUSIC
         "fa-youtube"
-      when SPOTIFY
+      when Api::SPOTIFY
         "fa-spotify"
-      when APPLE_MUSIC
+      when Api::APPLE_MUSIC
         "fa-apple"
+      else
+        throw ArgumentError.new("Unknown brand: #{brand}")
+      end
+    end
+
+    def label
+      case brand
+      when Api::YOUTUBE_MUSIC
+        Brand::YOUTUBE_MUSIC
+      when Api::SPOTIFY
+        Brand::SPOTIFY
+      when Api::APPLE_MUSIC
+        Brand::APPLE_MUSIC
       else
         throw ArgumentError.new("Unknown brand: #{brand}")
       end
@@ -31,11 +55,11 @@ module Brand
 
     def active_text_color
       case brand
-      when YOUTUBE_MUSIC
+      when Api::YOUTUBE_MUSIC
         "text-white"
-      when SPOTIFY
+      when Api::SPOTIFY
         "text-black"
-      when APPLE_MUSIC
+      when Api::APPLE_MUSIC
         "text-white"
       else
         throw ArgumentError.new("Unknown brand: #{brand}")
@@ -44,11 +68,11 @@ module Brand
 
     def active_background_color
       case brand
-      when YOUTUBE_MUSIC
+      when Api::YOUTUBE_MUSIC
         "bg-youtubemusic"
-      when SPOTIFY
+      when Api::SPOTIFY
         "bg-spotify"
-      when APPLE_MUSIC
+      when Api::APPLE_MUSIC
         "bg-applemusic"
       else
         throw ArgumentError.new("Unknown brand: #{brand}")
