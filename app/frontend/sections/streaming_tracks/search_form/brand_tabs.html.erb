@@ -1,14 +1,23 @@
 <span class="<%= classes %>">
   <%= render Brand::ButtonComponent.new(
     brand: Api::SPOTIFY,
+    href: href_spotify,
     active: brand == Api::SPOTIFY,
+    data: data,
+    classes: "justify-center",
   ) %>
   <%= render Brand::ButtonComponent.new(
     brand: Api::YOUTUBE_MUSIC,
+    href: href_youtube_music,
     active: brand == Api::YOUTUBE_MUSIC,
+    data: data,
+    classes: "justify-center",
   ) %>
   <%= render Brand::ButtonComponent.new(
     brand: Api::APPLE_MUSIC,
+    href: href_apple_music,
     active: brand == Api::APPLE_MUSIC,
+    data: data,
+    classes: "justify-center",
   ) %>
 </span>

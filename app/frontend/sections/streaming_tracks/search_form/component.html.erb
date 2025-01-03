@@ -1,17 +1,20 @@
 <div>
   <div class="flex flex-col gap-3 mb-4">
     <%= render StreamingTracks::SearchForm::BrandTabs.new(
+      base_url: StreamingTracks::SearchForm::BASE_URL,
       brand: brand,
+      type: type,
+      query: query,
+      data: data,
     ) %>
-
     <%= render StreamingTracks::Album::SearchFormComponent.new(
-      base_url: "/streaming_tracks/register",
+      base_url: StreamingTracks::SearchForm::BASE_URL,
       brand: brand,
       query: query,
       data: data,
     ) %>
     <%= render StreamingTracks::Artist::SearchFormComponent.new(
-      base_url: "/streaming_tracks/register",
+      base_url: StreamingTracks::SearchForm::BASE_URL,
       brand: brand,
       query: query,
       data: data,
