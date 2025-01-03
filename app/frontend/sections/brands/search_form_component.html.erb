@@ -3,9 +3,9 @@
   label: "Go",
   placeholder: "Search...",
   value: query,
-  url: "search",
+  url: url,
   method: "get",
-  data: { turbo_frame: "brands" },
+  data: data,
   classes: classes,
 ) do %>
   <div class="flex items-center justify-between mt-3">
@@ -15,6 +15,7 @@
         icon: "fab fa-spotify fa-lg",
         active: brand == Api::SPOTIFY,
         active_text_color: "text-spotify",
+        data: data,
         classes: "me-2",
       ) %>
       <%= render Link::IconComponent.new(
@@ -22,6 +23,7 @@
         icon: "fab fa-youtube fa-lg",
         active: brand == Api::YOUTUBE_MUSIC,
         active_text_color: "text-youtubemusic",
+        data: data,
         classes: "me-2",
       ) %>
       <%= render Link::IconComponent.new(
@@ -29,6 +31,7 @@
         icon: "fab fa-apple fa-lg",
         active: brand == Api::APPLE_MUSIC,
         active_text_color: "text-applemusic",
+        data: data,
         classes: "me-2",
       ) %>
     </span>
@@ -36,18 +39,21 @@
       <%= render Link::ChipComponent.new(
         href: href_album,
         active: type == Api::TYPE_ALBUM,
+        data: data,
       ) do %>
         アルバム
       <% end %>
       <%= render Link::ChipComponent.new(
         href: href_artist,
         active: type == Api::TYPE_ARTIST,
+        data: data,
       ) do %>
         アーティスト
       <% end %>
       <%= render Link::ChipComponent.new(
         href: href_track,
         active: type == Api::TYPE_TRACK,
+        data: data,
       ) do %>
         曲
       <% end %>

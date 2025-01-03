@@ -9,9 +9,10 @@ module Link
       icon: "",
       active: false,
       active_text_color: "text-neutral-900 dark:text-white",
+      data: {},
       classes: ""
     )
-      super(href: href, classes: classes)
+      super(href: href, data: data, classes: classes)
 
       @icon = icon
       @active = active

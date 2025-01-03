@@ -2,13 +2,15 @@
 
 module Link
   class Component < ViewComponent::Base
-    attr_reader :href
+    attr_reader :href, :data
 
     def initialize(
       href: "#",
+      data: {},
       classes: ""
     )
       @href = href
+      @data = data
       @classes = classes
     end
 

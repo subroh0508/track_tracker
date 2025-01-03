@@ -10,9 +10,15 @@ module Link
       active_color: { text: "text-white", background_style: "bg-primary-700" },
       shape: Link::Button::ROUNDED,
       size: Link::Button::BASE,
+      data: {},
       classes: ""
     )
-      super(href: href, classes: classes)
+      super(
+        href: href,
+        data: data,
+        classes: classes
+      )
+
       @active = active
       @active_color = active_color
       @shape = shape

@@ -11,6 +11,7 @@
         brand: @brand,
         type: @type,
         query: @query,
+        data: { turbo_frame: "brands", turbo_action: :advance },
         classes: "mb-3",
       ) %>
       <%= render Brands::GridComponent.new(
