@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# @logical_path sections/brands
-class Brands::SelectionListPreview < ViewComponent::Preview
+# @logical_path sections/streaming_tracks
+class StreamingTracks::SelectionListPreview < ViewComponent::Preview
   def default
-    render Brands::SelectionListComponent.new(items: [
+    render StreamingTracks::SelectionListComponent.new(items: [
       {
         spotify_id: "xxx",
         thumbnail_url: "https://i.scdn.co/image/ab67616d00001e027de4dbffeda7b3ab5a2e5c77",

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Brands
+module StreamingTracks
   module Album
     class GridItemComponent < ViewComponent::Base
       attr_reader :register_path, :id, :brand_id, :query,

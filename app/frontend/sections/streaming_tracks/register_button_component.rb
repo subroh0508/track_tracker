@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Brands
+module StreamingTracks
   class RegisterButtonComponent < ViewComponent::Base
     attr_reader :url, :id, :brand_id, :query, :classes
 

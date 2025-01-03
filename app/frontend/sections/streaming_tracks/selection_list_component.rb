@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Brands
+module StreamingTracks
   class SelectionListComponent < ViewComponent::Base
     attr_reader :items
 

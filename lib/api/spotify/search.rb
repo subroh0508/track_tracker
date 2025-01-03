@@ -12,7 +12,7 @@ module Api
 
       RESULT_KEY_ALBUMS = "albums".freeze
       RESULT_KEY_ARTISTS = "artists".freeze
-      RESULT_KEY_TRACKS = "tracks".freeze
+      RESULT_KEY_TRACKS = "streaming_tracks".freeze
 
       private_constant :ENDPOINT,
                        :RESULT_KEY_ALBUMS,

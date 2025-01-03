@@ -1,0 +1,26 @@
+<div class="flex">
+  <div class="w-72 me-3">
+    <%= turbo_frame_tag "selections" do %>
+      <%= render StreamingTracks::SelectionListComponent.new %>
+    <% end %>
+  </div>
+  <div class="grow">
+    <%= turbo_frame_tag "brands" do %>
+      <%= render StreamingTracks::SearchFormComponent.new(
+        base_url: "/brands/search",
+        brand: @brand,
+        type: @type,
+        query: @query,
+        data: { turbo_frame: "brands", turbo_action: :advance },
+        classes: "mb-3",
+      ) %>
+      <%= render StreamingTracks::GridComponent.new(
+        register_path: "/brands/register/#{@brand}/#{@type}",
+        brand: @brand,
+        type: @type,
+        query: @query,
+        items: @albums,
+      ) %>
+    <% end %>
+  </div>
+</div>

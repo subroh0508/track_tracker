@@ -3,8 +3,9 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  get "brands/search(/:brand)(/:type)", to: "brands#search"
-  post "brands/register(/:brand)(/:type)", to: "brands#register"
+  get "streaming_tracks/register", to: "streaming_tracks#index"
+  get "streaming_tracks/register/:brand/:type/search", to: "streaming_tracks#search"
+  post "streaming_tracks/register/:brand/:type", to: "streaming_tracks#register"
 
   get "playlists", to: "playlists#index"
   get "playlists/search"

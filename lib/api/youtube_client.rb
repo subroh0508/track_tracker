@@ -17,7 +17,7 @@ module Api
           item_count = playlist.delete(:item_count)
 
           playlist.merge(
-            tracks: fetch_tracks(
+            streaming_tracks: fetch_tracks(
               playlist[:youtube_music_id],
               item_count,
             )

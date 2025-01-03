@@ -1,14 +1,14 @@
 <%= render SearchInput::Component.new(
   id: "query",
   label: "Search",
-  placeholder: "Search tracks...",
+  placeholder: "Search streaming_tracks...",
   url: "search",
   method: "get",
-  data: { turbo_frame: "tracks" },
+  data: { turbo_frame: "streaming_tracks" },
   classes: "max-w-sm mx-auto mb-5",
 ) %>
 <div class="max-w-sm mx-auto">
-  <%= turbo_frame_tag "tracks" do %>
+  <%= turbo_frame_tag "streaming_tracks" do %>
     <% @youtube_tracks.each do |youtube_track| %>
       <%= render Card::Component.new(
         classes: "max-w-sm mb-5",

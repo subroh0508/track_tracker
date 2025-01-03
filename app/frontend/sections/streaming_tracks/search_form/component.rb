@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Brands
+module StreamingTracks
   module SearchForm
     class Component < ViewComponent::Base
       attr_reader :base_url, :brand, :type, :query, :data, :classes

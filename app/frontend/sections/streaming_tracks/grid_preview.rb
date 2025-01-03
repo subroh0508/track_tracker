@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# @logical_path sections/brands
-class Brands::GridPreview < ViewComponent::Preview
+# @logical_path sections/streaming_tracks
+class StreamingTracks::GridPreview < ViewComponent::Preview
   def default
-    render Brands::GridComponent.new(
+    render StreamingTracks::GridComponent.new(
       items: [
         {
           thumbnail_url: "https://i.scdn.co/image/ab67616d00001e027de4dbffeda7b3ab5a2e5c77",

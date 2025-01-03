@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Brands
+module StreamingTracks
   class GridComponent < ViewComponent::Base
     attr_reader :register_path, :brand, :type, :query, :items
 

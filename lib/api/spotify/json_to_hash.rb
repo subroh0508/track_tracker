@@ -15,9 +15,9 @@ module Api
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
         }
 
-        if json.key?("tracks")
+        if json.key?("streaming_tracks")
           hash.merge(
-            tracks: json["tracks"]["items"].map { |track|
+            tracks: json["streaming_tracks"]["items"].map { |track|
               to_track_hash(track)
             },
           )

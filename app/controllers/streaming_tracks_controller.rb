@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-class BrandsController < ApplicationController
+class StreamingTracksController < ApplicationController
+  def index
+    redirect_to "/streaming_tracks/register/#{Api::SPOTIFY}/#{Api::TYPE_ALBUM}/search"
+  end
+
   def search
     @brand = brand
     @type = type
