@@ -2,7 +2,7 @@
   <% items.each do |item| %>
     <% case type %>
     <% when Api::TYPE_ALBUM %>
-      <%= render Brands::GridItemComponent.new(
+      <%= render Brands::Album::GridItemComponent.new(
         register_path: register_path,
         id: item[:id],
         brand_id: brand_id(item),
