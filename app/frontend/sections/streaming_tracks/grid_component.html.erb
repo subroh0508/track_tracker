@@ -2,16 +2,21 @@
   <% items.each do |item| %>
     <% case type %>
     <% when Api::TYPE_ALBUM %>
-      <%= render StreamingTracks::Album::GridItemComponent.new(
-        register_path: register_path,
-        id: item[:id],
-        brand_id: brand_id(item),
-        query: query,
-        thumbnail_url: item[:thumbnail_url],
-        title: item[:title],
-        year: item[:year],
-        artists: item[:artists],
-      ) %>
+      <div class="flex flex-col">
+        <%= render StreamingTracks::Album::GridItemComponent.new(
+          thumbnail_url: item[:thumbnail_url],
+          title: item[:title],
+          year: item[:year],
+          artists: item[:artists],
+        ) %>
+        <%= render StreamingTracks::RegisterButtonComponent.new(
+          url: register_path,
+          id: item[:id],
+          brand_id: brand_id(item),
+          query: query,
+          classes: "flex justify-end mt-auto",
+        ) %>
+      </div>
     <% when Api::TYPE_ARTIST %>
       <%= render StreamingTracks::Artist::GridItemComponent.new(
         base_url: StreamingTracks::BASE_URL,

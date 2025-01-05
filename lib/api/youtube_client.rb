@@ -7,26 +7,15 @@ module Api
     include Api::Youtube::PlaylistItem
     include Api::Youtube::Search
 
-    def search_albums(query)
-      youtube_music_ids = search_playlists(
-        query,
-      ).map { |summary|
-        summary[:youtube_music_id]
-      }
-
-      fetch_playlists(id: youtube_music_ids)
-=begin
-        map { |playlist|
-          item_count = playlist.delete(:item_count)
-
-          playlist.merge(
-            streaming_tracks: fetch_tracks(
-              playlist[:youtube_music_id],
-              item_count,
-            )
-          )
-        }
-=end
+    def fetch_playlist(id, locale)
+      fetch_playlists(id, locale).map { |playlist|
+        playlist.merge(
+          tracks: fetch_tracks(
+            playlist[:youtube_music_id],
+            playlist[:total_tracks],
+          ),
+        )
+      }[0]
     end
 
     def search_artists(query)

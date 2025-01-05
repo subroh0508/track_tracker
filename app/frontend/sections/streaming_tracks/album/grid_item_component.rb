@@ -3,31 +3,27 @@
 module StreamingTracks
   module Album
     class GridItemComponent < ViewComponent::Base
-      attr_reader :register_path, :id, :brand_id, :query,
-                  :thumbnail_url, :title, :year, :artists
+      attr_reader :thumbnail_url, :title, :year, :artists
 
       def initialize(
-        register_path: "",
-        id: nil,
-        brand_id: nil,
-        query: "",
         thumbnail_url: "",
         title: "",
         year: 0,
-        artists: ""
+        artists: "",
+        classes: ""
       )
-        @register_path = register_path
-        @id = id
-        @brand_id = brand_id
-        @query = query
         @thumbnail_url = thumbnail_url
         @title = title
         @year = year
         @artists = artists
+        @classes = classes
       end
 
       def classes
-        "max-w-sm"
+        [
+          "max-w-sm",
+          @classes,
+        ].join(" ")
       end
 
       def description
