@@ -24,13 +24,7 @@ class PlaylistsController < ApplicationController
   end
 
   def search
-    if params.key?(:youtube_id)
-      client = Api::YoutubeClient.new
-
-      @playlists = client.search_playlists(params[:youtube_id])
-    else
-      @playlists = []
-    end
+    @playlists = []
   end
 
   def spotify
@@ -67,23 +61,5 @@ class PlaylistsController < ApplicationController
           }
         },
     }
-  end
-
-  private
-
-  def search_playlists(youtube_id)
-    client = Api::YoutubeClient.new
-
-    client.fetch_playlists(youtube_id).
-      map { |playlist|
-        {
-          title: playlist[:title],
-          youtube_id: playlist[:id],
-          tracks: client.fetch_playlist_items(
-            playlist[:id],
-            playlist[:item_count],
-          ),
-        }
-      }
   end
 end

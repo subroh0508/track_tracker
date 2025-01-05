@@ -27,7 +27,7 @@ module Api
           {
             youtube_music_id: item["snippet"]["resourceId"]["videoId"],
             title: item["snippet"]["title"],
-            track_number: item["snippet"]["position"],
+            track_number: item["snippet"]["position"] + 1,
             thumbnail_url: item["snippet"]["thumbnails"]["default"]["url"],
             video_owner_channel_id: item["snippet"]["videoOwnerChannelId"],
           }

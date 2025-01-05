@@ -1,0 +1,27 @@
+<div class="<%= classes %>">
+  <%= render StreamingTracks::Album::GridItemComponent.new(
+    thumbnail_url: album[:thumbnail_url],
+    title: album[:title],
+    year: album[:year],
+    artists: album[:artists],
+    classes: "mb-4",
+  ) %>
+  <%= render Brand::ButtonComponent.new(
+    brand: params[:brand],
+    active: true,
+    with_label: false,
+    classes: "mb-4 w-full justify-center",
+  ) %>
+  <%= render List::Component.new(
+    index_range: 1..album[:total_tracks],
+  ) do |component| %>
+    <% album[:tracks].each do |track| %>
+      <% component.with_item do %>
+        <%= render List::ItemComponent.new(
+          header: track[:title],
+          description: track_artist(track),
+        ) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

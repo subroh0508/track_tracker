@@ -1,0 +1,27 @@
+<div class="<%= classes %>">
+  <% items.each do |item| %>
+    <div class="flex flex-col">
+      <% grid_item = capture do %>
+        <%= render StreamingTracks::Album::GridItemComponent.new(
+          thumbnail_url: item[:thumbnail_url],
+          title: item[:title],
+          year: item[:year],
+          artists: item[:artists],
+        ) %>
+      <% end %>
+      <%= link_to_if item[:id].blank?,
+        grid_item,
+        href_select(item),
+        data: data
+      %>
+
+      <%= render StreamingTracks::RegisterButtonComponent.new(
+        url: register_url,
+        id: item[:id],
+        brand_id: brand_id(item),
+        params: params,
+        classes: "flex justify-end mt-auto",
+      ) %>
+    </div>
+  <% end %>
+</div>

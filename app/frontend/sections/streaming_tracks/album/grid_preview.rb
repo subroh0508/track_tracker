@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-# @logical_path sections/streaming_tracks
-class StreamingTracks::GridPreview < ViewComponent::Preview
+# @logical_path sections/streaming_tracks/album
+class StreamingTracks::Album::GridPreview < ViewComponent::Preview
   def default
-    render StreamingTracks::GridComponent.new(
+    render StreamingTracks::Album::GridComponent.new(
+      base_url: "#",
       items: [
         {
           thumbnail_url: "https://i.scdn.co/image/ab67616d00001e027de4dbffeda7b3ab5a2e5c77",

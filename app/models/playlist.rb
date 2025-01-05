@@ -12,6 +12,11 @@ class Playlist < ApplicationRecord
   has_many :translations, class_name: "Translations::Playlist"
   has_many :playlist_tracks
   has_many :tracks, through: :playlist_tracks
+  has_many :artists, through: :tracks
+
+  scope :with_thumbnails, -> { preload(:playlist_tracks) }
+  scope :with_artists, -> { preload(:artists) }
+  scope :with_tracks, -> { preload(:playlist_tracks, :tracks) }
 
   class << self
     def find_or_build_by(
@@ -64,5 +69,28 @@ class Playlist < ApplicationRecord
 
   def localized_title(locale)
     translations.find_by!(locale: locale).title
+  end
+
+  def to_json_hash(locale)
+    thumbnails =
+      if album?
+        [playlist_tracks[0]&.thumbnail_url]
+      else
+        playlist_tracks.map(&:thumbnail_url)
+      end
+
+    {
+      id: id,
+      type: type,
+      title: localized_title(locale),
+      thumbnails: thumbnails.compact.uniq,
+      # year: year,
+      artists: artists.map { |artist|
+        artist.to_json_hash(locale)
+      }.uniq,
+      spotify_id: spotify_id,
+      youtube_music_id: youtube_music_id,
+      apple_music_id: apple_music_id,
+    }
   end
 end

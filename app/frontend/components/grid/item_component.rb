@@ -19,7 +19,12 @@ module Grid
     end
 
     def thumbnail_classes
-      thumbnail_shape
+      [
+        thumbnail_shape,
+        "object-cover",
+        "aspect-square",
+        "w-full",
+      ].join(" ")
     end
 
     def header_classes

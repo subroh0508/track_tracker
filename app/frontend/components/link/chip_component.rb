@@ -2,8 +2,6 @@
 
 module Link
   class ChipComponent < Link::ButtonComponent
-    attr_reader :active, :shape, :size
-
     def initialize(
       href: "#",
       active: false,

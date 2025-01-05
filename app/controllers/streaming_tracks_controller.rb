@@ -6,15 +6,24 @@ class StreamingTracksController < ApplicationController
   end
 
   def search
-    @brand = brand
-    @type = type
-    @query = query
-
+    @params_for_search = params_for_search
     @albums = StreamingTracks::SearchService.new("jp").
       execute!(
         brand,
         type,
-        query,
+        params_for_search,
+      )
+
+    @target_album = StreamingTracks::FindAlbumService.new("jp").
+      execute!(
+        brand,
+        params[:target_id],
+      )
+
+    @unlinked_albums = StreamingTracks::SearchUnlinkedAlbumService.new("jp").
+      execute!(
+        brand,
+        params[:target_id],
       )
   end
 
@@ -36,7 +45,17 @@ class StreamingTracksController < ApplicationController
       "album",
     ).execute!([@json])
 
-    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{query}"
+    redirect_to_search
+  end
+
+  def link
+    StreamingTracks::LinkAlbumService.new.
+      execute!(
+        params[:target_id],
+        params[:album],
+      )
+
+    redirect_to_search
   end
 
   private
@@ -53,7 +72,17 @@ class StreamingTracksController < ApplicationController
     params[:type] || Api::TYPE_ALBUM
   end
 
-  def query
-    params[:query] || ""
+  def params_for_search
+    {
+      brand: brand,
+      type: type,
+      query: params[:query].presence,
+      id: params[:id].presence,
+    }.compact
+  end
+
+  def redirect_to_search
+    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{params[:query]}&id=#{params[:id]}",
+      allow_other_host: true
   end
 end

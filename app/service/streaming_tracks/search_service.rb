@@ -2,28 +2,26 @@
 
 module StreamingTracks
   class SearchService
-    def initialize(locale)
-      @locale = locale
-      @spotify_client = Api::SpotifyClient.new
-      @youtube_client = Api::YoutubeClient.new
-    end
+    include StreamingTracks::Common
 
-    def execute!(brand, type, query)
-      results = search(brand, type, query)
+    def execute!(
+      brand,
+      type,
+      params = { query: nil, id: nil }
+    )
+      results = search(brand, type, params)
       records = search_from_db(brand, results.keys)
       merge(results, records)
     end
 
     private
 
-    attr_reader :locale, :spotify_client, :youtube_client
-
-    def search(brand, type, query)
+    def search(brand, type, params)
       case type
       when Api::TYPE_ALBUM
-        results = search_albums(brand, query)
+        results = search_albums(brand, params)
       when Api::TYPE_ARTIST
-        results = search_artists(brand, query)
+        results = search_artists(brand, params)
       when Api::TYPE_TRACK
         results = []
       else
@@ -35,25 +33,29 @@ module StreamingTracks
       }
     end
 
-    def search_albums(brand, query)
+    def search_albums(brand, params)
       case brand
       when Api::SPOTIFY
-        spotify_client.search_albums(query, locale)
+        spotify_client.search_albums(params[:query], locale)
       when Api::APPLE_MUSIC
         []
-        # apple_client.search_albums(query)
+        # apple_client.search_albums(params[:query])
+      when Api::YOUTUBE_MUSIC
+        youtube_client.fetch_playlists(params[:id], locale)
       else
         raise ArgumentError, "Unknown brand: #{brand}"
       end
     end
 
-    def search_artists(brand, query)
+    def search_artists(brand, params)
       case brand
       when Api::SPOTIFY
-        spotify_client.search_artists(query, locale)
+        spotify_client.search_artists(params[:query], locale)
       when Api::APPLE_MUSIC
         []
-        # apple_client.search_albums(query)
+        # apple_client.search_albums(params[:query])
+      when Api::YOUTUBE_MUSIC
+        []
       else
         raise ArgumentError, "Unknown brand: #{brand}"
       end
@@ -77,17 +79,6 @@ module StreamingTracks
           value
         end
       }
-    end
-
-    def brand_key(brand)
-      case brand
-      when Api::SPOTIFY
-        Streaming::KEY_SPOTIFY
-      when Api::APPLE_MUSIC
-        Streaming::KEY_APPLE_MUSIC
-      else
-        throw ArgumentError.new("Unknown brand: #{brand}")
-      end
     end
   end
 end

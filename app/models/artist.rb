@@ -65,4 +65,11 @@ class Artist < ApplicationRecord
   def localized_name(locale)
     translations.find_by!(locale: locale).name
   end
+
+  def to_json_hash(locale)
+    {
+      id: id,
+      name: localized_name(locale),
+    }
+  end
 end
