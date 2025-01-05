@@ -6,15 +6,12 @@ class StreamingTracksController < ApplicationController
   end
 
   def search
-    @brand = brand
-    @type = type
-    @query = query
-
+    @params_for_search = params_for_search
     @albums = StreamingTracks::SearchService.new("jp").
       execute!(
         brand,
         type,
-        query,
+        params_for_search[:query],
       )
   end
 
@@ -53,7 +50,11 @@ class StreamingTracksController < ApplicationController
     params[:type] || Api::TYPE_ALBUM
   end
 
-  def query
-    params[:query] || ""
+  def params_for_search
+    {
+      brand: brand,
+      type: type,
+      query: params[:query].presence,
+    }.compact
   end
 end

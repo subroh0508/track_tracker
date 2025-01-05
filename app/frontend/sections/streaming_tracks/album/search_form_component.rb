@@ -3,26 +3,18 @@
 module StreamingTracks
   module Album
     class SearchFormComponent < ViewComponent::Base
-      attr_reader :base_url, :brand, :type, :query, :data, :classes
+      attr_reader :url, :query, :data, :classes
 
       def initialize(
-        base_url: "",
-        brand: Api::SPOTIFY,
-        type: Api::TYPE_ALBUM,
+        url: "",
         query: nil,
         data: {},
         classes: ""
       )
-        @base_url = base_url
-        @brand = brand
-        @type = type
+        @url = url
         @query = query
         @data = data
         @classes = classes
-      end
-
-      def url
-        "#{base_url}/#{brand}/#{Api::TYPE_ALBUM}/search"
       end
     end
   end

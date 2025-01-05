@@ -7,17 +7,16 @@
   <div class="grow">
     <%= turbo_frame_tag "brands" do %>
       <%= render StreamingTracks::SearchForm::Component.new(
-        brand: @brand,
-        type: @type,
-        query: @query,
+        base_url: StreamingTracks::BASE_URL,
+        params: @params_for_search,
         data: { turbo_frame: "brands", turbo_action: :advance },
         classes: "mb-5",
       ) %>
       <%= render StreamingTracks::GridComponent.new(
         register_path: "/streaming_tracks/register/#{@brand}/#{@type}",
-        brand: @brand,
-        type: @type,
-        query: @query,
+        brand: @params_for_search[:brand],
+        type: @params_for_search[:type],
+        query: @params_for_search[:query],
         items: @albums,
         data: { turbo_frame: "brands", turbo_action: :advance },
       ) %>

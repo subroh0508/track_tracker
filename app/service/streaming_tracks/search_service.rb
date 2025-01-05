@@ -42,6 +42,8 @@ module StreamingTracks
       when Api::APPLE_MUSIC
         []
         # apple_client.search_albums(query)
+      when Api::YOUTUBE_MUSIC
+        []
       else
         raise ArgumentError, "Unknown brand: #{brand}"
       end
@@ -54,6 +56,8 @@ module StreamingTracks
       when Api::APPLE_MUSIC
         []
         # apple_client.search_albums(query)
+      when Api::YOUTUBE_MUSIC
+        []
       else
         raise ArgumentError, "Unknown brand: #{brand}"
       end
@@ -85,6 +89,8 @@ module StreamingTracks
         Streaming::KEY_SPOTIFY
       when Api::APPLE_MUSIC
         Streaming::KEY_APPLE_MUSIC
+      when Api::YOUTUBE_MUSIC
+        Streaming::KEY_YOUTUBE_MUSIC
       else
         throw ArgumentError.new("Unknown brand: #{brand}")
       end
