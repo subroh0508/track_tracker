@@ -49,7 +49,11 @@ class StreamingTracksController < ApplicationController
   end
 
   def link
-    puts params
+    StreamingTracks::LinkAlbumService.new.
+      execute!(
+        params[:target_id],
+        params[:album],
+      )
 
     redirect_to_search
   end

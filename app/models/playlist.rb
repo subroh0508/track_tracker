@@ -16,6 +16,7 @@ class Playlist < ApplicationRecord
 
   scope :with_thumbnails, -> { preload(:playlist_tracks) }
   scope :with_artists, -> { preload(:artists) }
+  scope :with_tracks, -> { preload(:playlist_tracks, :tracks) }
 
   class << self
     def find_or_build_by(
