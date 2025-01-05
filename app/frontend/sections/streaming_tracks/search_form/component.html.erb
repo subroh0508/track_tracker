@@ -22,7 +22,7 @@
       classes: "justify-center",
     ) %>
   </div>
-  <%= render StreamingTracks::Album::SearchFormComponent.new(
+  <%= render StreamingTracks::SearchForm::InputFieldComponent.new(
     url: search_by_album_path,
     params: params,
     data: data,

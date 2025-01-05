@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module StreamingTracks
-  module Album
-    class SearchFormComponent < ViewComponent::Base
+  module SearchForm
+    class InputFieldComponent < ViewComponent::Base
       attr_reader :url, :params, :data, :classes
 
       def initialize(
