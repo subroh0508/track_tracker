@@ -3,6 +3,12 @@
 # @logical_path components/link
 class Link::Preview < ViewComponent::Preview
   # @!group Variants
+  def text
+    render Link::TextComponent.new do
+      "Text Link"
+    end
+  end
+
   def button
     render_with_template(
       template: "link/buttons_template",

@@ -86,7 +86,10 @@ class Playlist < ApplicationRecord
       # year: year,
       artists: artists.map { |artist|
         artist.to_json_hash(locale)
-      },
+      }.uniq,
+      spotify_id: spotify_id,
+      youtube_music_id: youtube_music_id,
+      apple_music_id: apple_music_id,
     }
   end
 end

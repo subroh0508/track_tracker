@@ -1,0 +1,22 @@
+<div class="<%= classes %>">
+  <img class="<%= thumbnail_classes %>"
+    src="<%= thumbnails[0] %>"
+    alt="">
+  <div class="w-full">
+    <%= render List::ItemComponent.new(
+      header: title,
+      description: description,
+    ) %>
+    <div class="flex items-center mt-2">
+      <% if spotify_id.present? %>
+        <i class="me-2 fab fa-spotify fa-lg text-spotify"></i>
+      <% end %>
+      <% if youtube_music_id.present? %>
+        <i class="me-2 fab fa-youtube fa-lg text-youtubemusic"></i>
+      <% end %>
+      <% if apple_music_id.present? %>
+        <i class="me-2 fab fa-apple fa-lg text-applemusic"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

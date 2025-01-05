@@ -31,6 +31,7 @@ module Link
         "inline-flex",
         "items-center",
         size,
+        shape,
         text_style,
       ].join(" ")
     end
@@ -38,14 +39,14 @@ module Link
     protected
 
     def text_style
-      [
-        shape,
-        active ? active_text_style : "#{light_text_style} #{dark_text_style}",
-      ].join(" ")
+      active ? active_text_style : "#{light_text_style} #{dark_text_style}"
     end
 
     def active_text_style
-      "#{active_color[:text]} #{active_color[:background_style]}"
+      [
+        active_color[:text],
+        active_color[:background_style],
+      ].join(" ")
     end
 
     def light_text_style

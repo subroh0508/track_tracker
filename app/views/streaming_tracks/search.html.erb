@@ -1,12 +1,12 @@
 <%= turbo_frame_tag "target_album" do %>
   <div class="flex">
-    <div class="w-72 me-6">
-      <% if @target_album.present? %>
+    <% if @target_album.present? %>
+      <div class="w-80 me-6">
         <%= render StreamingTracks::Album::TargetItemComponent.new(
           album: @target_album,
         ) %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <div class="grow">
       <%= turbo_frame_tag "brands" do %>
         <% if @target_album.blank? %>
@@ -25,8 +25,13 @@
         <% end %>
       <% end %>
 
-      <% @unlinked_albums.each do |unlinked_album| %>
-        <div><%= unlinked_album[:title] %></div>
+      <% if @target_album.present? %>
+        <%= render StreamingTracks::UnlinkedAlbumListComponent.new(
+          base_url: StreamingTracks::BASE_URL,
+          params: @params_for_search,
+          items: @unlinked_albums,
+          data: { turbo_frame: "target_album", turbo_action: :advance },
+        ) %>
       <% end %>
     </div>
   </div>

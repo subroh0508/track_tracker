@@ -1,0 +1,30 @@
+<div>
+  <div class="flex justify-between px-4 mb-4">
+    <h3 class="<%= header_classes %>">
+      <%= header_text %>
+    </h3>
+    <%= render Link::TextComponent.new(
+      href: href_back,
+      data: data,
+    ) do %>
+      戻る
+    <% end %>
+  </div>
+  <%= render List::Component.new(
+    classes: "h-20",
+  ) do |component| %>
+    <% items.each do |item| %>
+      <% component.with_item do %>
+        <%= render StreamingTracks::Album::ListItemComponent.new(
+          thumbnails: item[:thumbnails],
+          title: item[:title],
+          year: item[:year] || 2024,
+          artists: item[:artists],
+          spotify_id: item[:spotify_id],
+          youtube_music_id: item[:youtube_music_id],
+          apple_music_id: item[:apple_music_id],
+        ) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

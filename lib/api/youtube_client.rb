@@ -42,7 +42,11 @@ module Api
       }
 
       items.map { |item|
-        item.merge(artists: [channels[item.delete(:video_owner_channel_id)]])
+        item.merge(
+          artists: [
+            channels[item.delete(:video_owner_channel_id)],
+          ],
+        )
       }
     end
   end
