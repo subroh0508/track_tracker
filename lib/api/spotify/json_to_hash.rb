@@ -13,11 +13,12 @@ module Api
           )&.[]("url"),
           year: json["release_date"][0..3],
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
+          total_tracks: json["total_tracks"],
         }
 
-        if json.key?("streaming_tracks")
+        if json.key?("tracks")
           hash.merge(
-            tracks: json["streaming_tracks"]["items"].map { |track|
+            tracks: json["tracks"]["items"].map { |track|
               to_track_hash(track)
             },
           )

@@ -43,7 +43,7 @@ module StreamingTracks
         []
         # apple_client.search_albums(query)
       when Api::YOUTUBE_MUSIC
-        []
+        youtube_client.fetch_playlists(query, locale)
       else
         raise ArgumentError, "Unknown brand: #{brand}"
       end
