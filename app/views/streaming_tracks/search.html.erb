@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "target_album" do %>
   <div class="flex">
-    <div class="w-72 me-3">
+    <div class="w-72 me-6">
       <% if @target_album.present? %>
         <%= render StreamingTracks::Album::TargetItemComponent.new(
           album: @target_album,
@@ -23,6 +23,10 @@
             data: { turbo_frame: "target_album", turbo_action: :advance },
           ) %>
         <% end %>
+      <% end %>
+
+      <% @unlinked_albums.each do |unlinked_album| %>
+        <div><%= unlinked_album[:title] %></div>
       <% end %>
     </div>
   </div>

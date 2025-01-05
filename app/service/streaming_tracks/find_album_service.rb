@@ -2,11 +2,7 @@
 
 module StreamingTracks
   class FindAlbumService
-    def initialize(locale)
-      @locale = locale
-      @spotify_client = Api::SpotifyClient.new
-      @youtube_client = Api::YoutubeClient.new
-    end
+    include StreamingTracks::Common
 
     def execute!(
       brand,
@@ -21,9 +17,5 @@ module StreamingTracks
         raise ArgumentError, "Unknown brand: #{brand}"
       end
     end
-
-    private
-
-    attr_reader :locale, :spotify_client, :youtube_client
   end
 end

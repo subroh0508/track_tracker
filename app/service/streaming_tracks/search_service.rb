@@ -2,11 +2,7 @@
 
 module StreamingTracks
   class SearchService
-    def initialize(locale)
-      @locale = locale
-      @spotify_client = Api::SpotifyClient.new
-      @youtube_client = Api::YoutubeClient.new
-    end
+    include StreamingTracks::Common
 
     def execute!(
       brand,
@@ -19,8 +15,6 @@ module StreamingTracks
     end
 
     private
-
-    attr_reader :locale, :spotify_client, :youtube_client
 
     def search(brand, type, params)
       case type
@@ -85,19 +79,6 @@ module StreamingTracks
           value
         end
       }
-    end
-
-    def brand_key(brand)
-      case brand
-      when Api::SPOTIFY
-        Streaming::KEY_SPOTIFY
-      when Api::APPLE_MUSIC
-        Streaming::KEY_APPLE_MUSIC
-      when Api::YOUTUBE_MUSIC
-        Streaming::KEY_YOUTUBE_MUSIC
-      else
-        throw ArgumentError.new("Unknown brand: #{brand}")
-      end
     end
   end
 end

@@ -13,7 +13,14 @@ class StreamingTracksController < ApplicationController
         type,
         params_for_search,
       )
+
     @target_album = StreamingTracks::FindAlbumService.new("jp").
+      execute!(
+        brand,
+        params[:target_id],
+      )
+
+    @unlinked_albums = StreamingTracks::SearchUnlinkedAlbumService.new("jp").
       execute!(
         brand,
         params[:target_id],
