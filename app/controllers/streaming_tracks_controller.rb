@@ -45,11 +45,13 @@ class StreamingTracksController < ApplicationController
       "album",
     ).execute!([@json])
 
-    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{params[:query]}&id=#{params[:id]}"
+    redirect_to_search
   end
 
   def link
-    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{params[:query]}&id=#{params[:id]}"
+    puts params
+
+    redirect_to_search
   end
 
   private
@@ -73,5 +75,10 @@ class StreamingTracksController < ApplicationController
       query: params[:query].presence,
       id: params[:id].presence,
     }.compact
+  end
+
+  def redirect_to_search
+    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{params[:query]}&id=#{params[:id]}",
+      allow_other_host: true
   end
 end

@@ -28,11 +28,20 @@
           ) %>
           <%= form_with class: "flex items-center shrink-0",
             method: :post,
-            url: link_url do |f|
+            url: link_url(item[:id]) do |f|
           %>
             <%= f.hidden_field "query", value: params[:query] %>
             <%= f.hidden_field "id", value: params[:id] %>
-            <%= f.hidden_field "target_id", value: target_id %>
+
+            <%= f.hidden_field "album[#{brand_id(target_album)}]",
+              value: target_album&.[](brand_id(target_album)) %>
+
+            <% target_album[:tracks].each do |track| %>
+              <%= f.hidden_field "album[tracks][][track_number]",
+                value: track[:track_number] %>
+              <%= f.hidden_field "album[tracks][][#{brand_id(track)}]",
+                value: track[brand_id(track)] %>
+            <% end %>
 
             <%= render Button::Component.new(
               variant: Button::CONTAINED,
