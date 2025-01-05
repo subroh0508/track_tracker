@@ -28,13 +28,21 @@ module Api
     private
 
     def fetch_tracks(playlist_id, tracks_count)
-      fetch_playlist_items(
+      items = fetch_playlist_items(
         playlist_id,
         tracks_count,
-      ).map { |item|
-        video_owner_channel_id = item.delete(:video_owner_channel_id)
+      )
 
-        item.merge(artists: fetch_channels(video_owner_channel_id))
+      video_owner_channel_ids = items.map { |item|
+        item[:video_owner_channel_id]
+      }.uniq
+
+      channels = fetch_channels(video_owner_channel_ids).reduce({}) { |acc, channel|
+        acc.merge(channel[:youtube_music_id] => channel)
+      }
+
+      items.map { |item|
+        item.merge(artists: [channels[item.delete(:video_owner_channel_id)]])
       }
     end
   end
