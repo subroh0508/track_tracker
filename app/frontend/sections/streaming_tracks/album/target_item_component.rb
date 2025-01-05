@@ -3,13 +3,17 @@
 module StreamingTracks
   module Album
     class TargetItemComponent < ViewComponent::Base
-      attr_reader :album, :classes
+      attr_reader :album, :params, :classes
 
       def initialize(
         album: nil,
+        params: {
+          brand: Api::SPOTIFY,
+        },
         classes: ""
       )
         @album = album
+        @params = params
         @classes = classes
       end
 

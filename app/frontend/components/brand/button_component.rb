@@ -9,6 +9,7 @@ module Brand
       href: "#",
       active: false,
       size: Link::Button::BASE,
+      with_label: true,
       data: {},
       classes: ""
     )
@@ -16,6 +17,7 @@ module Brand
       @href = href
       @active = active
       @size = size
+      @with_label = with_label
       @data = data
       @classes = classes
     end
@@ -77,6 +79,10 @@ module Brand
       else
         throw ArgumentError.new("Unknown brand: #{brand}")
       end
+    end
+
+    def with_label?
+      @with_label
     end
   end
 end

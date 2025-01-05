@@ -4,6 +4,7 @@
       <div class="w-80 me-6">
         <%= render StreamingTracks::Album::TargetItemComponent.new(
           album: @target_album,
+          params: @params_for_search,
         ) %>
       </div>
     <% end %>

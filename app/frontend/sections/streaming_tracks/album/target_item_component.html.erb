@@ -6,6 +6,12 @@
     artists: album[:artists],
     classes: "mb-4",
   ) %>
+  <%= render Brand::ButtonComponent.new(
+    brand: params[:brand],
+    active: true,
+    with_label: false,
+    classes: "mb-4 w-full justify-center",
+  ) %>
   <%= render List::Component.new(
     index_range: 1..album[:total_tracks],
   ) do |component| %>
