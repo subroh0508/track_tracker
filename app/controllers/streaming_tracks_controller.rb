@@ -45,7 +45,11 @@ class StreamingTracksController < ApplicationController
       "album",
     ).execute!([@json])
 
-    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{query}"
+    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{params[:query]}&id=#{params[:id]}"
+  end
+
+  def link
+    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{params[:query]}&id=#{params[:id]}"
   end
 
   private

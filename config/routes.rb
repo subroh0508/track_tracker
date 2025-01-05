@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "streaming_tracks/register", to: "streaming_tracks#index"
   get "streaming_tracks/register/:brand/:type/search", to: "streaming_tracks#search"
   post "streaming_tracks/register/:brand/:type", to: "streaming_tracks#register"
+  post "streaming_tracks/register/:brand/:type/:id", to: "streaming_tracks#link"
 
   get "playlists", to: "playlists#index"
   get "playlists/search"

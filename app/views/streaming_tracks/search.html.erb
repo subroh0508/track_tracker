@@ -29,6 +29,7 @@
         <%= render StreamingTracks::UnlinkedAlbumListComponent.new(
           base_url: StreamingTracks::BASE_URL,
           params: @params_for_search,
+          target_id: @target_album&.[](:id),
           items: @unlinked_albums,
           data: { turbo_frame: "target_album", turbo_action: :advance },
         ) %>

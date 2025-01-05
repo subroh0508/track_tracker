@@ -2,7 +2,7 @@
 
 module StreamingTracks
   class UnlinkedAlbumListComponent < ViewComponent::Base
-    attr_reader :base_url, :params, :items, :data
+    attr_reader :base_url, :params, :target_id, :items, :data
 
     def initialize(
       base_url: "",
@@ -10,17 +10,19 @@ module StreamingTracks
         brand: Api::SPOTIFY,
         type: Api::TYPE_ALBUM,
       },
+      target_id: nil,
       items: [],
       data: {}
     )
       @base_url = base_url
       @params = params
+      @target_id = target_id
       @items = items
       @data = data
     end
 
     def header_text
-      "紐づけ可能なアルバム: #{items.size}件"
+      "登録可能なアルバム: #{items.size}件"
     end
 
     def header_classes
@@ -29,6 +31,10 @@ module StreamingTracks
 
     def href_back
       "#{base_url}/#{params[:brand]}/#{params[:type]}/search#{query}"
+    end
+
+    def link_url
+      "#{base_url}/#{params[:brand]}/#{params[:type]}/#{target_id}"
     end
 
     private

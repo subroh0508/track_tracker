@@ -15,15 +15,33 @@
   ) do |component| %>
     <% items.each do |item| %>
       <% component.with_item do %>
-        <%= render StreamingTracks::Album::ListItemComponent.new(
-          thumbnails: item[:thumbnails],
-          title: item[:title],
-          year: item[:year] || 2024,
-          artists: item[:artists],
-          spotify_id: item[:spotify_id],
-          youtube_music_id: item[:youtube_music_id],
-          apple_music_id: item[:apple_music_id],
-        ) %>
+        <div class="flex justify-between gap-2">
+          <%= render StreamingTracks::Album::ListItemComponent.new(
+            thumbnails: item[:thumbnails],
+            title: item[:title],
+            year: item[:year] || 2024,
+            artists: item[:artists],
+            spotify_id: item[:spotify_id],
+            youtube_music_id: item[:youtube_music_id],
+            apple_music_id: item[:apple_music_id],
+          ) %>
+          <%= form_with class: "flex items-center shrink-0",
+            method: :post,
+            url: link_url do |f|
+          %>
+            <%= f.hidden_field "query", value: params[:query] %>
+            <%= f.hidden_field "id", value: params[:id] %>
+            <%= f.hidden_field "target_id", value: target_id %>
+
+            <%= render Button::Component.new(
+              variant: Button::CONTAINED,
+              type: "submit",
+              icon: "fas fa-link fa-lg",
+            ) do %>
+              登録
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
   <% end %>
