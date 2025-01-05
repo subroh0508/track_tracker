@@ -28,7 +28,7 @@ module Input
 
     def classes
       [
-        plain? ? "" : "flex items-center gap-2",
+        display,
         @classes,
       ].join(" ")
     end
@@ -54,6 +54,17 @@ module Input
     end
 
     private
+
+    def display
+      case
+      when plain?
+        ""
+      when type == "hidden"
+        "hidden"
+      else
+        "flex items-center gap-2"
+      end
+    end
 
     def text_style
       [

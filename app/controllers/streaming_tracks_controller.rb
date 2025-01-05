@@ -11,7 +11,7 @@ class StreamingTracksController < ApplicationController
       execute!(
         brand,
         type,
-        params_for_search[:query],
+        params_for_search,
       )
   end
 
@@ -55,6 +55,7 @@ class StreamingTracksController < ApplicationController
       brand: brand,
       type: type,
       query: params[:query].presence,
+      id: params[:id].presence,
     }.compact
   end
 end

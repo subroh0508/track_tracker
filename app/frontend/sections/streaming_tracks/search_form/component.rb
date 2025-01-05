@@ -69,7 +69,7 @@ module StreamingTracks
       private
 
       def query
-        params[:query].present? ? "?query=#{params[:query]}" : ""
+        "?id=#{params[:id]}&query=#{params[:query]}"
       end
     end
   end

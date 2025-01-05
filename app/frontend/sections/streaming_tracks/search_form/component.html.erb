@@ -24,7 +24,7 @@
   </div>
   <%= render StreamingTracks::Album::SearchFormComponent.new(
     url: search_by_album_path,
-    query: params[:query],
+    params: params,
     data: data,
   ) %>
 </div>
