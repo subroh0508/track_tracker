@@ -5,10 +5,6 @@ class Playlist < ApplicationRecord
     QUERY_APPLE_MUSIC = "applemusic"
   end
 
-  self.inheritance_column = :_type_disabled
-
-  enum :type, { album: 0, official: 1, user: 2 }
-
   has_many :translations, class_name: "Translations::Playlist"
   has_many :playlist_tracks
   has_many :tracks, through: :playlist_tracks

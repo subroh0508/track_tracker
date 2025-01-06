@@ -1,11 +1,9 @@
 class CreatePlaylists < ActiveRecord::Migration[8.0]
   def change
     create_table :playlists, id: :uuid do |t|
-      t.integer :type, null: false, default: 0
       t.string :spotify_id
       t.string :youtube_music_id
       t.string :apple_music_id
-      t.integer :release_year
 
       t.timestamps
     end
