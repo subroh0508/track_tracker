@@ -15,16 +15,10 @@ class StreamingTracksController < ApplicationController
       )
 
     @target_album = StreamingTracks::FindAlbumService.new("jp").
-      execute!(
-        brand,
-        params[:target_id],
-      )
+      execute!(params)
 
-    @unlinked_albums = StreamingTracks::SearchUnlinkedAlbumService.new("jp").
-      execute!(
-        brand,
-        params[:target_id],
-      )
+    @unlinked_albums = StreamingTracks::SearchUnlinkedAlbumService.new.
+      execute!(params)
   end
 
   def register

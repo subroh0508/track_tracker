@@ -32,30 +32,35 @@ module StreamingTracks
       end
 
       def href_select(item)
-        "#{base_url}/#{params[:brand]}/#{Api::TYPE_ALBUM}/search#{query}&target_id=#{brand_id(item)}"
+        "#{base_url}/#{params[:brand]}/#{Api::TYPE_ALBUM}/search?#{query(item)}"
       end
 
       def register_url
         "#{base_url}/#{params[:brand]}/#{Api::TYPE_ALBUM}"
       end
 
-      def brand_id(item)
-        case params[:brand]
-        when Api::SPOTIFY
-          item[:spotify_id]
-        when Api::YOUTUBE_MUSIC
-          item[:youtube_music_id]
-        when Api::APPLE_MUSIC
-          item[:apple_music_id]
-        else
-          throw ArgumentError.new("Unknown brand: #{params[:brand]}")
-        end
+      def streaming_service_id(item)
+        item.slice(
+          Streaming::KEY_SPOTIFY,
+          Streaming::KEY_APPLE_MUSIC,
+          Streaming::KEY_YOUTUBE_MUSIC,
+        ).compact
       end
 
       private
 
-      def query
-        "?id=#{params[:id]}&query=#{params[:query]}"
+      def query(item)
+        [
+          "id=#{params[:id]}",
+          "query=#{params[:query]}",
+          streaming_service_id_query(item),
+        ].join("&")
+      end
+
+      def streaming_service_id_query(item)
+        streaming_service_id(item).
+          map { |key, value| "#{key}=#{value}" }.
+          join("&")
       end
     end
   end

@@ -64,7 +64,7 @@ module StreamingTracks
     def search_from_db(brand, brand_ids)
       brand_key = brand_key(brand)
 
-      Playlist.where(
+      Album.where(
         brand_key => brand_ids,
       ).reduce({}) { |acc, record|
         acc.merge(record.public_send(brand_key.to_s) => record.id)
@@ -79,6 +79,19 @@ module StreamingTracks
           value
         end
       }
+    end
+
+    def brand_key(brand)
+      case brand
+      when Api::SPOTIFY
+        Streaming::KEY_SPOTIFY
+      when Api::APPLE_MUSIC
+        Streaming::KEY_APPLE_MUSIC
+      when Api::YOUTUBE_MUSIC
+        Streaming::KEY_YOUTUBE_MUSIC
+      else
+        throw ArgumentError.new("Unknown brand: #{brand}")
+      end
     end
   end
 end

@@ -11,18 +11,5 @@ module StreamingTracks
     protected
 
     attr_reader :locale, :spotify_client, :youtube_client
-
-    def brand_key(brand)
-      case brand
-      when Api::SPOTIFY
-        Streaming::KEY_SPOTIFY
-      when Api::APPLE_MUSIC
-        Streaming::KEY_APPLE_MUSIC
-      when Api::YOUTUBE_MUSIC
-        Streaming::KEY_YOUTUBE_MUSIC
-      else
-        throw ArgumentError.new("Unknown brand: #{brand}")
-      end
-    end
   end
 end

@@ -2,8 +2,9 @@
   method: :post,
   url: url do |f|
 %>
-  <%= f.hidden_field "id", value: id %>
-  <%= f.hidden_field "brand_id", value: brand_id %>
+  <% streaming_service_id.each do |key, value| %>
+    <%= f.hidden_field key, value: value %>
+  <% end %>
   <%= f.hidden_field "query", value: params[:query] %>
   <%= f.hidden_field "id", value: params[:id] %>
 

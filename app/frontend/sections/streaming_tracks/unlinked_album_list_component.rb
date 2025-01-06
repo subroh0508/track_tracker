@@ -29,6 +29,16 @@ module StreamingTracks
       "mb-3 text-lg font-bold #{light_header_style} #{dark_header_style}"
     end
 
+    def streaming_service_id(hash)
+      return {} if hash.blank?
+
+      hash.slice(
+        Streaming::KEY_SPOTIFY,
+        Streaming::KEY_APPLE_MUSIC,
+        Streaming::KEY_YOUTUBE_MUSIC,
+      ).compact
+    end
+
     def brand_id(hash)
       [
         Streaming::KEY_SPOTIFY,

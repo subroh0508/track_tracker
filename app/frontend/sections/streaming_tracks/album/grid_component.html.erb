@@ -18,7 +18,7 @@
       <%= render StreamingTracks::RegisterButtonComponent.new(
         url: register_url,
         id: item[:id],
-        brand_id: brand_id(item),
+        streaming_service_id: streaming_service_id(item),
         params: params,
         classes: "flex justify-end mt-auto",
       ) %>

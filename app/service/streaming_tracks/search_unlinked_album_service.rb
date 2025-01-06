@@ -2,19 +2,14 @@
 
 module StreamingTracks
   class SearchUnlinkedAlbumService
-    include StreamingTracks::Common
+    include StreamingTracks::StreamingService
 
-    def execute!(
-      brand,
-      target_id
-    )
-      return [] if target_id.blank?
+    def execute!(params)
+      column_name = detect_streaming_service_id_column_name(params)
+      return [] if column_name.blank?
 
-      Playlist.with_thumbnails.
-        with_artists.
-        album.
-        where(brand_key(brand) => nil).
-        map { |playlist| playlist.to_json_hash("ja") }
+      Album.where(column_name => nil).
+        map { |album| album.to_json_hash("ja") }
     end
   end
 end
