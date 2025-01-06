@@ -4,8 +4,6 @@ class CreateAlbums < ActiveRecord::Migration[8.0]
       t.string :spotify_id
       t.string :youtube_music_id
       t.string :apple_music_id
-      t.string :ean
-      t.string :upc
       t.string :thumbnail_url, null: false
       t.string :release_date, null: false
 

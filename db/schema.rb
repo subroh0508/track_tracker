@@ -28,8 +28,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_000004) do
     t.string "spotify_id"
     t.string "youtube_music_id"
     t.string "apple_music_id"
-    t.string "ean"
-    t.string "upc"
     t.string "thumbnail_url", null: false
     t.string "release_date", null: false
     t.datetime "created_at", null: false
@@ -88,7 +86,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_000004) do
     t.string "apple_music_id"
     t.integer "disc_number", null: false
     t.integer "track_number", null: false
-    t.string "isrc", null: false
     t.uuid "album_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
