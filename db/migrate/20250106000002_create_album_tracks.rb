@@ -1,4 +1,4 @@
-class CreateAlbums < ActiveRecord::Migration[8.0]
+class CreateAlbumTracks < ActiveRecord::Migration[8.0]
   def change
     create_table :album_tracks, id: :uuid do |t|
       t.integer :disc_number, null: false

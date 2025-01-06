@@ -23,12 +23,5 @@ class CreateAlbums < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    create_table :album_artists, id: :uuid do |t|
-      t.references :albums, null: false, foreign_key: true, type: :uuid
-      t.references :artists, null: false, foreign_key: true, type: :uuid
-    end
-
-    add_index :album_artists, [:album_id, :artist_id], unique: true
   end
 end
