@@ -3,12 +3,15 @@
 module StreamingTracks
   module StreamingService
     def detect_streaming_service_id_column_name(params)
-      [
-        Streaming::KEY_SPOTIFY,
-        Streaming::KEY_APPLE_MUSIC,
-        Streaming::KEY_YOUTUBE_MUSIC,
-      ].each do |column_name|
-        return column_name if params.key?(column_name)
+      case
+      when params.key?(Streaming::KEY_SPOTIFY)
+        Streaming::KEY_SPOTIFY
+      when params.key?(Streaming::KEY_APPLE_MUSIC)
+        Streaming::KEY_APPLE_MUSIC
+      when params.key?(Streaming::KEY_YOUTUBE_MUSIC)
+        Streaming::KEY_YOUTUBE_MUSIC
+      else
+        nil
       end
     end
   end

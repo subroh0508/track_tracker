@@ -11,7 +11,7 @@ module StreamingTracks
       when params.key?(Streaming::KEY_YOUTUBE_MUSIC)
         youtube_client.fetch_playlist(params[Streaming::KEY_YOUTUBE_MUSIC], "ja")
       else
-        raise ArgumentError, "Unknown brand: #{brand}"
+        nil
       end
     end
   end

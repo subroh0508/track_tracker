@@ -18,7 +18,7 @@
       <% component.with_item do %>
         <div class="flex justify-between gap-2">
           <%= render StreamingTracks::Album::ListItemComponent.new(
-            thumbnails: item[:thumbnails],
+            thumbnail_url: item[:thumbnail_url],
             title: item[:title],
             year: item[:year] || 2024,
             artists: item[:artists],

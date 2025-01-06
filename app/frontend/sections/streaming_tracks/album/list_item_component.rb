@@ -3,11 +3,11 @@
 module StreamingTracks
   module Album
     class ListItemComponent < ViewComponent::Base
-      attr_reader :thumbnails, :title, :year, :artists,
+      attr_reader :thumbnail_url, :title, :year, :artists,
                   :spotify_id, :youtube_music_id, :apple_music_id
 
       def initialize(
-        thumbnails: [],
+        thumbnail_url: "",
         title: "",
         year: 0,
         artists: [],
@@ -16,7 +16,7 @@ module StreamingTracks
         apple_music_id: nil,
         classes: ""
       )
-        @thumbnails = thumbnails
+        @thumbnail_url = thumbnail_url
         @title = title
         @year = year
         @artists = artists

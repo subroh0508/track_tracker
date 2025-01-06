@@ -64,7 +64,7 @@ module StreamingTracks
     def search_from_db(brand, brand_ids)
       brand_key = brand_key(brand)
 
-      Album.where(
+      ::Album.where(
         brand_key => brand_ids,
       ).reduce({}) { |acc, record|
         acc.merge(record.public_send(brand_key.to_s) => record.id)
