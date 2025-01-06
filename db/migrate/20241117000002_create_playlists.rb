@@ -8,6 +8,10 @@ class CreatePlaylists < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
+    add_index :playlists, :spotify_id, unique: true
+    add_index :playlists, :youtube_music_id, unique: true
+    add_index :playlists, :apple_music_id, unique: true
+
     create_table :translations_playlists, id: :uuid do |t|
       t.string :title, null: false
       t.string :locale, null: false
@@ -15,9 +19,5 @@ class CreatePlaylists < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :playlists, :spotify_id, unique: true
-    add_index :playlists, :youtube_music_id, unique: true
-    add_index :playlists, :apple_music_id, unique: true
   end
 end
