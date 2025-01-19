@@ -10,7 +10,7 @@ module StreamingTracks
     )
       column_name = detect_streaming_service_id_column_name(params)
 
-      album = Album.find_by!(id: id)
+      album = ::Album.find_by!(id: id)
 
       album.public_send("#{column_name}=", params[column_name])
       track_params = sort_tracks_to_simple_array(
@@ -26,7 +26,7 @@ module StreamingTracks
           track
         }
 
-      Album.transaction do
+      ::Album.transaction do
         album.save!
         tracks.each(&:save!)
       end
@@ -35,10 +35,10 @@ module StreamingTracks
     private
 
     def sort_tracks_to_simple_array(tracks)
-      if tracks[0].disk_number.nil?
+      if tracks[0].disc_number.nil?
         tracks.sort_by(&:track_number)
       else
-        tracks.sort_by { |track| [track.disk_number, track.track_number] }
+        tracks.sort_by { |track| [track.disc_number, track.track_number] }
       end
     end
   end

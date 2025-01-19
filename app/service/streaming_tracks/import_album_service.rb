@@ -38,13 +38,12 @@ module StreamingTracks
         locale,
       )
 
-      params[:tracks].each do |track_params|
-        track = find_or_build_track(
+      album.tracks = params[:tracks].map { |track_params|
+        find_or_build_track(
           column_name,
           track_params,
         )
-        track.album = album
-      end
+      }
 
       album
     end

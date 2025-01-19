@@ -31,7 +31,7 @@ module Api
         {
           spotify_id: json["id"],
           title: json["name"],
-          disk_number: json["disk_number"],
+          disc_number: json["disc_number"],
           track_number: json["track_number"],
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
         }
