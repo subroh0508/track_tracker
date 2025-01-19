@@ -132,15 +132,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_000004) do
     t.index ["track_id"], name: "index_translations_tracks_on_track_id"
   end
 
-  add_foreign_key "album_artists", "albums"
-  add_foreign_key "album_artists", "artists"
-  add_foreign_key "playlist_tracks", "playlists"
-  add_foreign_key "playlist_tracks", "tracks"
-  add_foreign_key "track_artists", "artists"
-  add_foreign_key "track_artists", "tracks"
-  add_foreign_key "tracks", "albums"
-  add_foreign_key "translations_albums", "albums"
-  add_foreign_key "translations_artists", "artists"
-  add_foreign_key "translations_playlists", "playlists"
-  add_foreign_key "translations_tracks", "tracks"
+  add_foreign_key "album_artists", "albums", on_delete: :cascade
+  add_foreign_key "album_artists", "artists", on_delete: :cascade
+  add_foreign_key "playlist_tracks", "playlists", on_delete: :cascade
+  add_foreign_key "playlist_tracks", "tracks", on_delete: :cascade
+  add_foreign_key "track_artists", "artists", on_delete: :cascade
+  add_foreign_key "track_artists", "tracks", on_delete: :cascade
+  add_foreign_key "tracks", "albums", on_delete: :cascade
+  add_foreign_key "translations_albums", "albums", on_delete: :cascade
+  add_foreign_key "translations_artists", "artists", on_delete: :cascade
+  add_foreign_key "translations_playlists", "playlists", on_delete: :cascade
+  add_foreign_key "translations_tracks", "tracks", on_delete: :cascade
 end

@@ -6,7 +6,7 @@ class CreateTracks < ActiveRecord::Migration[8.0]
       t.string :apple_music_id
       t.integer :disc_number, null: false
       t.integer :track_number, null: false
-      t.references :album, null: false, foreign_key: true, type: :uuid
+      t.references :album, null: false, foreign_key: { on_delete: :cascade }, type: :uuid
 
       t.timestamps
     end
@@ -20,14 +20,14 @@ class CreateTracks < ActiveRecord::Migration[8.0]
     create_table :translations_tracks, id: :uuid do |t|
       t.string :title, null: false
       t.string :locale, null: false
-      t.references :track, null: false, foreign_key: true, type: :uuid
+      t.references :track, null: false, foreign_key: { on_delete: :cascade }, type: :uuid
 
       t.timestamps
     end
 
     create_table :track_artists, id: :uuid do |t|
-      t.references :track, null: false, foreign_key: true, type: :uuid
-      t.references :artist, null: false, foreign_key: true, type: :uuid
+      t.references :track, null: false, foreign_key: { on_delete: :cascade }, type: :uuid
+      t.references :artist, null: false, foreign_key: { on_delete: :cascade }, type: :uuid
 
       t.timestamps
     end
