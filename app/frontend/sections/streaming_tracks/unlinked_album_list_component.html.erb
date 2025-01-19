@@ -38,10 +38,10 @@
             <% end %>
 
             <% target_album[:tracks].each do |track| %>
-              <%= f.hidden_field "album[tracks][][disc_number]", value: track[:disc_number]&.to_i %>
-              <%= f.hidden_field "album[tracks][][track_number]", value: track[:track_number]&.to_i %>
-              <% streaming_service_id(track) do |key, value|%>
-                <%= f.hidden_field "album[tracks][][#{key}}]", value: value %>
+              <%= f.hidden_field "album[tracks][][disc_number]", value: track[:disc_number] %>
+              <%= f.hidden_field "album[tracks][][track_number]", value: track[:track_number] %>
+              <% streaming_service_id(track).each do |key, value|%>
+                <%= f.hidden_field "album[tracks][][#{key}]", value: value %>
               <% end %>
             <% end %>
 

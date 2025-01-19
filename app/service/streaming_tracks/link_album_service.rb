@@ -12,9 +12,19 @@ module StreamingTracks
 
       album = ::Album.find_by!(id: id)
 
-      album.public_send("#{column_name}=", params[column_name])
+      album.public_send(
+        "#{column_name}=",
+        params[column_name],
+      )
+
       track_params = sort_tracks_to_simple_array(
-        Track.build(params[:tracks]),
+        params[:tracks].map { |track_params|
+          Track.build(
+            :disc_number => track_params[:disc_number],
+            :track_number => track_params[:track_number],
+            column_name => track_params[column_name],
+          )
+        },
       )
 
       tracks = sort_tracks_to_simple_array(album.tracks.to_a).
