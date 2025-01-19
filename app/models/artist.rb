@@ -4,6 +4,8 @@ class Artist < ApplicationRecord
   has_many :translations, class_name: "Translations::Artist"
   has_many :track_artists
   has_many :tracks, through: :track_artists
+  has_many :albums_artists
+  has_many :albums, through: :albums_artists
 
   class << self
     def find_or_build_by(key, params, locale = "ja")

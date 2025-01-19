@@ -2,32 +2,41 @@
 
 module StreamingTracks
   class LinkAlbumService
+    include StreamingTracks::StreamingService
+
     def execute!(
       id,
       params
     )
-      column_name = detect_column_name(params)
+      column_name = detect_streaming_service_id_column_name(params)
 
-      album = Playlist.album.
-        with_tracks.
-        find_by!(id: id)
+      album = ::Album.find_by!(id: id)
 
-      album.public_send("#{column_name}=", params[column_name])
-      track_params = params[:tracks].reduce({}) { |acc, track_params|
-        acc.merge(track_params[:track_number].to_i => track_params)
-      }
+      album.public_send(
+        "#{column_name}=",
+        params[column_name],
+      )
 
-      tracks = album.playlist_tracks.
-        map { |playlist_track|
-          track = playlist_track.track
+      track_params = sort_tracks_to_simple_array(
+        params[:tracks].map { |track_params|
+          Track.build(
+            :disc_number => track_params[:disc_number],
+            :track_number => track_params[:track_number],
+            column_name => track_params[column_name],
+          )
+        },
+      )
+
+      tracks = sort_tracks_to_simple_array(album.tracks.to_a).
+        map.with_index { |track, i|
           track.public_send(
             "#{column_name}=",
-            track_params[playlist_track.track_number][column_name],
+            track_params[i].public_send(column_name),
           )
           track
         }
 
-      Playlist.transaction do
+      ::Album.transaction do
         album.save!
         tracks.each(&:save!)
       end
@@ -35,13 +44,11 @@ module StreamingTracks
 
     private
 
-    def detect_column_name(params)
-      [
-        Streaming::KEY_SPOTIFY,
-        Streaming::KEY_APPLE_MUSIC,
-        Streaming::KEY_YOUTUBE_MUSIC,
-      ].each do |column_name|
-        return column_name if params.key?(column_name)
+    def sort_tracks_to_simple_array(tracks)
+      if tracks[0].disc_number.nil?
+        tracks.sort_by(&:track_number)
+      else
+        tracks.sort_by { |track| [track.disc_number, track.track_number] }
       end
     end
   end

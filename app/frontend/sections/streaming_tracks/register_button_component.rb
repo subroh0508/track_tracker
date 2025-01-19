@@ -2,18 +2,18 @@
 
 module StreamingTracks
   class RegisterButtonComponent < ViewComponent::Base
-    attr_reader :url, :id, :brand_id, :params, :classes
+    attr_reader :url, :id, :streaming_service_id, :params, :classes
 
     def initialize(
       url: "",
       id: nil,
-      brand_id: nil,
+      streaming_service_id: {},
       params: {},
       classes: ""
     )
       @url = url
       @id = id
-      @brand_id = brand_id
+      @streaming_service_id = streaming_service_id
       @params = params
       @classes = classes
     end

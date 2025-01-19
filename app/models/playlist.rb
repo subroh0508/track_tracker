@@ -5,10 +5,6 @@ class Playlist < ApplicationRecord
     QUERY_APPLE_MUSIC = "applemusic"
   end
 
-  self.inheritance_column = :_type_disabled
-
-  enum :type, { album: 0, official: 1, user: 2 }
-
   has_many :translations, class_name: "Translations::Playlist"
   has_many :playlist_tracks
   has_many :tracks, through: :playlist_tracks
@@ -22,13 +18,9 @@ class Playlist < ApplicationRecord
     def find_or_build_by(
       key,
       params,
-      type,
       locale = "ja"
     )
-      playlist = Playlist.find_or_initialize_by(
-        :type => type,
-        key => params[key],
-      )
+      playlist = Playlist.find_or_initialize_by(key => params[key])
 
       build_translation(
         playlist,

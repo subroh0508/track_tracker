@@ -11,7 +11,7 @@ module Api
             json["images"],
             300,
           )&.[]("url"),
-          year: json["release_date"][0..3],
+          release_date: json["release_date"],
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
           total_tracks: json["total_tracks"],
         }
@@ -31,6 +31,7 @@ module Api
         {
           spotify_id: json["id"],
           title: json["name"],
+          disc_number: json["disc_number"],
           track_number: json["track_number"],
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
         }

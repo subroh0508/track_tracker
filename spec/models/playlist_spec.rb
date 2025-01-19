@@ -12,7 +12,6 @@ RSpec.describe Playlist, type: :model do
       described_class.find_or_build_by(
         Streaming::KEY_YOUTUBE_MUSIC,
         params,
-        Playlist.types[type.to_sym],
         locale,
       )
     }
@@ -22,7 +21,6 @@ RSpec.describe Playlist, type: :model do
 
       context "when the playlist does not exist" do
         let(:title) { "プレイリスト名" }
-        let(:type) { "album" }
         let(:locale) { "ja" }
 
         let(:params) {
@@ -35,7 +33,6 @@ RSpec.describe Playlist, type: :model do
         it {
           expect(subject).to have_attributes(
             id: nil,
-            type: type,
             youtube_music_id: youtube_music_id,
           )
           expect(subject.translations).to contain_exactly(
@@ -50,7 +47,6 @@ RSpec.describe Playlist, type: :model do
       context "when the playlist exists" do
         context "and locale = 'ja'" do
           let(:title) { "プレイリスト名(変更)" }
-          let(:type) { "album" }
           let(:locale) { "ja" }
 
           let(:params) {
@@ -63,7 +59,6 @@ RSpec.describe Playlist, type: :model do
           it {
             expect(subject).to have_attributes(
               id: playlist_without_translation_en.id,
-              type: type,
               youtube_music_id: playlist_without_translation_en.youtube_music_id,
             )
             expect(subject.translations).to contain_exactly(
@@ -77,7 +72,6 @@ RSpec.describe Playlist, type: :model do
 
         context "and locale = 'en'" do
           let(:title) { "Playlist Title" }
-          let(:type) { "album" }
           let(:locale) { "en" }
 
           let(:params) {
@@ -90,7 +84,6 @@ RSpec.describe Playlist, type: :model do
           it {
             expect(subject).to have_attributes(
               id: playlist_without_translation_en.id,
-              type: type,
               youtube_music_id: playlist_without_translation_en.youtube_music_id,
             )
             expect(subject.translations).to contain_exactly(
@@ -113,9 +106,9 @@ RSpec.describe Playlist, type: :model do
     let_it_be(:playlist) { create(:playlist, :with_translations) }
     let_it_be(:tracks) {
       [
-        create(:track, :with_translations),
-        create(:track, :with_translations),
-        create(:track, :with_translations),
+        create(:track, :with_translations, album: create(:album, :with_translations)),
+        create(:track, :with_translations, album: create(:album, :with_translations)),
+        create(:track, :with_translations, album: create(:album, :with_translations)),
       ]
     }
 

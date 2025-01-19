@@ -18,7 +18,7 @@
       <% component.with_item do %>
         <div class="flex justify-between gap-2">
           <%= render StreamingTracks::Album::ListItemComponent.new(
-            thumbnails: item[:thumbnails],
+            thumbnail_url: item[:thumbnail_url],
             title: item[:title],
             year: item[:year] || 2024,
             artists: item[:artists],
@@ -33,14 +33,16 @@
             <%= f.hidden_field "query", value: params[:query] %>
             <%= f.hidden_field "id", value: params[:id] %>
 
-            <%= f.hidden_field "album[#{brand_id(target_album)}]",
-              value: target_album&.[](brand_id(target_album)) %>
+            <% streaming_service_id(target_album).each do |key, value| %>
+              <%= f.hidden_field "album[#{key}]", value: value %>
+            <% end %>
 
             <% target_album[:tracks].each do |track| %>
-              <%= f.hidden_field "album[tracks][][track_number]",
-                value: track[:track_number] %>
-              <%= f.hidden_field "album[tracks][][#{brand_id(track)}]",
-                value: track[brand_id(track)] %>
+              <%= f.hidden_field "album[tracks][][disc_number]", value: track[:disc_number] %>
+              <%= f.hidden_field "album[tracks][][track_number]", value: track[:track_number] %>
+              <% streaming_service_id(track).each do |key, value|%>
+                <%= f.hidden_field "album[tracks][][#{key}]", value: value %>
+              <% end %>
             <% end %>
 
             <%= render Button::Component.new(
