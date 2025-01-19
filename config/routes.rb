@@ -8,12 +8,6 @@ Rails.application.routes.draw do
   post "streaming_tracks/register/:brand/:type", to: "streaming_tracks#register"
   post "streaming_tracks/register/:brand/:type/:target_id", to: "streaming_tracks#link"
 
-  get "playlists", to: "playlists#index"
-  get "playlists/search"
-  get "playlists/spotify"
-  get "playlists/:id", to: "playlists#show"
-  post "playlists", to: "playlists#create"
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
