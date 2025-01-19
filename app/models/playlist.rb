@@ -18,13 +18,9 @@ class Playlist < ApplicationRecord
     def find_or_build_by(
       key,
       params,
-      type,
       locale = "ja"
     )
-      playlist = Playlist.find_or_initialize_by(
-        :type => type,
-        key => params[key],
-      )
+      playlist = Playlist.find_or_initialize_by(key => params[key])
 
       build_translation(
         playlist,
