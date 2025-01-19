@@ -17,7 +17,7 @@ class CreateAlbums < ActiveRecord::Migration[8.0]
     create_table :translations_albums, id: :uuid do |t|
       t.string :title, null: false
       t.string :locale, null: false
-      t.references :albums, null: false, foreign_key: true, type: :uuid
+      t.references :album, null: false, foreign_key: true, type: :uuid
 
       t.timestamps
     end

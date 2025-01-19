@@ -22,22 +22,11 @@ class StreamingTracksController < ApplicationController
   end
 
   def register
-    case brand
-    when Api::SPOTIFY
-      @json = client.fetch_album(
-        params[:brand_id],
-        "jp",
-      )
-    when Api::APPLE_MUSIC
-      @json = nil
-    else
-      throw ArgumentError.new("Unknown brand: #{brand}")
-    end
+    json = StreamingTracks::FindAlbumService.new("jp").
+      execute!(params)
 
-    Playlists::SpotifyImportService.new(
-      "ja",
-      "album",
-    ).execute!([@json])
+    StreamingTracks::ImportAlbumService.new("ja").
+      execute!([json])
 
     redirect_to_search
   end

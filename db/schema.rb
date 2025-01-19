@@ -99,10 +99,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_000004) do
   create_table "translations_albums", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title", null: false
     t.string "locale", null: false
-    t.uuid "albums_id", null: false
+    t.uuid "album_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["albums_id"], name: "index_translations_albums_on_albums_id"
+    t.index ["album_id"], name: "index_translations_albums_on_album_id"
   end
 
   create_table "translations_artists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -139,7 +139,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_000004) do
   add_foreign_key "track_artists", "artists"
   add_foreign_key "track_artists", "tracks"
   add_foreign_key "tracks", "albums"
-  add_foreign_key "translations_albums", "albums", column: "albums_id"
+  add_foreign_key "translations_albums", "albums"
   add_foreign_key "translations_artists", "artists"
   add_foreign_key "translations_playlists", "playlists"
   add_foreign_key "translations_tracks", "tracks"
