@@ -14,13 +14,13 @@
           apple_music_id: item[:apple_music_id],
         ) %>
         <div class="flex justify-end items-center mt-2">
-          <% if spotify_id.present? %>
+          <% if item[:spotify_id].present? %>
             <i class="me-2 fab fa-spotify fa-lg text-spotify"></i>
           <% end %>
-          <% if youtube_music_id.present? %>
+          <% if item[:youtube_music_id].present? %>
             <i class="me-2 fab fa-youtube fa-lg text-youtubemusic"></i>
           <% end %>
-          <% if apple_music_id.present? %>
+          <% if item[:apple_music_id].present? %>
             <i class="me-2 fab fa-apple fa-lg text-applemusic"></i>
           <% end %>
         </div>
