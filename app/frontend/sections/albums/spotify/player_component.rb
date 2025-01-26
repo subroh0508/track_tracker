@@ -3,13 +3,18 @@
 module Albums
   module Spotify
     class PlayerComponent < ViewComponent::Base
-      NORMAL_HEIGHT = 352
-      COMPACT_HEIGHT = 152
+      HEADER_HEIGHT = 200
+      TRACK_PADDING = 16
+      TRACK_ITEM_HEIGHT = 54
 
-      private_constant :NORMAL_HEIGHT, :COMPACT_HEIGHT
+      private_constant :HEADER_HEIGHT, :TRACK_PADDING, :TRACK_ITEM_HEIGHT
 
-      def initialize(spotify_id: "")
+      def initialize(
+        spotify_id: nil,
+        tracks: []
+      )
         @spotify_id = spotify_id
+        @track_count = tracks.size
       end
 
       def src
@@ -21,12 +26,12 @@ module Albums
       end
 
       def height
-        NORMAL_HEIGHT
+        HEADER_HEIGHT + TRACK_PADDING + (TRACK_ITEM_HEIGHT * track_count)
       end
 
       private
 
-      attr_reader :spotify_id
+      attr_reader :spotify_id, :track_count
     end
   end
 end

@@ -1,10 +1,19 @@
 <div class="flex">
   <div class="w-80 me-6">
-
+    <%= render Albums::GridItemComponent.new(
+      thumbnail_url: @album[:thumbnail_url],
+      title: @album[:title],
+      release_date: @album[:release_date],
+      artists: @album[:artists],
+      spotify_id: @album[:spotify_id],
+      youtube_music_id: @album[:youtube_music_id],
+      apple_music_id: @album[:apple_music_id],
+    ) %>
   </div>
   <div class="grow">
     <%= render Albums::Spotify::PlayerComponent.new(
       spotify_id: @album[:spotify_id],
+      tracks: @album[:tracks],
     ) %>
   </div>
 </div>

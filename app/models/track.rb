@@ -43,4 +43,19 @@ class Track < ApplicationRecord
   def localized_title(locale)
     translations.find_by!(locale: locale).title
   end
+
+  def to_json_hash(locale)
+    {
+      id: id,
+      title: localized_title(locale),
+      artists: artists.map { |artist|
+        artist.to_json_hash(locale)
+      }.uniq,
+      disc_number: disc_number,
+      track_number: track_number,
+      spotify_id: spotify_id,
+      youtube_music_id: youtube_music_id,
+      apple_music_id: apple_music_id,
+    }
+  end
 end

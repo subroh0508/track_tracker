@@ -8,7 +8,13 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find(params[:id]).
-      to_json_hash("ja")
+    album = Album.find(params[:id])
+
+    tracks = album.tracks.map { |track|
+      track.to_json_hash("ja")
+    }
+
+    @album = album.to_json_hash("ja").
+      merge(tracks: tracks)
   end
 end
