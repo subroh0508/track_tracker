@@ -5,21 +5,21 @@
       href: href_spotify,
       active: spotify?,
       data: data,
-      classes: "justify-center",
+      classes: "justify-center flex-1",
     ) %>
     <%= render Brand::ButtonComponent.new(
       brand: Api::APPLE_MUSIC,
       href: href_apple_music,
       active: apple_music?,
       data: data,
-      classes: "justify-center",
+      classes: "justify-center flex-1",
     ) %>
     <%= render Brand::ButtonComponent.new(
       brand: Api::YOUTUBE_MUSIC,
       href: href_youtube_music,
       active: youtube_music?,
       data: data,
-      classes: "justify-center",
+      classes: "justify-center flex-1",
     ) %>
   </div>
   <%= render StreamingTracks::SearchForm::InputFieldComponent.new(

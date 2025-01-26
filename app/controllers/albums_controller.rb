@@ -14,7 +14,14 @@ class AlbumsController < ApplicationController
       track.to_json_hash("ja")
     }
 
+    @streaming_service = streaming_service
     @album = album.to_json_hash("ja").
       merge(tracks: tracks)
+  end
+
+  private
+
+  def streaming_service
+    params[:streaming_service] || Api::SPOTIFY
   end
 end

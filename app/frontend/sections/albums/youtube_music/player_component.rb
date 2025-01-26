@@ -13,6 +13,10 @@ module Albums
         "https://www.youtube.com/embed/videoseries?list=#{youtube_music_id}"
       end
 
+      def present_youtube_music_id?
+        youtube_music_id.present?
+      end
+
       private
 
       attr_reader :youtube_music_id

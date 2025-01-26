@@ -31,9 +31,7 @@ module StreamingTracks
 
       def tab_classes
         %w[
-          grid
-          grid-flow-col
-          justify-stretch
+          flex
           gap-2
         ].join(" ")
       end

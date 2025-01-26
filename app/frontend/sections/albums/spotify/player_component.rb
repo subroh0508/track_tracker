@@ -29,6 +29,10 @@ module Albums
         HEADER_HEIGHT + TRACK_PADDING + (TRACK_ITEM_HEIGHT * track_count)
       end
 
+      def present_spotify_id?
+        spotify_id.present?
+      end
+
       private
 
       attr_reader :spotify_id, :track_count
