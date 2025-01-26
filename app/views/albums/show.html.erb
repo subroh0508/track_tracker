@@ -1,3 +1,10 @@
-<div>
-  <%= @album %>
+<div class="flex">
+  <div class="w-80 me-6">
+
+  </div>
+  <div class="grow">
+    <%= render Albums::Spotify::PlayerComponent.new(
+      spotify_id: @album[:spotify_id],
+    ) %>
+  </div>
 </div>
