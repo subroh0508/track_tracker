@@ -2,26 +2,19 @@
 
 module Albums
   class GridItemComponent < ViewComponent::Base
-    attr_reader :thumbnail_url, :title, :year, :artists,
-                :spotify_id, :youtube_music_id, :apple_music_id
+    attr_reader :thumbnail_url, :title, :year, :artists
 
     def initialize(
       thumbnail_url: "",
       title: "",
       release_date: "",
       artists: "",
-      spotify_id: nil,
-      youtube_music_id: nil,
-      apple_music_id: nil,
       classes: ""
     )
       @thumbnail_url = thumbnail_url
       @title = title
       @year = release_date[0..3]
       @artists = artists
-      @spotify_id = spotify_id
-      @youtube_music_id = youtube_music_id
-      @apple_music_id = apple_music_id
       @classes = classes
     end
 

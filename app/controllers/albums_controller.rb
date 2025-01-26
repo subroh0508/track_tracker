@@ -8,7 +8,20 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find(params[:id]).
-      to_json_hash("ja")
+    album = Album.find(params[:id])
+
+    tracks = album.tracks.map { |track|
+      track.to_json_hash("ja")
+    }
+
+    @streaming_service = streaming_service
+    @album = album.to_json_hash("ja").
+      merge(tracks: tracks)
+  end
+
+  private
+
+  def streaming_service
+    params[:streaming_service] || Api::SPOTIFY
   end
 end

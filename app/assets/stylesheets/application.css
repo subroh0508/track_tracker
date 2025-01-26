@@ -12,9 +12,3 @@
 html {
   overflow-y: scroll;
 }
-
-.youtube-iframe {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-}

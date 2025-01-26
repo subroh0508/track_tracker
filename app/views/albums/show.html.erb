@@ -1,3 +1,34 @@
-<div>
-  <%= @album %>
+<div class="flex">
+  <div class="w-80 me-6">
+    <%= render Albums::GridItemComponent.new(
+      thumbnail_url: @album[:thumbnail_url],
+      title: @album[:title],
+      release_date: @album[:release_date],
+      artists: @album[:artists],
+    ) %>
+  </div>
+  <div class="grow">
+    <%= turbo_frame_tag "player" do %>
+      <%= render Albums::StreamingServiceTabComponent.new(
+        base_url: Albums::BASE_URL,
+        id: @album[:id],
+        streaming_service: @streaming_service,
+        data: { turbo_frame: "player", turbo_action: :advance },
+        classes: "mb-5",
+      ) %>
+      <% case @streaming_service %>
+      <% when Api::APPLE_MUSIC %>
+        <div>Apple Music</div>
+      <% when Api::YOUTUBE_MUSIC %>
+        <%= render Albums::YoutubeMusic::PlayerComponent.new(
+          youtube_music_id: @album[:youtube_music_id],
+        ) %>
+      <% else %>
+        <%= render Albums::Spotify::PlayerComponent.new(
+          spotify_id: @album[:spotify_id],
+          tracks: @album[:tracks],
+        ) %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
