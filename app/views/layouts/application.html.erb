@@ -28,19 +28,24 @@
       root_path: "http://localhost:3000",
       menus: [
         {
+          href: "/albums",
+          label: "アルバム一覧",
+          is_active: controller.controller_name == "albums",
+        },
+        {
           href: "/playlists",
           label: "プレイリスト一覧",
-          is_active: false,
+          is_active: controller.controller_name == "playlists",
         },
         {
           href: "/streaming_tracks/register",
           label: "楽曲登録",
-          is_active: true,
+          is_active: controller.controller_name == "streaming_tracks",
         },
         {
           href: "/settings",
           label: "設定",
-          is_active: false,
+          is_active: controller.controller_name == "settings",
         },
       ],
     ) %>
