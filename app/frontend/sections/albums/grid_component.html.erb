@@ -1,0 +1,17 @@
+<div class="<%= classes %>">
+  <% items.each do |item| %>
+    <%= link_to href_select(item),
+      data: data do
+    %>
+      <%= render Albums::GridItemComponent.new(
+        thumbnail_url: item[:thumbnail_url],
+        title: item[:title],
+        release_date: item[:release_date],
+        artists: item[:artists],
+        spotify_id: item[:spotify_id],
+        youtube_music_id: item[:youtube_music_id],
+        apple_music_id: item[:apple_music_id],
+        ) %>
+    <% end %>
+  <% end %>
+</div>
