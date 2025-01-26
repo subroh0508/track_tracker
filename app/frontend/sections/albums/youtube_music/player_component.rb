@@ -3,10 +3,14 @@
 module Albums
   module YoutubeMusic
     class PlayerComponent < ViewComponent::Base
+      attr_reader :classes
+
       def initialize(
-        youtube_music_id: nil
+        youtube_music_id: nil,
+        classes: ""
       )
         @youtube_music_id = youtube_music_id
+        @classes = classes
       end
 
       def src

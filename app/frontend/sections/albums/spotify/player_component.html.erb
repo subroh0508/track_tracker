@@ -1,10 +1,16 @@
-<iframe
-  style="border-radius:12px"
-  src="<%= src %>"
-  width="<%= width %>"
-  height="<%= height %>"
-  frameBorder="0"
-  allowfullscreen=""
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-  loading="lazy">
-</iframe>
+<% if present_spotify_id? %>
+  <iframe
+    class="<%= classes %>"
+    style="border-radius:12px"
+    src="<%= src %>"
+    width="<%= width %>"
+    height="<%= height %>"
+    frameBorder="0"
+    allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    loading="lazy">
+  </iframe>
+<% else %>
+  未登録
+<% end %>
+

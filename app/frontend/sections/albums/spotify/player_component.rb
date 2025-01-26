@@ -9,12 +9,16 @@ module Albums
 
       private_constant :HEADER_HEIGHT, :TRACK_PADDING, :TRACK_ITEM_HEIGHT
 
+      attr_reader :classes
+
       def initialize(
         spotify_id: nil,
-        tracks: []
+        tracks: [],
+        classes: ""
       )
         @spotify_id = spotify_id
         @track_count = tracks.size
+        @classes = classes
       end
 
       def src
