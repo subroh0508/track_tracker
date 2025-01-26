@@ -1,6 +1,8 @@
 <div class="<%= classes %>">
   <% items.each do |item| %>
-    <% grid_item = capture do %>
+    <%= link_to href_select(item),
+      data: data do
+    %>
       <%= render Albums::GridItemComponent.new(
         thumbnail_url: item[:thumbnail_url],
         title: item[:title],
@@ -9,12 +11,7 @@
         spotify_id: item[:spotify_id],
         youtube_music_id: item[:youtube_music_id],
         apple_music_id: item[:apple_music_id],
-      ) %>
+        ) %>
     <% end %>
-    <%= link_to_if item[:id].blank?,
-      grid_item,
-      href_select(item),
-      data: data
-    %>
   <% end %>
 </div>
