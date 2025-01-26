@@ -1,0 +1,20 @@
+<div class="flex flex-col justify-between h-full">
+  <%= render Grid::ItemComponent.new(
+    classes: classes,
+    thumbnail_url: thumbnail_url,
+    thumbnail_shape: Grid::THUMBNAIL_ROUNDED,
+    header: title,
+    description: description,
+  ) %>
+  <div class="flex justify-end items-center mt-2">
+    <% if spotify_id.present? %>
+      <i class="me-2 fab fa-spotify fa-lg text-spotify"></i>
+    <% end %>
+    <% if youtube_music_id.present? %>
+      <i class="me-2 fab fa-youtube fa-lg text-youtubemusic"></i>
+    <% end %>
+    <% if apple_music_id.present? %>
+      <i class="me-2 fab fa-apple fa-lg text-applemusic"></i>
+    <% end %>
+  </div>
+</div>
