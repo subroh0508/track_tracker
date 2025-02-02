@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Playlists
+module Albums
   class TrackComponent < ViewComponent::Base
     attr_reader :track
 
@@ -18,6 +18,10 @@ module Playlists
 
     def thumbnail_style
       "object-cover rounded-md"
+    end
+
+    def description
+      track[:artists].map { |artist| artist[:name] }.join(", ")
     end
   end
 end

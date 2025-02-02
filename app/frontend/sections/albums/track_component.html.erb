@@ -1,0 +1,17 @@
+<div class="flex flex-col <%= classes %>">
+  <%= render List::ItemComponent.new(
+    header: track[:title],
+    description: description,
+  ) %>
+  <div class="flex items-center mt-2">
+    <% if track[:spotify_id].present? %>
+      <i class="me-2 fab fa-spotify fa-lg text-spotify"></i>
+    <% end %>
+    <% if track[:youtube_music_id].present? %>
+      <i class="me-2 fab fa-youtube fa-lg text-youtubemusic"></i>
+    <% end %>
+    <% if track[:apple_music_id].present? %>
+      <i class="me-2 fab fa-apple fa-lg text-applemusic"></i>
+    <% end %>
+  </div>
+</div>

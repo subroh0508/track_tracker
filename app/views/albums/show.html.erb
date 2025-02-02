@@ -5,6 +5,8 @@
     classes: "w-80 me-6",
   ) %>
   <div class="grow">
-
+    <%= render Albums::TracksComponent.new(
+      @album[:tracks],
+    ) %>
   </div>
 </div>
