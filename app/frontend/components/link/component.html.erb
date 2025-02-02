@@ -1,6 +1,11 @@
 <%= link_to href,
   class: classes,
+  target: target? ? :_blank : nil,
+  rel: target? ? "noopener noreferrer" : nil,
   data: data do
 %>
+  <% if icon? %>
+    <i class="me-2 <%= icon %>"></i>
+  <% end %>
   <%= content %>
 <% end %>

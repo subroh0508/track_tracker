@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Playlists
+module Albums
   class TracksComponent < ViewComponent::Base
     attr_reader :tracks, :classes
 
@@ -13,11 +13,11 @@ module Playlists
     end
 
     def index_style
-      "h-12 #{light_index_style} #{dark_index_style}"
+      "h-12 mb-12 #{light_index_style} #{dark_index_style}"
     end
 
     def content_style
-      "h-12"
+      "h-20"
     end
 
     private

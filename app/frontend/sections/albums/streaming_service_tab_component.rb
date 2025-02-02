@@ -38,15 +38,15 @@ module Albums
     end
 
     def href_spotify
-      "#{base_url}/#{id}?streaming_service=#{Api::SPOTIFY}"
+      "#{base_url}/#{id}/player?streaming_service=#{Api::SPOTIFY}"
     end
 
     def href_apple_music
-      "#{base_url}/#{id}?streaming_service=#{Api::APPLE_MUSIC}"
+      "#{base_url}/#{id}/player?streaming_service=#{Api::APPLE_MUSIC}"
     end
 
     def href_youtube_music
-      "#{base_url}/#{id}?streaming_service=#{Api::YOUTUBE_MUSIC}"
+      "#{base_url}/#{id}/player?streaming_service=#{Api::YOUTUBE_MUSIC}"
     end
 
     private

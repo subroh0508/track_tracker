@@ -3,7 +3,11 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  resources :albums, only: %i[index show]
+  resources :albums, only: %i[index show] do
+    member do
+      get :player
+    end
+  end
 
   get "streaming_tracks/register", to: "streaming_tracks#index"
   get "streaming_tracks/register/:brand/:type/search", to: "streaming_tracks#search"

@@ -2,14 +2,18 @@
 
 module Link
   class Component < ViewComponent::Base
-    attr_reader :href, :data
+    attr_reader :href, :icon, :target, :data
 
     def initialize(
       href: "#",
+      icon: nil,
+      target: nil,
       data: {},
       classes: ""
     )
       @href = href
+      @icon = icon
+      @target = target
       @data = data
       @classes = classes
     end
@@ -21,6 +25,14 @@ module Link
         "items-center",
         text_style,
       ].join(" ")
+    end
+
+    def icon?
+      icon.present?
+    end
+
+    def target?
+      target.present?
     end
 
     protected
