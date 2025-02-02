@@ -2,16 +2,18 @@
 
 module Link
   class Component < ViewComponent::Base
-    attr_reader :href, :icon, :data
+    attr_reader :href, :icon, :target, :data
 
     def initialize(
       href: "#",
       icon: nil,
+      target: nil,
       data: {},
       classes: ""
     )
       @href = href
       @icon = icon
+      @target = target
       @data = data
       @classes = classes
     end
@@ -27,6 +29,10 @@ module Link
 
     def icon?
       icon.present?
+    end
+
+    def target?
+      target.present?
     end
 
     protected

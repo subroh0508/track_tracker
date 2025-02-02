@@ -5,13 +5,31 @@
   ) %>
   <div class="flex items-center mt-2">
     <% if track[:spotify_id].present? %>
-      <i class="me-2 fab fa-spotify fa-lg text-spotify"></i>
+      <%= render Link::IconComponent.new(
+        href: url_spotify,
+        target: "_blank",
+        active: true,
+        icon: "fab fa-spotify fa-lg",
+        active_text_color: "text-spotify",
+      ) %>
     <% end %>
     <% if track[:youtube_music_id].present? %>
-      <i class="me-2 fab fa-youtube fa-lg text-youtubemusic"></i>
+      <%= render Link::IconComponent.new(
+        href: url_youtube_music,
+        target: "_blank",
+        active: true,
+        icon: "fab fa-youtube fa-lg",
+        active_text_color: "text-youtubemusic",
+      ) %>
     <% end %>
     <% if track[:apple_music_id].present? %>
-      <i class="me-2 fab fa-apple fa-lg text-applemusic"></i>
+      <%= render Link::IconComponent.new(
+        href: url_youtube_music,
+        target: "_blank",
+        active: true,
+        icon: "fab fa-apple fa-lg",
+        active_text_color: "text-applemusic",
+      ) %>
     <% end %>
   </div>
 </div>

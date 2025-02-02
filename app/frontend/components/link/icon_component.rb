@@ -7,12 +7,13 @@ module Link
     def initialize(
       href: "#",
       icon: "",
+      target: nil,
       active: false,
       active_text_color: "text-neutral-900 dark:text-white",
       data: {},
       classes: ""
     )
-      super(href: href, data: data, classes: classes)
+      super(href: href, target: target, data: data, classes: classes)
 
       @icon = icon
       @active = active
