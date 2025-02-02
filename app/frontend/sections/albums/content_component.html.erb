@@ -1,0 +1,18 @@
+<div class="<%= classes %>">
+  <%= render Albums::GridItemComponent.new(
+    thumbnail_url: album[:thumbnail_url],
+    title: album[:title],
+    release_date: album[:release_date],
+    artists: album[:artists],
+  ) %>
+  <%= render Link::ButtonComponent.new(
+    active: true,
+    href: href,
+    icon: icon,
+    shape: Link::Button::ROUNDED,
+    size: Link::Button::BASE,
+    classes: "w-full justify-center",
+  ) do %>
+    <%= icon_label %>
+  <% end %>
+</div>

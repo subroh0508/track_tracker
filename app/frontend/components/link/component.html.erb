@@ -2,5 +2,8 @@
   class: classes,
   data: data do
 %>
+  <% if icon? %>
+    <i class="me-2 <%= icon %>"></i>
+  <% end %>
   <%= content %>
 <% end %>

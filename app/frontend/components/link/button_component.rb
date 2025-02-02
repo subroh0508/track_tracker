@@ -6,6 +6,7 @@ module Link
 
     def initialize(
       href: "#",
+      icon: nil,
       active: false,
       active_color: { text: "text-white", background_style: "bg-primary-700" },
       shape: Link::Button::ROUNDED,
@@ -15,6 +16,7 @@ module Link
     )
       super(
         href: href,
+        icon: icon,
         data: data,
         classes: classes
       )

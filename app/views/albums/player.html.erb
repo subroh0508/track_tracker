@@ -1,12 +1,9 @@
 <div class="flex">
-  <div class="w-80 me-6">
-    <%= render Albums::GridItemComponent.new(
-      thumbnail_url: @album[:thumbnail_url],
-      title: @album[:title],
-      release_date: @album[:release_date],
-      artists: @album[:artists],
-    ) %>
-  </div>
+  <%= render Albums::ContentForPlayerComponent.new(
+    base_url: Albums::BASE_URL,
+    album: @album,
+    classes: "w-80 me-6",
+  ) %>
   <div class="grow">
     <%= turbo_frame_tag "player" do %>
       <%= render Albums::StreamingServiceTabComponent.new(

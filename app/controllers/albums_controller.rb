@@ -2,6 +2,12 @@
 
 class AlbumsController < ApplicationController
   def index
+    @albums = Album.all.map { |album|
+      album.to_json_hash("ja")
+    }
+  end
+
+  def show
     @album = get_album
   end
 
