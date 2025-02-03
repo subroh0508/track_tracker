@@ -5,6 +5,8 @@
   size: Link::Button::BASE,
   classes: classes,
 ) do %>
-  <%= render Icon::List.new(classes: "me-2") %>
-  トラックリストを開く
+  <%= render Icon::List.new(classes: label? ? "me-2" : "") %>
+  <% if label? %>
+    <%= label %>
+  <% end %>
 <% end %>

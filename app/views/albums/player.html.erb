@@ -6,6 +6,7 @@
     <%= render Albums::Link::TrackListComponent.new(
       base_url: Albums::BASE_URL,
       album_id: @album[:id],
+      label: "トラックリストを開く",
     ) %>
   <% end %>
   <div class="grow">

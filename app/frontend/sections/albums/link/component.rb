@@ -6,10 +6,12 @@ module Albums
       def initialize(
         base_url: "",
         album_id: nil,
+        label: "",
         classes: ""
       )
         @base_url = base_url
         @album_id = album_id
+        @label = label
         @classes = classes
       end
 
@@ -21,13 +23,17 @@ module Albums
         ].join(" ")
       end
 
+      def label?
+        label.present?
+      end
+
       def href
         throw NotImplementedError
       end
 
       protected
 
-      attr_reader :base_url, :album_id
+      attr_reader :base_url, :album_id, :label
     end
   end
 end
