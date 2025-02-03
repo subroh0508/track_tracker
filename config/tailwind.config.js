@@ -16,7 +16,7 @@ module.exports = {
       },
       colors: {
         primary: colors.blue,
-        secondary: colors.amber,
+        secondary: colors.teal,
         neutral: colors.gray,
         youtubemusic: '#FF0000',
         spotify: '#1ED760',

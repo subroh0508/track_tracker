@@ -1,0 +1,13 @@
+<%= render Link::ButtonComponent.new(
+  active: true,
+  href: href,
+  active_color: { text: "text-white", background_style: "bg-secondary-500" },
+  shape: Link::Button::ROUNDED,
+  size: Link::Button::BASE,
+  classes: classes,
+) do %>
+  <%= render Icon::ShareNodes.new(classes: label? ? "me-2" : "") %>
+  <% if label? %>
+    <%= label %>
+  <% end %>
+<% end %>

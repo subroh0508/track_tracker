@@ -2,7 +2,7 @@
 
 module Albums
   module Link
-    class TrackListComponent < Albums::Link::Component
+    class ShareComponent < Albums::Link::Component
       def initialize(
         base_url: "",
         album_id: nil,
@@ -18,7 +18,7 @@ module Albums
       end
 
       def href
-        "#{base_url}/#{album_id}"
+        "#"
       end
     end
   end

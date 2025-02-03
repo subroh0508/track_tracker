@@ -12,12 +12,11 @@
           ) %>
         <% end %>
         <div>
-          <div class="flex mt-2 gap-2">
-            <%= render Albums::Link::PlayerComponent.new(
-              base_url: Albums::BASE_URL,
-              album_id: item[:id],
-            ) %>
-          </div>
+          <%= render Albums::Link::PlayerComponent.new(
+            base_url: Albums::BASE_URL,
+            album_id: item[:id],
+            classes: "mt-2",
+          ) %>
           <div class="flex justify-end items-center mt-2 gap-2">
             <% if item[:spotify_id].present? %>
               <%= render Icon::Spotify.new(
