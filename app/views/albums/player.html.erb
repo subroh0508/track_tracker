@@ -1,9 +1,13 @@
 <div class="flex">
-  <%= render Albums::ContentForPlayerComponent.new(
-    base_url: Albums::BASE_URL,
+  <%= render Albums::ContentComponent.new(
     album: @album,
     classes: "w-80 me-6",
-  ) %>
+  ) do %>
+    <%= render Albums::Link::TrackListComponent.new(
+      base_url: Albums::BASE_URL,
+      album_id: @album[:id],
+    ) %>
+  <% end %>
   <div class="grow">
     <%= turbo_frame_tag "player" do %>
       <%= render Albums::StreamingServiceTabComponent.new(

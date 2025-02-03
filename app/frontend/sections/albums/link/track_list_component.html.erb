@@ -1,0 +1,10 @@
+<%= render Link::ButtonComponent.new(
+  active: true,
+  href: href,
+  shape: Link::Button::ROUNDED,
+  size: Link::Button::BASE,
+  classes: classes,
+) do %>
+  <%= render Icon::List.new(classes: "me-2") %>
+  トラックリストを開く
+<% end %>

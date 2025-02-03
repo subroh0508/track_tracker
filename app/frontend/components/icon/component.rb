@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Icon
-  class Component < Icon::Component
+  class Component < ViewComponent::Base
     attr_reader :icon, :classes
 
     def initialize(
