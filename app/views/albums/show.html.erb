@@ -1,9 +1,14 @@
 <div class="flex">
-  <%= render Albums::ContentForTrackListComponent.new(
-    base_url: Albums::BASE_URL,
+  <%= render Albums::ContentComponent.new(
     album: @album,
     classes: "w-80 me-6",
-  ) %>
+  ) do %>
+    <%= render Albums::Link::PlayerComponent.new(
+      base_url: Albums::BASE_URL,
+      album_id: @album[:id],
+      label: "プレイリストを開く",
+    ) %>
+  <% end %>
   <div class="grow">
     <%= render Albums::TracksComponent.new(
       @album[:tracks],

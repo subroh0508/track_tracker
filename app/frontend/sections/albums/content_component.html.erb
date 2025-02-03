@@ -5,14 +5,11 @@
     release_date: album[:release_date],
     artists: album[:artists],
   ) %>
-  <%= render Link::ButtonComponent.new(
-    active: true,
-    href: href,
-    icon: icon,
-    shape: Link::Button::ROUNDED,
-    size: Link::Button::BASE,
-    classes: "w-full justify-center",
-  ) do %>
-    <%= icon_label %>
-  <% end %>
+  <%= content %>
+  <%= render Albums::Link::ShareComponent.new(
+    base_url: Albums::BASE_URL,
+    album_id: album[:id],
+    label: "共有",
+    classes: "mt-2",
+  ) %>
 </div>
