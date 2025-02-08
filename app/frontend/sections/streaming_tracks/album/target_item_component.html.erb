@@ -12,10 +12,11 @@
     with_label: false,
     classes: "mb-4 w-full justify-center",
   ) %>
-  <%= render List::Component.new(
-    index_range: 1..album[:total_tracks],
-  ) do |component| %>
+  <%= render List::Component.new do |component| %>
     <% album[:tracks].each do |track| %>
+      <% component.with_leading do %>
+        <%= track[:track_number] %>
+      <% end %>
       <% component.with_item do %>
         <%= render List::ItemComponent.new(
           header: track[:title],

@@ -3,35 +3,49 @@
 module List
   class Component < ViewComponent::Base
     renders_many :items
+    renders_many :leadings
+    renders_many :trailings
 
-    attr_reader :index_range, :item_height, :classes
+    attr_reader :classes
 
     def initialize(
-      index_range: nil,
-      classes: "h-12"
+      item_classes: "h-12 mb-4",
+      leading_classes: "h-12 mb-4",
+      trailing_classes: "h-12 mb-4",
+      classes: ""
     )
-      @index_range = index_range
-      @item_height = item_height
+      @item_classes = item_classes
+      @leading_classes = leading_classes
+      @trailing_classes = trailing_classes
       @classes = classes
     end
 
-    def index_classes
+    def leading_classes
       [
         "flex",
         "justify-end",
         "items-center",
-        "mb-4",
         light_index_style,
         dark_index_style,
-        @classes,
+        @leading_classes,
       ].join(" ")
     end
 
     def item_classes
       [
         "px-4",
-        "mb-4",
-        @classes,
+        @item_classes,
+      ].join(" ")
+    end
+
+    def trailing_classes
+      [
+        "flex",
+        "justify-end",
+        "items-center",
+        light_index_style,
+        dark_index_style,
+        @trailing_classes,
       ].join(" ")
     end
 

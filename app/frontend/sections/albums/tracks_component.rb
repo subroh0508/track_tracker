@@ -12,29 +12,11 @@ module Albums
       @classes = classes
     end
 
-    def index_style
-      "h-12 mb-12 #{light_index_style} #{dark_index_style}"
-    end
-
-    def content_style
-      "h-20"
-    end
-
     def duration(ms)
       minutes = ms / 1000 / 60
       seconds = (ms / 1000) % 60
 
       "#{minutes}:#{seconds.to_s.rjust(2, "0")}"
-    end
-
-    private
-
-    def light_index_style
-      "text-neutral-700"
-    end
-
-    def dark_index_style
-      "dark:text-neutral-400"
     end
   end
 end

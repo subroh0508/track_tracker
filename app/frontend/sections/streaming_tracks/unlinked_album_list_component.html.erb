@@ -12,7 +12,7 @@
   </div>
   <hr class="mx-4">
   <%= render List::Component.new(
-    classes: "h-20 mt-4",
+    item_classes: "h-20 mt-4",
   ) do |component| %>
     <% items.each do |item| %>
       <% component.with_item do %>

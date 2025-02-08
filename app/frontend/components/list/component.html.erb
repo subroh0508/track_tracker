@@ -1,16 +1,23 @@
-<% if index_range.present? %>
-  <div class="flex">
+<% if leadings.present? || trailings.present? %>
+  <div class="flex <%= classes %>">
     <div>
-      <% index_range.each do |index| %>
-        <div class="<%= index_classes %>">
-          <%= index %>
+      <% leadings.each do |leading| %>
+        <div class="<%= leading_classes %>">
+          <%= leading  %>
+        </div>
+      <% end %>
+    </div>
+    <div class="grow">
+      <% items.each do |item| %>
+        <div class="<%= item_classes %>">
+          <%= item %>
         </div>
       <% end %>
     </div>
     <div>
-      <% items.each do |item| %>
-        <div class="<%= item_classes %>">
-          <%= item %>
+      <% trailings.each do |trailing| %>
+        <div class="<%= trailing_classes %>">
+          <%= trailing  %>
         </div>
       <% end %>
     </div>

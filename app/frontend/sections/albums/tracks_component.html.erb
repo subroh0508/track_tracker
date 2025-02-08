@@ -1,24 +1,20 @@
-<div class="flex <%= classes %>">
-  <div>
-    <% tracks.each do |track| %>
-      <div class="flex justify-end items-center <%= index_style %>">
-        <%= track[:track_number] %>
-      </div>
+<%= render List::Component.new(
+  item_classes: "h-20 mb-4",
+  leading_classes: "h-12 mb-12",
+  trailing_classes: "h-12 mb-12",
+  classes: classes,
+) do |component| %>
+  <% tracks.each_with_index do |track, index| %>
+    <% component.with_leading do %>
+      <%= index + 1 %>
     <% end %>
-  </div>
-  <div class="w-full">
-    <% tracks.each do |track| %>
+    <% component.with_item do %>
       <%= render Albums::TrackComponent.new(
         track,
-        classes: "mb-4 #{content_style}",
-    ) %>
+      ) %>
     <% end %>
-  </div>
-  <div>
-    <% tracks.each do |track| %>
-      <div class="flex justify-end items-center <%= index_style %>">
-        <%= duration(track[:duration_ms]) %>
-      </div>
+    <% component.with_trailing do %>
+      <%= duration(track[:duration_ms]) %>
     <% end %>
-  </div>
-</div>
+  <% end %>
+<% end %>
