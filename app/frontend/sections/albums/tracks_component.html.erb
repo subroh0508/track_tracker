@@ -1,17 +1,46 @@
-<div class="flex <%= classes %>">
-  <div>
-    <% tracks.each do |track| %>
-      <div class="flex justify-end items-center <%= index_style %>">
-        <%= track[:track_number] %>
+<%= render List::Component.new(
+  classes: classes,
+) do |component| %>
+  <% tracks.each_with_index do |track, index| %>
+    <% component.with_leading do %>
+      <%= index + 1 %>
+    <% end %>
+    <% component.with_item do %>
+      <%= render List::ItemComponent.new(
+        header: track[:title],
+        description: description(track),
+      ) %>
+    <% end %>
+    <% component.with_trailing do %>
+      <div class="flex items-center gap-2 mt-2">
+        <% if track[:spotify_id].present? %>
+          <%= render Link::IconComponent.new(
+            href: url_spotify(track),
+            target: "_blank",
+            active: true,
+            icon: "fab fa-spotify fa-lg",
+            active_text_color: "text-spotify",
+          ) %>
+        <% end %>
+        <% if track[:youtube_music_id].present? %>
+          <%= render Link::IconComponent.new(
+            href: url_youtube_music(track),
+            target: "_blank",
+            active: true,
+            icon: "fab fa-youtube fa-lg",
+            active_text_color: "text-youtubemusic",
+          ) %>
+        <% end %>
+        <% if track[:apple_music_id].present? %>
+          <%= render Link::IconComponent.new(
+            href: url_youtube_music(track),
+            target: "_blank",
+            active: true,
+            icon: "fab fa-apple fa-lg",
+            active_text_color: "text-applemusic",
+          ) %>
+        <% end %>
       </div>
     <% end %>
-  </div>
-  <div class="w-full">
-    <% tracks.each do |track| %>
-      <%= render Albums::TrackComponent.new(
-        track,
-        classes: "mb-4 #{content_style}",
-    ) %>
-    <% end %>
-  </div>
-</div>
+  <% end %>
+<% end %>

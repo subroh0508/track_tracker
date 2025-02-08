@@ -6,28 +6,26 @@ module Albums
 
     def initialize(
       tracks,
-      classes: "px-4"
+      classes: ""
     )
       @tracks = tracks
       @classes = classes
     end
 
-    def index_style
-      "h-12 mb-12 #{light_index_style} #{dark_index_style}"
+    def description(track)
+      track[:artists].map { |artist| artist[:name] }.join(", ")
     end
 
-    def content_style
-      "h-20"
+    def url_spotify(track)
+      "https://open.spotify.com/track/#{track[:spotify_id]}"
     end
 
-    private
-
-    def light_index_style
-      "text-neutral-700"
+    def url_apple_music(track)
+      ""
     end
 
-    def dark_index_style
-      "dark:text-neutral-400"
+    def url_youtube_music(track)
+      "https://music.youtube.com/watch?v=#{track[:youtube_music_id]}"
     end
   end
 end

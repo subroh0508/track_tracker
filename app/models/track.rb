@@ -11,7 +11,12 @@ class Track < ApplicationRecord
       locale = "ja"
     )
       track = Track.find_or_initialize_by(key => params[key])
-      track.assign_attributes(params.slice(:disc_number, :track_number))
+      track.assign_attributes(
+        params.slice(
+          :disc_number,
+          :track_number,
+        ),
+      )
 
       build_translation(
         track,
