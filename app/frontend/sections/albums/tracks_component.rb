@@ -20,6 +20,13 @@ module Albums
       "h-20"
     end
 
+    def duration(ms)
+      minutes = ms / 1000 / 60
+      seconds = (ms / 1000) % 60
+
+      "#{minutes}:#{seconds.to_s.rjust(2, "0")}"
+    end
+
     private
 
     def light_index_style

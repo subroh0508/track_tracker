@@ -14,4 +14,11 @@
     ) %>
     <% end %>
   </div>
+  <div>
+    <% tracks.each do |track| %>
+      <div class="flex justify-end items-center <%= index_style %>">
+        <%= duration(track[:duration_ms]) %>
+      </div>
+    <% end %>
+  </div>
 </div>
