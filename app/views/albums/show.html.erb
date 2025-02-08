@@ -1,7 +1,7 @@
-<div class="flex">
+<div class="flex max-w-5xl mx-auto">
   <%= render Albums::ContentComponent.new(
     album: @album,
-    classes: "w-80 me-6",
+    classes: "w-80 me-10",
   ) do %>
     <%= render Albums::Link::PlayerComponent.new(
       base_url: Albums::BASE_URL,

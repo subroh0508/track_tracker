@@ -6,17 +6,26 @@ module Albums
 
     def initialize(
       tracks,
-      classes: "px-4"
+      classes: ""
     )
       @tracks = tracks
       @classes = classes
     end
 
-    def duration(ms)
-      minutes = ms / 1000 / 60
-      seconds = (ms / 1000) % 60
+    def description(track)
+      track[:artists].map { |artist| artist[:name] }.join(", ")
+    end
 
-      "#{minutes}:#{seconds.to_s.rjust(2, "0")}"
+    def url_spotify(track)
+      "https://open.spotify.com/track/#{track[:spotify_id]}"
+    end
+
+    def url_apple_music(track)
+      ""
+    end
+
+    def url_youtube_music(track)
+      "https://music.youtube.com/watch?v=#{track[:youtube_music_id]}"
     end
   end
 end
