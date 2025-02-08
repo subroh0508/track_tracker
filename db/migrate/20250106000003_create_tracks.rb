@@ -6,7 +6,6 @@ class CreateTracks < ActiveRecord::Migration[8.0]
       t.string :apple_music_id
       t.integer :disc_number, null: false
       t.integer :track_number, null: false
-      t.integer :duration_ms, null: false
       t.references :album, null: false, foreign_key: { on_delete: :cascade }, type: :uuid
 
       t.timestamps
