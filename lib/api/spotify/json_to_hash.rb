@@ -33,6 +33,7 @@ module Api
           title: json["name"],
           disc_number: json["disc_number"],
           track_number: json["track_number"],
+          duration_ms: json["duration_ms"],
           artists: json["artists"].map { |artist| to_artist_hash(artist) },
         }
       end

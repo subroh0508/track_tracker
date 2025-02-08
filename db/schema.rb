@@ -86,6 +86,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_06_000004) do
     t.string "apple_music_id"
     t.integer "disc_number", null: false
     t.integer "track_number", null: false
+    t.integer "duration_ms", null: false
     t.uuid "album_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

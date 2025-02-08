@@ -13,7 +13,12 @@ class Album < ApplicationRecord
       locale = "ja"
     )
       album = Album.find_or_initialize_by(key => params[key])
-      album.assign_attributes(params.slice(:thumbnail_url, :release_date))
+      album.assign_attributes(
+        params.slice(
+          :thumbnail_url,
+          :release_date,
+        ),
+      )
 
       build_translation(
         album,
