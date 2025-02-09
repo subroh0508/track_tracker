@@ -22,6 +22,8 @@ gem "solid_cable"
 gem "http"
 gem "base64"
 
+gem "devise"
+
 gem "bootsnap", require: false
 
 gem "kamal", require: false
