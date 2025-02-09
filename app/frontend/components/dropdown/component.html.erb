@@ -1,0 +1,13 @@
+<div data-controller="components--dropdown">
+  <button data-action="click->components--dropdown#toggle">
+    <%= button %>
+  </button>
+  <div class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+       data-components--dropdown-target="menu">
+    <div class="flex flex-col py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+      <% items.each do |item| %>
+        <%= item %>
+      <% end %>
+    </div>
+  </div>
+</div>
