@@ -1,10 +1,15 @@
 <nav class="<%= nav_classes %>">
   <div class="<%= classes %>">
-    <a href="<%= root_path %>" class="<%= logo_classes %>">
+    <a href="/" class="<%= logo_classes %>">
       <%= render Root::LogoComponent.new %>
     </a>
     <div class="<%= menus_classes %>">
       <%= render Root::MenuComponent.new(menus: menus) %>
+      <% if signed_in? %>
+        <%= signed_in_menu %>
+      <% else %>
+        <%= sign_in_button %>
+      <% end %>
     </div>
   </div>
 </nav>

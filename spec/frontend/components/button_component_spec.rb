@@ -12,7 +12,7 @@ RSpec.describe Button::Component, type: :component do
     expect(page.find("button")["class"]).to include(
       "text-primary-700",
       "hover:bg-primary-100",
-      "dark:text-primary-500",
+      "dark:text-primary-300",
       "dark:hover:bg-primary-900",
       "rounded-lg",
     )
@@ -40,7 +40,7 @@ RSpec.describe Button::Component, type: :component do
       "text-primary-700",
       "hover:text-white",
       "hover:bg-primary-800",
-      "dark:text-primary-500",
+      "dark:text-primary-300",
       "dark:hover:text-white",
       "dark:hover:bg-primary-700",
       "rounded-lg",

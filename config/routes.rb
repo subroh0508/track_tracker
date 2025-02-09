@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
+  devise_for :users
+
   resources :albums, only: %i[index show] do
     member do
       get :player

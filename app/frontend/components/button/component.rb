@@ -101,9 +101,9 @@ module Button
       when CONTAINED
         "dark:bg-primary-600 dark:hover:bg-primary-700"
       when OUTLINED
-        "dark:text-primary-500 dark:hover:text-white dark:hover:bg-primary-700"
+        "dark:text-primary-300 dark:hover:text-white dark:hover:bg-primary-700"
       else
-        "dark:text-primary-500 dark:hover:bg-primary-900"
+        "dark:text-primary-300 dark:hover:bg-primary-900"
       end
     end
 

@@ -38,7 +38,7 @@ module Link
 
     def dark_text_style
       %w[
-        dark:text-primary-500
+        dark:text-primary-300
         dark:hover:bg-primary-900
       ].join(" ")
     end
