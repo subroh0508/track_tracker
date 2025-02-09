@@ -67,7 +67,7 @@ module Root
     def default_link_style
       %w[
         hover:bg-neutral-100
-        dark:hover:bg-neutral-700
+        dark:hover:bg-neutral-600
         dark:hover:text-white
         dark:border-neutral-700
       ].join(" ")
@@ -77,7 +77,7 @@ module Root
       %w[
         md:p-0
         md:hover:bg-transparent
-        md:hover:text-primary-700
+        md:hover:text-primary-300
         md:dark:hover:text-primary-500
         md:dark:hover:bg-transparent
       ].join(" ")
@@ -102,7 +102,7 @@ module Root
         md:p-0
         md:text-primary-700
         md:bg-transparent
-        md:dark:text-primary-500
+        md:dark:text-primary-300
       ].join(" ")
     end
   end

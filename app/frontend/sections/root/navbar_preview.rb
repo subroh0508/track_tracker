@@ -4,7 +4,6 @@
 class Root::NavbarPreview < ViewComponent::Preview
   def default
     render Root::NavbarComponent.new(
-      root_path: "http://localhost:3000",
       menus: [
         {
           href: "/playlists",
