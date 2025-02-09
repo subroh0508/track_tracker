@@ -77,8 +77,8 @@ module Root
       %w[
         md:p-0
         md:hover:bg-transparent
-        md:hover:text-primary-300
-        md:dark:hover:text-primary-500
+        md:hover:text-primary-700
+        md:dark:hover:text-primary-300
         md:dark:hover:bg-transparent
       ].join(" ")
     end

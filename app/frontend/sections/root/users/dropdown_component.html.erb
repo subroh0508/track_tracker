@@ -1,3 +1,23 @@
-<div data-controller="root--">
+<%= render Dropdown::Component.new(
+  anchor: Dropdown::Anchor::RIGHT_BOTTOM,
+  dropdown_classes: "-translate-x-48 translate-y-4",
+  classes: "ps-8 pe-4",
+) do |component|%>
+  <% component.with_button do %>
+    <%= render Icon::CircleUser.new(
+      size: Icon::SIZE_XL,
+    ) %>
+  <% end %>
 
-</div>
+  <% menus.each do |menu| %>
+    <% component.with_item do %>
+      <%= render Dropdown::ListComponent.new(
+        active: menu[:is_active],
+        href: menu[:href],
+        data: menu[:data],
+      ) do %>
+        <%= menu[:label] %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

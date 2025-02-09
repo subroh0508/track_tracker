@@ -2,7 +2,7 @@
 
 module Dropdown
   module Anchor
-    LEFT_BOTTOM = "origin-top-left relative left-0".freeze
-    RIGHT_BOTTOM = "origin-top-right relative right-0".freeze
+    LEFT_BOTTOM = "origin-top-left absolute".freeze
+    RIGHT_BOTTOM = "origin-top-right absolute".freeze
   end
 end

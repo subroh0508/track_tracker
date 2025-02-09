@@ -21,6 +21,7 @@ module Dropdown
 
     def dropdown_classes
       [
+        "hidden",
         @anchor,
         "mt-2",
         "w-56",

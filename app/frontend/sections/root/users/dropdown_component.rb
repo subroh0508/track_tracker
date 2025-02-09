@@ -2,7 +2,16 @@
 
 module Root
   module Users
-    class DropdownComponent < View::Component
+    class DropdownComponent < ViewComponent::Base
+      attr_reader :menus, :classes
+
+      def initialize(
+        menus: [],
+        classes: ""
+      )
+        @menus = menus
+        @classes = classes
+      end
     end
   end
 end
