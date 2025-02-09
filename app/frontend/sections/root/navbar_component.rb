@@ -2,14 +2,26 @@
 
 module Root
   class NavbarComponent < ViewComponent::Base
-    attr_reader :root_path, :menus
+    attr_reader :current_user, :menus
 
     def initialize(
-      root_path: "",
+      current_user: nil,
       menus: []
     )
-      @root_path = root_path
+      @current_user = current_user
       @menus = menus
+    end
+
+    def signed_in?
+      current_user.present?
+    end
+
+    def href_sign_in
+      "/users/sign_in"
+    end
+
+    def href_sign_out
+      "/users/sign_out"
     end
 
     def nav_classes

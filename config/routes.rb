@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
   if Rails.env.development?
     mount Lookbook::Engine, at: "/lookbook"
   end
+
+  devise_for :users
 
   resources :albums, only: %i[index show] do
     member do

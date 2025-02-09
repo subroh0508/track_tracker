@@ -1,10 +1,32 @@
 <nav class="<%= nav_classes %>">
   <div class="<%= classes %>">
-    <a href="<%= root_path %>" class="<%= logo_classes %>">
+    <a href="/" class="<%= logo_classes %>">
       <%= render Root::LogoComponent.new %>
     </a>
     <div class="<%= menus_classes %>">
       <%= render Root::MenuComponent.new(menus: menus) %>
+      <% if signed_in? %>
+        <%= render Link::ButtonComponent.new(
+          active: true,
+          href: href_sign_out,
+          shape: Link::Button::ROUNDED,
+          size: Link::Button::BASE,
+          data: { turbo_method: :delete },
+          classes: "ms-8",
+        ) do %>
+          サインアウト
+        <% end %>
+      <% else %>
+        <%= render Link::ButtonComponent.new(
+          active: true,
+          href: href_sign_in,
+          shape: Link::Button::ROUNDED,
+          size: Link::Button::BASE,
+          classes: "ms-8",
+        ) do %>
+          サインイン
+        <% end %>
+      <% end %>
     </div>
   </div>
 </nav>

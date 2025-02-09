@@ -25,7 +25,7 @@
 
   <body class="bg-neutral-100 text-gray-900 dark:bg-neutral-900 dark:text-gray-50">
     <%= render Root::NavbarComponent.new(
-      root_path: "http://localhost:3000",
+      current_user: current_user,
       menus: [
         {
           href: "/albums",
