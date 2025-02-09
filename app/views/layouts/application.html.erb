@@ -26,6 +26,8 @@
   <body class="bg-neutral-100 text-gray-900 dark:bg-neutral-900 dark:text-gray-50">
     <%= render Root::NavbarComponent.new(
       current_user: current_user,
+      path_sign_in: new_user_session_path,
+      path_sign_out: destroy_user_session_path,
       menus: [
         {
           href: "/albums",
@@ -41,11 +43,6 @@
           href: "/streaming_tracks/register",
           label: "楽曲登録",
           is_active: controller.controller_name == "streaming_tracks",
-        },
-        {
-          href: "/settings",
-          label: "設定",
-          is_active: controller.controller_name == "settings",
         },
       ],
     ) %>

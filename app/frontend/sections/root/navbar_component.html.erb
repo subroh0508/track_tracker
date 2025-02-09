@@ -6,20 +6,16 @@
     <div class="<%= menus_classes %>">
       <%= render Root::MenuComponent.new(menus: menus) %>
       <% if signed_in? %>
-        <%= render Link::ButtonComponent.new(
-          active: true,
-          href: href_sign_out,
-          shape: Link::Button::ROUNDED,
-          size: Link::Button::BASE,
+        <%= render Link::Component.new(
+          href: path_sign_out,
+          icon: "fas fa-circle-user fa-xl",
           data: { turbo_method: :delete },
-          classes: "ms-8",
-        ) do %>
-          サインアウト
-        <% end %>
+          classes: "ms-8 me-4",
+        ) %>
       <% else %>
         <%= render Link::ButtonComponent.new(
           active: true,
-          href: href_sign_in,
+          href: path_sign_in,
           shape: Link::Button::ROUNDED,
           size: Link::Button::BASE,
           classes: "ms-8",
