@@ -29,7 +29,7 @@ module Dropdown
         "shadow-lg",
         "bg-white",
         "dark:bg-neutral-700",
-        "shadow-sm",
+        "shadow-xs",
         "ring-1",
         "ring-black",
         "ring-opacity-5",
