@@ -22,7 +22,7 @@ module Root
     def menu_classes(is_active)
       [
         "block",
-        "rounded",
+        "rounded-sm",
         "py-2",
         "px-4",
         is_active ? active_link_style : link_style,

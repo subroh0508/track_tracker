@@ -54,7 +54,7 @@ module Input
       %w[
         bg-neutral-200
         peer-checked:bg-primary-600
-        peer-focus:outline-none
+        peer-focus:outline-hiddend
         peer-focus:ring-4
         peer-focus:ring-primary-300
       ].join(" ")

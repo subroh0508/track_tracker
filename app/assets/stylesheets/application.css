@@ -12,3 +12,13 @@
 html {
   overflow-y: scroll;
 }
+
+hr {
+  color: var(--color-gray-200);
+}
+
+.dark {
+  hr {
+    color: var(--color-gray-800);
+  }
+}
