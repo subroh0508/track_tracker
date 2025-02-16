@@ -12,8 +12,8 @@
   <div class="<%= classes %>">
     <div class="relative grow">
       <% if icon? %>
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <i class="w-4 h-4 text-neutral-500 dark:text-neutral-400 <%= icon %>"></i>
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+          <%= icon %>
         </div>
       <% end %>
       <%= render Input::BaseComponent.new(
@@ -27,14 +27,7 @@
       ) %>
     </div>
     <% if button? %>
-      <%= render Button::Component.new(
-        variant: Button::CONTAINED,
-        type: "submit",
-        disabled: disabled?,
-        size: "px-4 py-2 text-sm",
-      ) do %>
-        <%= button_label %>
-      <% end %>
+      <%= button %>
     <% end %>
   </div>
 <% end %>
