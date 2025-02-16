@@ -17,11 +17,12 @@ module Input
       ).with_content(label)
     end
 
-    attr_reader :type, :id, :placeholder, :value
+    attr_reader :type, :id, :name, :placeholder, :value
 
     def initialize(
       type: "text",
       id: "",
+      name: nil,
       placeholder: nil,
       required: false,
       disabled: false,
@@ -30,6 +31,7 @@ module Input
     )
       @type = type
       @id = id
+      @name = name&.presence
       @placeholder = placeholder
       @required = required
       @disabled = disabled

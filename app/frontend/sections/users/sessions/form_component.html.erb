@@ -1,15 +1,17 @@
 <%= render InputField::Component.new(
   items: [
     InputField::Item.new(
-      id: "name",
-      label: "ユーザーID",
-      type: "name",
+      id: "login",
+      name: "user[login]",
+      label: "メールアドレスまたはユーザーID",
+      type: "text",
       icon_class: Icon::User,
-      placeholder: "ユーザーIDを入力",
+      placeholder: "メールアドレスまたはユーザーIDを入力",
       required: true,
     ),
     InputField::Item.new(
       id: "password",
+      name: "user[password]",
       label: "パスワード",
       type: "password",
       icon_class: Icon::Lock,
