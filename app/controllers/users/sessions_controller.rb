@@ -10,16 +10,16 @@ module Users
     # end
 
     # POST /resource/sign_in
-    def create
-       super
-    end
+    # def create
+    #   super
+    # end
 
     # DELETE /resource/sign_out
     # def destroy
     #   super
     # end
 
-    # protected
+    protected
 
     def configure_sign_in_params
        devise_parameter_sanitizer.permit(:sign_in, keys: [:login, :password])
