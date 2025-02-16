@@ -6,10 +6,16 @@
       <%= render Users::Sessions::HeaderComponent.new %>
     <% end %>
     <% component.with_description do %>
-      <% render Users::Sessions::FormComponent.new(
+      <%= render Users::Sessions::FormComponent.new(
         url: url,
-        classes: "mt-8",
+        classes: "max-w-sm mt-8 mx-auto",
       ) %>
+      <div class="max-w-sm mt-8 mx-auto flex justify-end">
+        <%= new_password_link %>
+      </div>
+      <div class="max-w-sm mt-4 mx-auto flex justify-end">
+        <%= sign_up_link %>
+      </div>
     <% end %>
   <% end %>
 </div>

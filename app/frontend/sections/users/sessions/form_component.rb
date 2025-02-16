@@ -3,7 +3,7 @@
 module Users
   module Sessions
     class FormComponent < ViewComponent::Base
-      attr_reader :url
+      attr_reader :classes, :url
 
       def initialize(
         url: "#",
@@ -11,14 +11,6 @@ module Users
       )
         @url = url
         @classes = classes
-      end
-
-      def classes
-        [
-          @classes,
-          "max-w-sm",
-          "mx-auto",
-        ].join(" ")
       end
     end
   end
