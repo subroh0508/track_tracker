@@ -2,8 +2,8 @@
 
 module Input
   class Component < ViewComponent::Base
-    renders_one :icon, -> (class_icon) do
-      class_icon.new(
+    renders_one :icon, -> (icon_class:) do
+      icon_class.new(
         classes: "w-4 h-4 text-neutral-500 dark:text-neutral-400",
       )
     end

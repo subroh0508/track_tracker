@@ -7,7 +7,7 @@
     disabled: false,
     value: nil,
   ) do |c| %>
-    <% c.with_icon(Icon::Envelope) %>
+    <% c.with_icon(icon_class: Icon::Envelope) %>
   <% end %>
   <%= render Input::Component.new(
     type: type,
@@ -17,7 +17,7 @@
     disabled: false,
     value: nil,
   ) do |c| %>
-    <% c.with_icon(Icon::Envelope) %>
+    <% c.with_icon(icon_class: Icon::Envelope) %>
   <% end %>
   <%= render Input::Component.new(
     type: type,
@@ -27,6 +27,6 @@
     disabled: true,
     value: nil,
   ) do |c| %>
-    <% c.with_icon(Icon::Envelope) %>
+    <% c.with_icon(icon_class: Icon::Envelope) %>
   <% end %>
 </div>

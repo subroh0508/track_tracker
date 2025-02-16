@@ -9,6 +9,7 @@ class InputField::Preview < ViewComponent::Preview
           id: "email",
           label: "Email",
           type: "email",
+          icon_class: Icon::Envelope,
           placeholder: "name@example.com",
           required: true,
         ),
@@ -16,12 +17,17 @@ class InputField::Preview < ViewComponent::Preview
           id: "name",
           label: "Name",
           type: "text",
+          icon_class: Icon::User,
           placeholder: nil,
           required: nil,
         ),
       ],
-      button_label: "Submit",
       classes: "max-w-sm mx-auto",
-    )
+    ) do |c|
+      c.with_button(
+        label: "Submit",
+        classes: "block ms-auto",
+      )
+    end
   end
 end

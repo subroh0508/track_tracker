@@ -5,6 +5,7 @@ module InputField
     :id,
     :label,
     :type,
+    :icon_class,
     :placeholder,
     :required,
     :value,
