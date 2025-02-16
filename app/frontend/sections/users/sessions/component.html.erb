@@ -8,12 +8,12 @@
     <% component.with_description do %>
       <%= render Users::Sessions::FormComponent.new(
         url: url,
-        classes: "max-w-sm mt-8 mx-auto",
+        classes: "#{description_classes} mt-8",
       ) %>
-      <div class="max-w-sm mt-8 mx-auto flex justify-end">
+      <div class="<%= description_classes %> mt-8 flex justify-end">
         <%= new_password_link %>
       </div>
-      <div class="max-w-sm mt-4 mx-auto flex justify-end">
+      <div class="<%= description_classes %> mt-4 flex justify-end">
         <%= sign_up_link %>
       </div>
     <% end %>

@@ -23,6 +23,13 @@ module Users
         @url = url
       end
 
+      def description_classes
+        %w[
+          max-w-sm
+          mx-auto
+        ].join(" ")
+      end
+
       private
 
       def link_classes
