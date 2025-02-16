@@ -1,5 +1,5 @@
 <%= form_with url: url, method: :get, data: data, class: classes do |_| %>
-  <%= render Form::LabelComponent.new(
+  <%= render InputField::LabelComponent.new(
     label_for: StreamingTracks::FORM_ID,
     classes: label_classes(StreamingTracks::FORM_ID),
   ) do %>
@@ -8,11 +8,12 @@
   <%= render Input::Component.new(
     type: input_type(StreamingTracks::FORM_ID),
     id: StreamingTracks::FORM_ID,
-    icon: "fas fa-compact-disc",
-    button_label: "Go",
     value: params[:id],
-  ) %>
-  <%= render Form::LabelComponent.new(
+  ) do |component| %>
+    <% component.with_icon(icon_class: Icon::CompactDisc) %>
+    <% component.with_button(label: "Go") %>
+  <% end %>
+  <%= render InputField::LabelComponent.new(
     label_for: StreamingTracks::FORM_QUERY,
     classes: label_classes(StreamingTracks::FORM_QUERY),
   ) do %>
@@ -21,8 +22,9 @@
   <%= render Input::Component.new(
     type: input_type(StreamingTracks::FORM_QUERY),
     id: StreamingTracks::FORM_QUERY,
-    icon: "fas fa-compact-disc",
-    button_label: "Go",
     value: params[:query],
-  ) %>
+  ) do |component|%>
+    <% component.with_icon(icon_class: Icon::CompactDisc) %>
+    <% component.with_button(label: "Go") %>
+  <% end %>
 <% end %>

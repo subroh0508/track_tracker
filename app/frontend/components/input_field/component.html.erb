@@ -1,7 +1,7 @@
 <form class="<%= classes %>">
   <% items.each do |item| %>
     <div class="mb-5">
-      <%= render Form::LabelComponent.new(
+      <%= render InputField::LabelComponent.new(
         label_for: item.id,
         classes: "block mb-2",
       ) do %>
