@@ -1,4 +1,7 @@
-<form class="<%= classes %>">
+<%= form_with class: classes,
+  method: method.to_sym,
+  url: url do
+%>
   <% items.each do |item| %>
     <div class="mb-5">
       <%= render InputField::LabelComponent.new(
@@ -24,4 +27,4 @@
   <% if button? %>
     <%= button %>
   <% end %>
-</form>
+<% end %>

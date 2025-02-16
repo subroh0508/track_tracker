@@ -10,13 +10,17 @@ module InputField
       ).with_content(label)
     end
 
-    attr_reader :items, :classes
+    attr_reader :items, :method, :url, :classes
 
     def initialize(
       items: [],
+      method: :post,
+      url: "#",
       classes: ""
     )
       @items = items
+      @method = method
+      @url = url
       @classes = classes
     end
   end
