@@ -2,7 +2,7 @@
 
 module InputField
   class Component < ViewComponent::Base
-    renders_one :button, -> (label:, classes: "") do
+    renders_one :button, ->(label:, classes: "") do
       Button::Component.new(
         variant: Button::CONTAINED,
         type: "submit",

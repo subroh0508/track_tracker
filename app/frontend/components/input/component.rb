@@ -2,13 +2,13 @@
 
 module Input
   class Component < ViewComponent::Base
-    renders_one :icon, -> (icon_class:) do
+    renders_one :icon, ->(icon_class:) do
       icon_class.new(
         classes: "w-4 h-4 text-neutral-500 dark:text-neutral-400",
       )
     end
 
-    renders_one :button, -> (label:) do
+    renders_one :button, ->(label:) do
       Button::Component.new(
         variant: Button::CONTAINED,
         type: "submit",
