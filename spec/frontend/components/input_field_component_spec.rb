@@ -45,8 +45,9 @@ RSpec.describe InputField::Component, type: :component do
           required: true,
         ),
       ],
-      button_label: "Submit",
-    )
+    ) do |c|
+      c.render c.with_button(label: "Submit")
+    end
 
     expect(page).to have_content("Email")
     expect(page).to have_selector("input[id='email'][placeholder='name@example.com'][required]")

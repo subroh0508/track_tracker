@@ -1,31 +1,31 @@
-<form class="<%= classes %>">
+<%= form_with class: classes,
+  method: method.to_sym,
+  url: url do
+%>
   <% items.each do |item| %>
     <div class="mb-5">
-      <%= render Form::LabelComponent.new(
+      <%= render InputField::LabelComponent.new(
         label_for: item.id,
         classes: "block mb-2",
       ) do %>
         <%= item.label %>
       <% end %>
-      <%= render Form::InputComponent.new(
+      <%= render Input::Component.new(
         type: item.type,
         id: item.id,
+        name: item.name,
         placeholder: item.placeholder,
         required: item.required,
-        classes: "block w-full p-2.5",
-      ) do %>
-        <%= item.value || "" %>
+        value: item.value,
+        classes: "block w-full",
+      ) do |component| %>
+        <% if item.icon_class.present? %>
+          <% component.with_icon(icon_class: item.icon_class) %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
-  <% if has_button? %>
-    <div class="flex justify-end">
-      <%= render Button::Component.new(
-        variant: Button::CONTAINED,
-        type: "submit",
-      ) do %>
-        <%= button_label %>
-      <% end %>
-    </div>
+  <% if button? %>
+    <%= button %>
   <% end %>
-</form>
+<% end %>

@@ -3,8 +3,10 @@
 module InputField
   Item = Struct.new(
     :id,
+    :name,
     :label,
     :type,
+    :icon_class,
     :placeholder,
     :required,
     :value,

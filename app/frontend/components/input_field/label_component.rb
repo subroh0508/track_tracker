@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Form
+module InputField
   class LabelComponent < ViewComponent::Base
     attr_reader :label_for
 

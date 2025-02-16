@@ -2,26 +2,39 @@
 
 module Input
   class Component < ViewComponent::Base
-    attr_reader :type, :id, :placeholder, :icon, :button_label, :value
+    renders_one :icon, ->(icon_class:) do
+      icon_class.new(
+        classes: "w-4 h-4 text-neutral-500 dark:text-neutral-400",
+      )
+    end
+
+    renders_one :button, ->(label:) do
+      Button::Component.new(
+        variant: Button::CONTAINED,
+        type: "submit",
+        disabled: disabled?,
+        size: "px-4 py-2 text-sm",
+      ).with_content(label)
+    end
+
+    attr_reader :type, :id, :name, :placeholder, :value
 
     def initialize(
       type: "text",
       id: "",
+      name: nil,
       placeholder: nil,
       required: false,
       disabled: false,
-      icon: nil,
-      button_label: nil,
       value: nil,
       classes: ""
     )
       @type = type
       @id = id
+      @name = name&.presence
       @placeholder = placeholder
       @required = required
       @disabled = disabled
-      @icon = icon
-      @button_label = button_label
       @value = value
       @classes = classes
     end
@@ -41,14 +54,6 @@ module Input
       @disabled
     end
 
-    def icon?
-      icon.present?
-    end
-
-    def button?
-      button_label.present?
-    end
-
     def plain?
       !icon? && !button?
     end
@@ -58,7 +63,7 @@ module Input
     def display
       case
       when plain?
-        ""
+        "py-2 px-3"
       when type == "hidden"
         "hidden"
       else

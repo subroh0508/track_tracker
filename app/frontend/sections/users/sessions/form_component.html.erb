@@ -1,0 +1,29 @@
+<%= render InputField::Component.new(
+  items: [
+    InputField::Item.new(
+      id: "login",
+      name: "user[login]",
+      label: "メールアドレスまたはユーザーID",
+      type: "text",
+      icon_class: Icon::User,
+      placeholder: "メールアドレスまたはユーザーID",
+      required: true,
+    ),
+    InputField::Item.new(
+      id: "password",
+      name: "user[password]",
+      label: "パスワード",
+      type: "password",
+      icon_class: Icon::Lock,
+      placeholder: "パスワード",
+      required: true,
+    ),
+  ],
+  url: url,
+  classes: classes,
+) do |component| %>
+  <% component.with_button(
+    label: "ログイン",
+    classes: "w-full mt-6",
+  ) %>
+<% end %>

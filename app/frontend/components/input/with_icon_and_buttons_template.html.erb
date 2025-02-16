@@ -5,28 +5,31 @@
     placeholder: placeholder,
     required: false,
     disabled: false,
-    icon: "fas fa-magnifying-glass fa-lg",
-    button_label: button_label,
     value: nil,
-  ) %>
+  ) do |c| %>
+    <% c.with_icon(icon_class: Icon::MagnifyingGlass) %>
+    <% c.with_button(label: button_label) %>
+  <% end %>
   <%= render Input::Component.new(
     type: type,
     id: "required-with-icon-button-input",
     placeholder: placeholder,
     required: true,
     disabled: false,
-    icon: "fas fa-magnifying-glass fa-lg",
-    button_label: button_label,
     value: nil,
-  ) %>
+  ) do |c| %>
+    <% c.with_icon(icon_class: Icon::MagnifyingGlass) %>
+    <% c.with_button(label: button_label) %>
+  <% end %>
   <%= render Input::Component.new(
     type: type,
     id: "disabled-with-icon-button-input",
     placeholder: placeholder,
     required: false,
     disabled: true,
-    icon: "fas fa-magnifying-glass fa-lg",
-    button_label: button_label,
     value: nil,
-  ) %>
+  ) do |c| %>
+    <% c.with_icon(icon_class: Icon::MagnifyingGlass) %>
+    <% c.with_button(label: button_label) %>
+  <% end %>
 </div>

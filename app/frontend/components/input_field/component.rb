@@ -2,22 +2,26 @@
 
 module InputField
   class Component < ViewComponent::Base
-    renders_one :button, Button::Component
+    renders_one :button, ->(label:, classes: "") do
+      Button::Component.new(
+        variant: Button::CONTAINED,
+        type: "submit",
+        classes: classes,
+      ).with_content(label)
+    end
 
-    attr_reader :items, :button_label, :classes
+    attr_reader :items, :method, :url, :classes
 
     def initialize(
       items: [],
-      button_label: nil,
+      method: :post,
+      url: "#",
       classes: ""
     )
       @items = items
-      @button_label = button_label
+      @method = method
+      @url = url
       @classes = classes
-    end
-
-    def has_button?
-      button_label.present?
     end
   end
 end

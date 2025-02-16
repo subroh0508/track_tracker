@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Form::LabelComponent, type: :component do
+RSpec.describe InputField::LabelComponent, type: :component do
   let(:label_for) { "sample" }
   let(:caption) { "caption" }
 

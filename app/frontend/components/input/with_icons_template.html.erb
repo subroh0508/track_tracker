@@ -5,25 +5,28 @@
     placeholder: placeholder,
     required: false,
     disabled: false,
-    icon: "fas fa-at fa-lg",
     value: nil,
-  ) %>
+  ) do |c| %>
+    <% c.with_icon(icon_class: Icon::Envelope) %>
+  <% end %>
   <%= render Input::Component.new(
     type: type,
     id: "required-with-icon-input",
     placeholder: placeholder,
     required: true,
     disabled: false,
-    icon: "fas fa-at fa-lg",
     value: nil,
-  ) %>
+  ) do |c| %>
+    <% c.with_icon(icon_class: Icon::Envelope) %>
+  <% end %>
   <%= render Input::Component.new(
     type: type,
     id: "disabled-with-icon-input",
     placeholder: placeholder,
     required: false,
     disabled: true,
-    icon: "fas fa-at fa-lg",
     value: nil,
-  ) %>
+  ) do |c| %>
+    <% c.with_icon(icon_class: Icon::Envelope) %>
+  <% end %>
 </div>
