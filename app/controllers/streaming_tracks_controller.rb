@@ -2,7 +2,13 @@
 
 class StreamingTracksController < ApplicationController
   def index
-    redirect_to "/streaming_tracks/register/#{Api::SPOTIFY}/#{Api::TYPE_ALBUM}/search"
+    redirect_to url_for(
+      controller: :streaming_tracks,
+      action: :search,
+      brand: Api::SPOTIFY,
+      type: Api::TYPE_ALBUM,
+    )
+    # redirect_to "/#{I18n.locale}/streaming_tracks/register/#{Api::SPOTIFY}/#{Api::TYPE_ALBUM}/search"
   end
 
   def search

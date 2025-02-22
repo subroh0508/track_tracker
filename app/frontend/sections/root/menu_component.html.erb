@@ -1,11 +1,11 @@
 <ul class="<%= classes %>">
   <% menus.each do |menu| %>
     <li>
-      <a class="<%= menu_classes(menu[:is_active]) %>"
-        href="<%= menu[:href] %>"
-      >
+      <%= link_to menu[:href],
+        class: menu_classes(menu[:is_active]) do
+      %>
         <%= menu[:label] %>
-      </a>
+      <% end %>
     </li>
   <% end %>
 </ul>

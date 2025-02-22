@@ -3,22 +3,24 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  devise_for :users, controllers: {
-    registrations: "users/registrations",
-    sessions: "users/sessions",
-    passwords: "users/passwords",
-  }
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    devise_for :users, controllers: {
+      registrations: "users/registrations",
+      sessions: "users/sessions",
+      passwords: "users/passwords",
+    }
 
-  resources :albums, only: %i[index show] do
-    member do
-      get :player
+    resources :albums, only: %i[index show] do
+      member do
+        get :player
+      end
     end
-  end
 
-  get "streaming_tracks/register", to: "streaming_tracks#index"
-  get "streaming_tracks/register/:brand/:type/search", to: "streaming_tracks#search"
-  post "streaming_tracks/register/:brand/:type", to: "streaming_tracks#register"
-  post "streaming_tracks/register/:brand/:type/:target_id", to: "streaming_tracks#link"
+    get "streaming_tracks/register", to: "streaming_tracks#index"
+    get "streaming_tracks/register/:brand/:type/search", to: "streaming_tracks#search"
+    post "streaming_tracks/register/:brand/:type", to: "streaming_tracks#register"
+    post "streaming_tracks/register/:brand/:type/:target_id", to: "streaming_tracks#link"
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

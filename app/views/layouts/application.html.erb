@@ -6,17 +6,17 @@
       current_user: current_user,
       menus: [
         {
-          href: "/albums",
+          href: albums_path,
           label: t("nav_bar.albums"),
           is_active: controller.controller_name == "albums",
         },
         {
-          href: "/playlists",
+          href: "#",
           label: t("nav_bar.playlists"),
           is_active: controller.controller_name == "playlists",
         },
         {
-          href: "/streaming_tracks/register",
+          href: streaming_tracks_register_path,
           label: t("nav_bar.register_tracks"),
           is_active: controller.controller_name == "streaming_tracks",
         },
