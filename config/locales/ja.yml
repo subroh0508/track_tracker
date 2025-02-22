@@ -1,0 +1,10 @@
+ja:
+  hello: "Hello world"
+  nav_bar:
+    albums: "アルバム一覧"
+    playlists: "プレイリスト一覧"
+    register_tracks: "楽曲登録"
+    login: "ログイン"
+    signed_in:
+      settings: "設定"
+      logout: "ログアウト"

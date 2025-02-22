@@ -7,17 +7,17 @@
       menus: [
         {
           href: "/albums",
-          label: "アルバム一覧",
+          label: t("nav_bar.albums"),
           is_active: controller.controller_name == "albums",
         },
         {
           href: "/playlists",
-          label: "プレイリスト一覧",
+          label: t("nav_bar.playlists"),
           is_active: controller.controller_name == "playlists",
         },
         {
           href: "/streaming_tracks/register",
-          label: "楽曲登録",
+          label: t("nav_bar.register_tracks"),
           is_active: controller.controller_name == "streaming_tracks",
         },
       ],
@@ -30,19 +30,19 @@
           size: Link::Button::BASE,
           classes: "ms-8",
         ) do %>
-          サインイン
+          <%= t("nav_bar.login") %>
         <% end %>
       <% end %>
       <% component.with_signed_in_menu do %>
         <%= render Root::Users::DropdownComponent.new(
           menus: [
             {
-              label: "設定",
+              label: t("nav_bar.signed_in.settings"),
               href: "#",
               is_active: controller.controller_name == "settings",
             },
             {
-              label: "ログアウト",
+              label: t("nav_bar.signed_in.logout"),
               href: destroy_user_session_path,
               is_active: false,
               data: { turbo_method: :delete },
