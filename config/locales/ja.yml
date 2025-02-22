@@ -1,5 +1,4 @@
 ja:
-  hello: "Hello world"
   nav_bar:
     albums: "アルバム一覧"
     playlists: "プレイリスト一覧"
@@ -8,3 +7,12 @@ ja:
     signed_in:
       settings: "設定"
       logout: "ログアウト"
+  login:
+    label:
+      email_or_name: "メールアドレスまたはユーザー名"
+      password: "パスワード"
+    button:
+      login: "ログイン"
+    link:
+      new_password: "パスワードをお忘れの方はこちら"
+      sign_up: "TrackTrackerに登録する"

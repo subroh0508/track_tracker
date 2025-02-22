@@ -3,19 +3,19 @@
     InputField::Item.new(
       id: "login",
       name: "user[login]",
-      label: "メールアドレスまたはユーザーID",
+      label: t("login.label.email_or_name"),
       type: "text",
       icon_class: Icon::User,
-      placeholder: "メールアドレスまたはユーザーID",
+      placeholder: t("login.label.email_or_name"),
       required: true,
     ),
     InputField::Item.new(
       id: "password",
       name: "user[password]",
-      label: "パスワード",
+      label: t("login.label.password"),
       type: "password",
       icon_class: Icon::Lock,
-      placeholder: "パスワード",
+      placeholder: t("login.label.password"),
       required: true,
     ),
   ],
@@ -23,7 +23,7 @@
   classes: classes,
 ) do |component| %>
   <% component.with_button(
-    label: "ログイン",
+    label: t("login.button.login"),
     classes: "w-full mt-6",
   ) %>
 <% end %>

@@ -1,5 +1,4 @@
 en:
-  hello: "Hello world"
   nav_bar:
     albums: "Albums"
     playlists: "Playlists"
@@ -8,4 +7,12 @@ en:
     signed_in:
       settings: "Settings"
       logout: "Logout"
-
+  login:
+    label:
+      email_or_name: "Email or Username"
+      password: "Password"
+    button:
+      login: "Login"
+    link:
+      new_password: "Forgot your password?"
+      sign_up: "Register for TrackTracker"
