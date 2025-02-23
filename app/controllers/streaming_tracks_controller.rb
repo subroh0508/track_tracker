@@ -70,7 +70,15 @@ class StreamingTracksController < ApplicationController
   end
 
   def redirect_to_search
-    redirect_to "/streaming_tracks/register/#{brand}/#{type}/search?query=#{params[:query]}&id=#{params[:id]}",
-      allow_other_host: true
+    redirect_to url_for(
+      controller: :streaming_tracks,
+      action: :search,
+      brand: brand,
+      type: type,
+      params: {
+        id: params[:id],
+        query: params[:query],
+      },
+    ), allow_other_host: true
   end
 end
