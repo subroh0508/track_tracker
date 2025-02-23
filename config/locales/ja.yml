@@ -13,6 +13,10 @@ ja:
     register: "登録"
     registered: "登録済"
     search: "検索"
+  streaming_services:
+    spotify: "Spotify"
+    apple_music: "Apple Music"
+    youtube_music: "YouTube Music"
   users:
     label:
       email_or_name: "メールアドレスまたはユーザー名"
