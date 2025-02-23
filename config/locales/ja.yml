@@ -29,3 +29,4 @@ ja:
       label:
         album_title: "アルバム名"
         album_id: "アルバムID"
+      unlinked_albums: "登録可能なアルバム: %{count}件"

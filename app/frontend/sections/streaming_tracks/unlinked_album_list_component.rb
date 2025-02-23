@@ -20,11 +20,17 @@ module StreamingTracks
     end
 
     def header_text
-      "登録可能なアルバム: #{items.size}件"
+      t("albums.streaming_services.unlinked_albums", count: items.size)
     end
 
     def header_classes
-      "mb-3 text-lg font-bold #{light_header_style} #{dark_header_style}"
+      [
+        "mb-3",
+        "text-lg",
+        "font-bold",
+        light_header_style,
+        dark_header_style,
+      ].join(" ")
     end
 
     def streaming_service_id(hash)

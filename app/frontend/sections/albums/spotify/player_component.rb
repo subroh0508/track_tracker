@@ -6,8 +6,9 @@ module Albums
       HEADER_HEIGHT = 200
       TRACK_PADDING = 16
       TRACK_ITEM_HEIGHT = 54
+      MIN_HEIGHT = 352
 
-      private_constant :HEADER_HEIGHT, :TRACK_PADDING, :TRACK_ITEM_HEIGHT
+      private_constant :HEADER_HEIGHT, :TRACK_PADDING, :TRACK_ITEM_HEIGHT, :MIN_HEIGHT
 
       attr_reader :classes
 
@@ -30,7 +31,9 @@ module Albums
       end
 
       def height
-        HEADER_HEIGHT + TRACK_PADDING + (TRACK_ITEM_HEIGHT * track_count)
+        height = HEADER_HEIGHT + TRACK_PADDING + (TRACK_ITEM_HEIGHT * track_count)
+
+        height > MIN_HEIGHT ? height : MIN_HEIGHT
       end
 
       def present_spotify_id?

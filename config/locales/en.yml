@@ -29,3 +29,7 @@ en:
       label:
         album_title: "Album Title"
         album_id: "Album ID"
+      unlinked_albums:
+        zero: "Can be registered: no albums"
+        one: "Can be registered: one album"
+        other: "Can be registered: %{count} albums"
