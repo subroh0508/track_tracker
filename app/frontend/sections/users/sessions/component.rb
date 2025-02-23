@@ -7,14 +7,14 @@ module Users
         Link::Component.new(
           href: url,
           classes: link_classes,
-        ).with_content("パスワードをお忘れの方はこちら")
+        ).with_content(t("users.new_password"))
       end
 
       renders_one :sign_up_link, ->(url:) do
         Link::Component.new(
           href: url,
           classes: link_classes,
-        ).with_content("TrackTrackerに登録する")
+        ).with_content(t("users.sign_up"))
       end
 
       attr_reader :url

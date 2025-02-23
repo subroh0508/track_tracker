@@ -4,9 +4,8 @@
     classes: "w-80 me-10",
   ) do %>
     <%= render Albums::Link::PlayerComponent.new(
-      base_url: Albums::BASE_URL,
       album_id: @album[:id],
-      label: "プレイヤーを開く",
+      label: t("albums.show.open_player"),
     ) %>
   <% end %>
   <div class="grow">

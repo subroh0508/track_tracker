@@ -39,6 +39,12 @@ module TrackTracker
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # Set default locale to Japanese
+    config.i18n.default_locale = :ja
+
+    # Whitelist locales available for the application
+    config.i18n.available_locales = [:en, :ja]
+
     # Don't generate system test files.
     config.generators.system_tests = nil
 

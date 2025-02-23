@@ -3,10 +3,9 @@
 module StreamingTracks
   module Album
     class GridComponent < ViewComponent::Base
-      attr_reader :base_url, :params, :items, :data
+      attr_reader :params, :items, :data
 
       def initialize(
-        base_url: "",
         params: {
           brand: Api::SPOTIFY,
           type: Api::TYPE_ALBUM,
@@ -15,7 +14,6 @@ module StreamingTracks
         data: {},
         classes: ""
       )
-        @base_url = base_url
         @params = params
         @items = items
         @data = data
@@ -32,11 +30,22 @@ module StreamingTracks
       end
 
       def href_select(item)
-        "#{base_url}/#{params[:brand]}/#{Api::TYPE_ALBUM}/search?#{query(item)}"
+        url_for(
+          controller: :streaming_tracks,
+          action: :search,
+          brand: params[:brand],
+          type: Api::TYPE_ALBUM,
+          params: query(item),
+        )
       end
 
       def register_url
-        "#{base_url}/#{params[:brand]}/#{Api::TYPE_ALBUM}"
+        url_for(
+          controller: :streaming_tracks,
+          action: :register,
+          brand: params[:brand],
+          type: Api::TYPE_ALBUM,
+        )
       end
 
       def streaming_service_id(item)
@@ -50,17 +59,15 @@ module StreamingTracks
       private
 
       def query(item)
-        [
-          "id=#{params[:id]}",
-          "query=#{params[:query]}",
-          streaming_service_id_query(item),
-        ].join("&")
+        {
+          id: params[:id],
+          query: params[:query],
+        }.merge(streaming_service_id_query(item))
       end
 
       def streaming_service_id_query(item)
         streaming_service_id(item).
-          map { |key, value| "#{key}=#{value}" }.
-          join("&")
+          reduce({}) { |acc, (key, value)| acc.merge(key => value) }
       end
     end
   end

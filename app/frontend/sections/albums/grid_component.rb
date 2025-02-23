@@ -2,15 +2,13 @@
 
 module Albums
   class GridComponent < ViewComponent::Base
-    attr_reader :base_url, :params, :items, :data
+    attr_reader :params, :items, :data
 
     def initialize(
-      base_url: "",
       items: [],
       data: {},
       classes: ""
     )
-      @base_url = base_url
       @items = items
       @data = data
       @classes = classes
@@ -26,7 +24,11 @@ module Albums
     end
 
     def href_select(item)
-      "#{base_url}/#{item[:id]}"
+      url_for(
+        controller: :albums,
+        action: :show,
+        id: item[:id],
+      )
     end
   end
 end

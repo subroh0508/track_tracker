@@ -4,15 +4,13 @@
     classes: "w-80 me-6",
   ) do %>
     <%= render Albums::Link::TrackListComponent.new(
-      base_url: Albums::BASE_URL,
       album_id: @album[:id],
-      label: "トラックリストを開く",
+      label: t("albums.player.open_tracks"),
     ) %>
   <% end %>
   <div class="grow">
     <%= turbo_frame_tag "player" do %>
       <%= render Albums::StreamingServiceTabComponent.new(
-        base_url: Albums::BASE_URL,
         id: @album[:id],
         streaming_service: @streaming_service,
         data: { turbo_frame: "player", turbo_action: :advance },

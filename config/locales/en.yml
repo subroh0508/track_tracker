@@ -1,31 +1,39 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  nav_bar:
+    albums: "Albums"
+    playlists: "Playlists"
+    register_tracks: "Register Tracks"
+    login: "Login"
+    signed_in:
+      settings: "Settings"
+      logout: "Logout"
+  common:
+    share: "Share"
+    back: "Back"
+    register: "Register"
+    registered: "Registered"
+    search: "Search"
+  streaming_services:
+    spotify: "Spotify"
+    apple_music: "Apple Music"
+    youtube_music: "YouTube Music"
+  users:
+    label:
+      email_or_name: "Email or Username"
+      password: "Password"
+    login: "Login"
+    new_password: "Forgot your password?"
+    sign_up: "Register for TrackTracker"
+  albums:
+    player:
+      open_tracks: "Open Track List"
+    show:
+      open_player: "Open Player"
+    streaming_services:
+      label:
+        album_title: "Album Title"
+        album_id: "Album ID"
+      unlinked_albums:
+        zero: "Can be registered: no albums"
+        one: "Can be registered: one album"
+        other: "Can be registered: %{count} albums"

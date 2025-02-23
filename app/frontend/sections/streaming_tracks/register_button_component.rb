@@ -23,7 +23,7 @@ module StreamingTracks
     end
 
     def button_label
-      disabled? ? "登録済" : "登録"
+      t("common.#{disabled? ? 'registered' : 'register'}")
     end
   end
 end

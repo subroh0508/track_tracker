@@ -45,11 +45,11 @@ module Brand
     def label
       case brand
       when Api::YOUTUBE_MUSIC
-        Brand::YOUTUBE_MUSIC
+        t("streaming_services.youtube_music")
       when Api::SPOTIFY
-        Brand::SPOTIFY
+        t("streaming_services.spotify")
       when Api::APPLE_MUSIC
-        Brand::APPLE_MUSIC
+        t("streaming_services.apple_music")
       else
         throw ArgumentError.new("Unknown brand: #{brand}")
       end
