@@ -8,7 +8,6 @@ module StreamingTracks
       column_name = detect_streaming_service_id_column_name(params)
       return [] if column_name.blank?
 
-      puts "aaa #{column_name}"
       ::Album.where(column_name => nil).
         map { |album| album.to_json_hash("ja") }
     end

@@ -64,14 +64,18 @@ class Artist < ApplicationRecord
     end
   end
 
-  def localized_name(locale)
-    translations.find_by!(locale: locale).name
+  def localized_name!(locale, default_locale = nil)
+    return translations.find_by!(locale: locale).name if default_locale.blank?
+
+    (translations.find_by(locale: locale) ||
+      translations.find_by(locale: default_locale) ||
+      translations.first).name
   end
 
-  def to_json_hash(locale)
+  def to_json_hash!(locale, default_locale = "ja")
     {
       id: id,
-      name: localized_name(locale),
+      name: localized_name!(locale, default_locale),
     }
   end
 end

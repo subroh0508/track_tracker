@@ -59,11 +59,15 @@ class Playlist < ApplicationRecord
     )
   end
 
-  def localized_title(locale)
-    translations.find_by!(locale: locale).title
+  def localized_title!(locale, default_locale = nil)
+    return translations.find_by!(locale: locale).title if default_locale.blank?
+
+    (translations.find_by(locale: locale) ||
+      translations.find_by(locale: default_locale) ||
+      translations.first).title
   end
 
-  def to_json_hash(locale)
+  def to_json_hash(locale, default_locale = "ja")
     thumbnails =
       if album?
         [playlist_tracks[0]&.thumbnail_url]
@@ -74,11 +78,11 @@ class Playlist < ApplicationRecord
     {
       id: id,
       type: type,
-      title: localized_title(locale),
+      title: localized_title!(locale),
       thumbnails: thumbnails.compact.uniq,
       # year: year,
       artists: artists.map { |artist|
-        artist.to_json_hash(locale)
+        artist.to_json_hash(locale, default_locale)
       }.uniq,
       spotify_id: spotify_id,
       youtube_music_id: youtube_music_id,

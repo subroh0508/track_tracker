@@ -3,7 +3,10 @@
 class AlbumsController < ApplicationController
   def index
     @albums = Album.all.map { |album|
-      album.to_json_hash("ja")
+      album.to_json_hash!(
+        I18n.locale,
+        I18n.default_locale,
+      )
     }
   end
 
@@ -25,11 +28,19 @@ class AlbumsController < ApplicationController
   def get_album
     album = Album.find(params[:id])
 
-    tracks = album.tracks.map { |track|
-      track.to_json_hash("ja")
-    }
+    tracks = album.tracks.
+      with_translations.
+      map { |track|
+        track.to_json_hash!(
+          I18n.locale,
+          I18n.default_locale,
+        )
+      }
 
-    album.to_json_hash("ja").
+    album.to_json_hash!(
+        I18n.locale,
+        I18n.default_locale,
+      ).
       merge(tracks: tracks)
   end
 end

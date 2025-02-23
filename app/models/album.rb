@@ -5,6 +5,7 @@ class Album < ApplicationRecord
   has_many :artists, through: :album_artists
 
   scope :with_tracks, -> { preload(:tracks) }
+  scope :with_translations, -> { preload(:translations) }
 
   class << self
     def find_or_build_by(
@@ -51,18 +52,22 @@ class Album < ApplicationRecord
     end
   end
 
-  def localized_title(locale)
-    translations.find_by!(locale: locale).title
+  def localized_title!(locale, default_locale = nil)
+    return translations.find_by!(locale: locale).title if default_locale.blank?
+
+    (translations.find_by(locale: locale) ||
+      translations.find_by(locale: default_locale) ||
+      translations.first).title
   end
 
-  def to_json_hash(locale)
+  def to_json_hash!(locale, default_locale = "ja")
     {
       id: id,
-      title: localized_title(locale),
+      title: localized_title!(locale, default_locale),
       thumbnail_url: thumbnail_url,
       release_date: release_date,
       artists: artists.map { |artist|
-        artist.to_json_hash(locale)
+        artist.to_json_hash!(locale, default_locale)
       }.uniq,
       spotify_id: spotify_id,
       youtube_music_id: youtube_music_id,
