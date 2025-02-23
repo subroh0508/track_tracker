@@ -7,12 +7,17 @@ en:
     signed_in:
       settings: "Settings"
       logout: "Logout"
-  login:
+  common:
+    share: "Share"
+  users:
     label:
       email_or_name: "Email or Username"
       password: "Password"
-    button:
-      login: "Login"
-    link:
-      new_password: "Forgot your password?"
-      sign_up: "Register for TrackTracker"
+    login: "Login"
+    new_password: "Forgot your password?"
+    sign_up: "Register for TrackTracker"
+  albums:
+    player:
+      open_tracks: "Open Track List"
+    show:
+      open_player: "Open Player"

@@ -3,19 +3,19 @@
     InputField::Item.new(
       id: "login",
       name: "user[login]",
-      label: t("login.label.email_or_name"),
+      label: t("users.label.email_or_name"),
       type: "text",
       icon_class: Icon::User,
-      placeholder: t("login.label.email_or_name"),
+      placeholder: t("users.label.email_or_name"),
       required: true,
     ),
     InputField::Item.new(
       id: "password",
       name: "user[password]",
-      label: t("login.label.password"),
+      label: t("users.label.password"),
       type: "password",
       icon_class: Icon::Lock,
-      placeholder: t("login.label.password"),
+      placeholder: t("users.label.password"),
       required: true,
     ),
   ],
@@ -23,7 +23,7 @@
   classes: classes,
 ) do |component| %>
   <% component.with_button(
-    label: t("login.button.login"),
+    label: t("users.login"),
     classes: "w-full mt-6",
   ) %>
 <% end %>

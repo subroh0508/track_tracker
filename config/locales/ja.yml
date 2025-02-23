@@ -7,12 +7,17 @@ ja:
     signed_in:
       settings: "設定"
       logout: "ログアウト"
-  login:
+  common:
+    share: "共有"
+  users:
     label:
       email_or_name: "メールアドレスまたはユーザー名"
       password: "パスワード"
-    button:
-      login: "ログイン"
-    link:
-      new_password: "パスワードをお忘れの方はこちら"
-      sign_up: "TrackTrackerに登録する"
+    login: "ログイン"
+    new_password: "パスワードをお忘れの方はこちら"
+    sign_up: "TrackTrackerに登録する"
+  albums:
+    player:
+      open_tracks: "トラックリストを開く"
+    show:
+      open_player: "プレイヤーを開く"
