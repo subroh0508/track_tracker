@@ -4,12 +4,10 @@ module Albums
   module Link
     class Component < ViewComponent::Base
       def initialize(
-        base_url: "",
         album_id: nil,
         label: "",
         classes: ""
       )
-        @base_url = base_url
         @album_id = album_id
         @label = label
         @classes = classes
@@ -33,7 +31,7 @@ module Albums
 
       protected
 
-      attr_reader :base_url, :album_id, :label
+      attr_reader :album_id, :label
     end
   end
 end

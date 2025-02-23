@@ -7,7 +7,6 @@
   ) %>
   <%= content %>
   <%= render Albums::Link::ShareComponent.new(
-    base_url: Albums::BASE_URL,
     album_id: album[:id],
     label: t("common.share"),
     classes: "mt-2",

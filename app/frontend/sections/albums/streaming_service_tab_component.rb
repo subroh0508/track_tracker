@@ -5,18 +5,17 @@ module Albums
     attr_reader :data
 
     def initialize(
-      base_url: "",
       id: nil,
       streaming_service: Api::SPOTIFY,
       data: {},
       classes: ""
     )
-      @base_url = base_url
       @id = id
       @streaming_service = streaming_service
       @data = data
       @classes = classes
     end
+
     def classes
       [
         "flex",
@@ -38,19 +37,40 @@ module Albums
     end
 
     def href_spotify
-      "#{base_url}/#{id}/player?streaming_service=#{Api::SPOTIFY}"
+      url_for(
+        controller: :albums,
+        action: :player,
+        id: id,
+        params: {
+          streaming_service: Api::SPOTIFY,
+        },
+      )
     end
 
     def href_apple_music
-      "#{base_url}/#{id}/player?streaming_service=#{Api::APPLE_MUSIC}"
+      url_for(
+        controller: :albums,
+        action: :player,
+        id: id,
+        params: {
+          streaming_service: Api::APPLE_MUSIC,
+        },
+      )
     end
 
     def href_youtube_music
-      "#{base_url}/#{id}/player?streaming_service=#{Api::YOUTUBE_MUSIC}"
+      url_for(
+        controller: :albums,
+        action: :player,
+        id: id,
+        params: {
+          streaming_service: Api::YOUTUBE_MUSIC,
+        },
+      )
     end
 
     private
 
-    attr_reader :base_url, :id, :streaming_service
+    attr_reader :id, :streaming_service
   end
 end
