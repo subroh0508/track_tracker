@@ -8,14 +8,14 @@ module Api
       include Api::Spotify::Base
       include Api::Spotify::JsonToHash
 
-      def fetch_artist(id, locale)
+      def fetch_artist(id, market)
         return nil if id.blank?
 
         response = send_request { |http, base_url|
           http.get(
             "#{base_url}/artists/#{id}",
             params: {
-              market: locale.upcase,
+              market: market.upcase,
             },
           )
         }

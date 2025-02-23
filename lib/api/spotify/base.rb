@@ -52,9 +52,15 @@ module Api
       def reset_access_token
         @@spotify_access_token = nil
 
-        authorization = Base64.strict_encode64("#{client_id}:#{client_secret}")
-        response = http.auth("Basic #{authorization}").
-          post(TOKEN_URL, form: { grant_type: "client_credentials" })
+        response = http.headers("Content-Type" => "application/x-www-form-urlencoded").
+          post(
+            TOKEN_URL,
+            form: {
+              grant_type: "client_credentials",
+              client_id: client_id,
+              client_secret: client_secret,
+            },
+          )
 
         @@spotify_access_token = JSON.parse(response.body)["access_token"]
       end

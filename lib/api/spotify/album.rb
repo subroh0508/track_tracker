@@ -8,21 +8,21 @@ module Api
       include Api::Spotify::Base
       include Api::Spotify::JsonToHash
 
-      def fetch_album(id, locale)
+      def fetch_album(id, market)
         return nil if id.blank?
 
         response = send_request { |http, base_url|
           http.get(
             "#{base_url}/albums/#{id}",
             params: {
-              market: locale.upcase,
+              market: market.upcase,
             },
           )
         }
         to_album_hash(JSON.parse(response.body))
       end
 
-      def fetch_albums_from_artist(artist_id, locale)
+      def fetch_albums_from_artist(artist_id, market)
         return [] if artist_id.blank?
 
         response = send_request { |http, base_url|
@@ -30,7 +30,7 @@ module Api
             "#{base_url}/artists/#{artist_id}/albums",
             params: {
               include_groups: "album,single,appears_on,compilation",
-              market: locale.upcase,
+              market: market.upcase,
             },
           )
         }

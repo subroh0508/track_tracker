@@ -16,22 +16,22 @@ module Api
                        :RESULT_KEY_ARTISTS,
                        :RESULT_KEY_TRACKS
 
-      def search_albums(query, locale)
+      def search_albums(query, market)
         search(
           Api::Spotify::TYPE_ALBUM,
           query,
-          locale,
+          market,
           RESULT_KEY_ALBUMS,
         ).map { |item|
           to_album_hash(item)
         }
       end
 
-      def search_artists(query, locale)
+      def search_artists(query, market)
         search(
           Api::Spotify::TYPE_ARTIST,
           query,
-          locale,
+          market,
           RESULT_KEY_ARTISTS,
         ).map { |item|
           to_artist_hash(item)
@@ -40,7 +40,7 @@ module Api
 
       private
 
-      def search(type, query, locale, result_key)
+      def search(type, query, market, result_key)
         return [] if query.blank?
 
         response = send_request { |http, base_url|
@@ -49,7 +49,7 @@ module Api
             params: {
               q: query,
               type: type,
-              market: locale.upcase,
+              market: market.upcase,
             },
           )
         }
