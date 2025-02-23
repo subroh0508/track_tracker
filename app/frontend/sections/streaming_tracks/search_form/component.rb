@@ -3,10 +3,9 @@
 module StreamingTracks
   module SearchForm
     class Component < ViewComponent::Base
-      attr_reader :base_url, :params, :data, :classes
+      attr_reader :params, :data, :classes
 
       def initialize(
-        base_url: "",
         params: {
           brand: Api::SPOTIFY,
           type: Api::TYPE_ALBUM,
@@ -14,7 +13,6 @@ module StreamingTracks
         data: {},
         classes: ""
       )
-        @base_url = base_url
         @params = params
         @data = data
         @classes = classes
@@ -49,25 +47,49 @@ module StreamingTracks
       end
 
       def href_spotify
-        "#{base_url}/#{Api::SPOTIFY}/#{params[:type]}/search#{query}"
+        url_for(
+          controller: :streaming_tracks,
+          action: :search,
+          brand: Api::SPOTIFY,
+          type: params[:type],
+          params: query,
+        )
       end
 
       def href_apple_music
-        "#{base_url}/#{Api::APPLE_MUSIC}/#{params[:type]}/search#{query}"
+        url_for(
+          controller: :streaming_tracks,
+          action: :search,
+          brand: Api::APPLE_MUSIC,
+          type: params[:type],
+          params: query,
+        )
       end
 
       def href_youtube_music
-        "#{base_url}/#{Api::YOUTUBE_MUSIC}/#{params[:type]}/search#{query}"
+        url_for(
+          controller: :streaming_tracks,
+          action: :search,
+          brand: Api::YOUTUBE_MUSIC,
+          type: params[:type],
+          params: query,
+        )
       end
 
       def search_by_album_path
-        "#{base_url}/#{params[:brand]}/#{Api::TYPE_ALBUM}/search"
+        url_for(
+          controller: :streaming_tracks,
+          action: :search,
+          brand: params[:brand],
+          type: Api::TYPE_ALBUM,
+          params: query,
+        )
       end
 
       private
 
       def query
-        "?id=#{params[:id]}&query=#{params[:query]}"
+        params.slice(:id, :query)
       end
     end
   end

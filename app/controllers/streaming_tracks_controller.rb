@@ -8,7 +8,6 @@ class StreamingTracksController < ApplicationController
       brand: Api::SPOTIFY,
       type: Api::TYPE_ALBUM,
     )
-    # redirect_to "/#{I18n.locale}/streaming_tracks/register/#{Api::SPOTIFY}/#{Api::TYPE_ALBUM}/search"
   end
 
   def search

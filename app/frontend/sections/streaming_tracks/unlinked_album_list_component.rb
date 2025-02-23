@@ -2,10 +2,9 @@
 
 module StreamingTracks
   class UnlinkedAlbumListComponent < ViewComponent::Base
-    attr_reader :base_url, :params, :target_album, :items, :data
+    attr_reader :params, :target_album, :items, :data
 
     def initialize(
-      base_url: "",
       params: {
         brand: Api::SPOTIFY,
         type: Api::TYPE_ALBUM,
@@ -14,7 +13,6 @@ module StreamingTracks
       items: [],
       data: {}
     )
-      @base_url = base_url
       @params = params
       @target_album = target_album
       @items = items
@@ -50,11 +48,23 @@ module StreamingTracks
     end
 
     def href_back
-      "#{base_url}/#{params[:brand]}/#{params[:type]}/search#{query}"
+      url_for(
+        controller: :streaming_tracks,
+        action: :search,
+        brand: params[:brand],
+        type: params[:type],
+        params: params.slice(:id, :query),
+      )
     end
 
     def link_url(id)
-      "#{base_url}/#{params[:brand]}/#{params[:type]}/#{id}"
+      url_for(
+        controller: :streaming_tracks,
+        action: :link,
+        brand: params[:brand],
+        type: params[:type],
+        target_id: id,
+      )
     end
 
     private
@@ -65,10 +75,6 @@ module StreamingTracks
 
     def dark_header_style
       "dark:text-white"
-    end
-
-    def query
-      "?id=#{params[:id]}&query=#{params[:query]}"
     end
   end
 end

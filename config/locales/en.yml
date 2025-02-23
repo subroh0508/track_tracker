@@ -9,6 +9,10 @@ en:
       logout: "Logout"
   common:
     share: "Share"
+    back: "Back"
+    register: "Register"
+    registered: "Registered"
+    search: "Search"
   users:
     label:
       email_or_name: "Email or Username"
@@ -21,3 +25,7 @@ en:
       open_tracks: "Open Track List"
     show:
       open_player: "Open Player"
+    streaming_services:
+      label:
+        album_title: "Album Title"
+        album_id: "Album ID"

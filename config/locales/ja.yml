@@ -9,6 +9,10 @@ ja:
       logout: "ログアウト"
   common:
     share: "共有"
+    back: "戻る"
+    register: "登録"
+    registered: "登録済"
+    search: "検索"
   users:
     label:
       email_or_name: "メールアドレスまたはユーザー名"
@@ -21,3 +25,7 @@ ja:
       open_tracks: "トラックリストを開く"
     show:
       open_player: "プレイヤーを開く"
+    streaming_services:
+      label:
+        album_title: "アルバム名"
+        album_id: "アルバムID"

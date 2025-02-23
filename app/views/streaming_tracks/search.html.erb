@@ -12,13 +12,11 @@
       <%= turbo_frame_tag "brands" do %>
         <% if @target_album.blank? %>
           <%= render StreamingTracks::SearchForm::Component.new(
-            base_url: StreamingTracks::BASE_URL,
             params: @params_for_search,
             data: { turbo_frame: "brands", turbo_action: :advance },
             classes: "mb-5",
           ) %>
           <%= render StreamingTracks::Album::GridComponent.new(
-            base_url: StreamingTracks::BASE_URL,
             params: @params_for_search,
             items: @albums,
             data: { turbo_frame: "target_album", turbo_action: :advance },
@@ -28,7 +26,6 @@
 
       <% if @target_album.present? %>
         <%= render StreamingTracks::UnlinkedAlbumListComponent.new(
-          base_url: StreamingTracks::BASE_URL,
           params: @params_for_search,
           target_album: @target_album,
           items: @unlinked_albums,
