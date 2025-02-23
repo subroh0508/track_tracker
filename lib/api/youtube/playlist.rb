@@ -12,7 +12,7 @@ module Api
 
       private_constant :BASE_URL
 
-      def fetch_playlists(id, locale)
+      def fetch_playlists(id)
         return [] if id.blank?
 
         params = {
@@ -27,7 +27,7 @@ module Api
         json["items"].map { |item|
           {
             youtube_music_id: item["id"],
-            title: localized_title(item, locale),
+            title: localized_title(item),
             thumbnail_url: detect_thumbnail(item["snippet"], "standard"),
             year: item["snippet"]["publishedAt"][0..3],
             artists: [{
@@ -41,7 +41,7 @@ module Api
 
       private
 
-      def localized_title(item, locale)
+      def localized_title(item)
         value = item.dig("localizations", locale)
 
         if value.present?

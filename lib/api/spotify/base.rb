@@ -12,11 +12,12 @@ module Api
 
       @@spotify_access_token = nil
 
-      def initialize
+      def initialize(locale)
         @client_id = ENV["SPOTIFY_CLIENT_ID"]
         @client_secret = ENV["SPOTIFY_CLIENT_SECRET"]
         @logger = Logger.new(STDOUT)
         @http = HTTP.use(logging: { logger: logger })
+        @locale = locale
       end
 
       protected
@@ -27,14 +28,16 @@ module Api
         end
 
         response = yield(
-          http.auth("Bearer #{access_token}"),
+          http.auth("Bearer #{access_token}").
+            headers("Accept-Language" => locale),
           BASE_ENDPOINT
         )
 
         if response.status.unauthorized?
           reset_access_token
           yield(
-            http.auth("Bearer #{access_token}"),
+            http.auth("Bearer #{access_token}").
+              headers("Accept-Language" => locale),
             BASE_ENDPOINT
           )
         else
@@ -44,7 +47,7 @@ module Api
 
       private
 
-      attr_reader :client_id, :client_secret, :logger, :http
+      attr_reader :client_id, :client_secret, :logger, :http, :locale
 
       def reset_access_token
         @@spotify_access_token = nil

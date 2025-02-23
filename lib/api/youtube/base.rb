@@ -7,10 +7,11 @@ module Api
       TYPE_CHANNEL = "channel"
       TYPE_VIDEO = "video"
 
-      def initialize
+      def initialize(locale)
         @api_key = ENV["YOUTUBE_API_KEY"]
         @logger = Logger.new(STDOUT)
         @http = HTTP.use(logging: { logger: logger })
+        @locale = locale
       end
 
       protected
@@ -19,7 +20,7 @@ module Api
         snippet["thumbnails"][size]["url"]
       end
 
-      attr_reader :api_key, :logger, :http
+      attr_reader :api_key, :logger, :http, :locale
     end
   end
 end

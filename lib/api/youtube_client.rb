@@ -7,8 +7,8 @@ module Api
     include Api::Youtube::PlaylistItem
     include Api::Youtube::Search
 
-    def fetch_playlist(id, locale)
-      fetch_playlists(id, locale).map { |playlist|
+    def fetch_playlist(id)
+      fetch_playlists(id).map { |playlist|
         playlist.merge(
           tracks: fetch_tracks(
             playlist[:youtube_music_id],

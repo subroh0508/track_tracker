@@ -36,12 +36,12 @@ module StreamingTracks
     def search_albums(brand, params)
       case brand
       when Api::SPOTIFY
-        spotify_client.search_albums(params[:query], locale)
+        spotify_client.search_albums(params[:query], Api::Spotify::MARKET_US)
       when Api::APPLE_MUSIC
         []
         # apple_client.search_albums(params[:query])
       when Api::YOUTUBE_MUSIC
-        youtube_client.fetch_playlists(params[:id], locale)
+        youtube_client.fetch_playlists(params[:id])
       else
         raise ArgumentError, "Unknown brand: #{brand}"
       end

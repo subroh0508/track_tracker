@@ -4,8 +4,8 @@ module StreamingTracks
   module Common
     def initialize(locale)
       @locale = locale
-      @spotify_client = Api::SpotifyClient.new
-      @youtube_client = Api::YoutubeClient.new
+      @spotify_client = Api::SpotifyClient.new(locale)
+      @youtube_client = Api::YoutubeClient.new(locale)
     end
 
     protected

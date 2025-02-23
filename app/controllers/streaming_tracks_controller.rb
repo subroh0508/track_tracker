@@ -12,14 +12,14 @@ class StreamingTracksController < ApplicationController
 
   def search
     @params_for_search = params_for_search
-    @albums = StreamingTracks::SearchService.new("jp").
+    @albums = StreamingTracks::SearchService.new(I18n.locale).
       execute!(
         brand,
         type,
         params_for_search,
       )
 
-    @target_album = StreamingTracks::FindAlbumService.new("jp").
+    @target_album = StreamingTracks::FindAlbumService.new(I18n.locale).
       execute!(params)
 
     @unlinked_albums = StreamingTracks::SearchUnlinkedAlbumService.new.
@@ -27,10 +27,10 @@ class StreamingTracksController < ApplicationController
   end
 
   def register
-    json = StreamingTracks::FindAlbumService.new("jp").
+    json = StreamingTracks::FindAlbumService.new(I18n.locale).
       execute!(params)
 
-    StreamingTracks::ImportAlbumService.new("ja").
+    StreamingTracks::ImportAlbumService.new(I18n.locale).
       execute!([json])
 
     redirect_to_search

@@ -7,9 +7,9 @@ module StreamingTracks
     def execute!(params)
       case
       when params.key?(Streaming::KEY_SPOTIFY)
-        spotify_client.fetch_album(params[Streaming::KEY_SPOTIFY], locale)
+        spotify_client.fetch_album(params[Streaming::KEY_SPOTIFY], Api::Spotify::MARKET_JP)
       when params.key?(Streaming::KEY_YOUTUBE_MUSIC)
-        youtube_client.fetch_playlist(params[Streaming::KEY_YOUTUBE_MUSIC], "ja")
+        youtube_client.fetch_playlist(params[Streaming::KEY_YOUTUBE_MUSIC])
       else
         nil
       end

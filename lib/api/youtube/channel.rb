@@ -27,7 +27,7 @@ module Api
         json["items"].map { |item|
           {
             youtube_music_id: item["id"],
-            name: localized_title(item, "ja"),
+            name: localized_title(item),
             thumbnail_url: detect_thumbnail(item["snippet"], "high"),
           }
         }
@@ -35,7 +35,7 @@ module Api
 
       private
 
-      def localized_title(item, locale)
+      def localized_title(item)
         value = item.dig("localizations", locale)
 
         if value.present?
