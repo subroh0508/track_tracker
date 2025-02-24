@@ -14,6 +14,14 @@ class AlbumsController < ApplicationController
     @album = get_album
   end
 
+  def edit
+    @album = get_album
+  end
+
+  def update
+    redirect_to album_path(params[:id])
+  end
+
   def player
     @streaming_service = streaming_service
     @album = get_album

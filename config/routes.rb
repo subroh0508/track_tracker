@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       passwords: "users/passwords",
     }
 
-    resources :albums, only: %i[index show] do
+    resources :albums, only: %i[index show edit update] do
       member do
         get :player
       end
