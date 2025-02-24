@@ -13,7 +13,17 @@
               <%= item.label %>
             <% end %>
           <% end %>
-          <% if item.id.present? %>
+          <% if textarea?(item) %>
+            <%= render Textarea::Component.new(
+              id: item.id,
+              name: item.name,
+              placeholder: item.placeholder,
+              rows: 3,
+              required: item.required,
+              value: item.value,
+              classes: "block w-full",
+            ) %>
+          <% elsif input?(item) %>
             <%= render Input::Component.new(
               type: item.type,
               id: item.id,

@@ -35,6 +35,14 @@ module Albums
         }
       end
 
+      def textarea?(item)
+        item.type == "textarea"
+      end
+
+      def input?(item)
+        item.type.present?
+      end
+
       private
 
       attr_reader :album
@@ -44,7 +52,7 @@ module Albums
           id: "title",
           name: "album[title]",
           label: t("albums.label.album_title"),
-          type: "text",
+          type: "textarea",
           icon_class: Icon::CompactDisc,
           placeholder: t("albums.label.album_title"),
           value: album[:title],
