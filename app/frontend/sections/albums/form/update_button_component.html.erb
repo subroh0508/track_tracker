@@ -1,0 +1,29 @@
+<div class="<%= classes %>"
+  role="group"
+>
+  <%= render Button::Component.new(
+    variant: Button::CONTAINED,
+    shape: Button::SQUARE,
+    type: "submit",
+    form_method: :put,
+    form_action: primary_action,
+    classes: primary_button_classes,
+  ) do %>
+    <%= t("common.update") %>
+  <% end %>
+  <%= render Dropdown::Component.new(
+    anchor: Dropdown::Anchor::RIGHT_BOTTOM,
+    button_classes: dropdown_button_classes,
+    dropdown_classes: "w-68 -translate-x-60.5",
+    classes: "h-full",
+  ) do |component| %>
+    <% component.with_button do %>
+      <%= render Icon::CaretDown.new %>
+    <% end %>
+    <% dropdown_items.each do |item| %>
+      <%= component.with_item do %>
+        <%= item %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

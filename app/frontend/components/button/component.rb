@@ -2,7 +2,7 @@
 
 module Button
   class Component < ViewComponent::Base
-    attr_reader :variant, :icon, :type, :shape, :size
+    attr_reader :variant, :icon, :type, :shape, :size, :form_action, :form_method
 
     def initialize(
       variant: Button::TEXT,
@@ -11,6 +11,8 @@ module Button
       type: "button",
       shape: Button::ROUNDED,
       size: Button::BASE,
+      form_action: nil,
+      form_method: nil,
       classes: ""
     )
       @variant = variant
@@ -19,6 +21,8 @@ module Button
       @type = type
       @shape = shape
       @size = size
+      @form_action = form_action
+      @form_method = form_method
       @classes = classes
     end
 

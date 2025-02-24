@@ -79,7 +79,7 @@ module Albums
           icon_class: Icon::Spotify,
           placeholder: t("albums.placeholder.spotify_id"),
           value: album[:spotify_id],
-          required: true,
+          required: false,
         )
       end
 
@@ -91,7 +91,7 @@ module Albums
           icon_class: Icon::AppleMusic,
           placeholder: t("albums.placeholder.apple_music_id"),
           value: album[:apple_music_id],
-          required: true,
+          required: false,
         )
       end
 
@@ -103,7 +103,7 @@ module Albums
           icon_class: Icon::YoutubeMusic,
           placeholder: t("albums.placeholder.youtube_music_id"),
           value: album[:youtube_music_id],
-          required: true,
+          required: false,
         )
       end
 

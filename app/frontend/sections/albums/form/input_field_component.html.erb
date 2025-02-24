@@ -35,6 +35,24 @@
         <% end %>
       <% end %>
     </div>
+    <div class="flex justify-end mb-4">
+      <%= render Albums::Form::UpdateButtonComponent.new do |component| %>
+        <% component.with_dropdown_item do %>
+          <%= render Dropdown::ListComponent.new(
+            href: "#",
+          ) do %>
+            <%= t("albums.edit.update_all_by_spotify") %>
+          <% end %>
+        <% end %>
+        <% component.with_dropdown_item do %>
+          <%= render Dropdown::ListComponent.new(
+            href: "#",
+          ) do %>
+            <%= t("albums.edit.update_all_by_apple_music") %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
     <hr>
   <% end %>
 <% end %>

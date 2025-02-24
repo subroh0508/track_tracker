@@ -13,6 +13,7 @@ ja:
     register: "登録"
     registered: "登録済"
     search: "検索"
+    update: "更新"
   streaming_services:
     spotify: "Spotify"
     apple_music: "Apple Music"
@@ -40,5 +41,8 @@ ja:
       open_tracks: "トラックリストを開く"
     show:
       open_player: "プレイヤーを開く"
+    edit:
+      update_all_by_spotify: "Spotifyの情報で全て更新"
+      update_all_by_apple_music: "Apple Musicの情報で全て更新"
     streaming_services:
       unlinked_albums: "登録可能なアルバム: %{count}件"

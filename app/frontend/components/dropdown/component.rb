@@ -10,7 +10,7 @@ module Dropdown
     def initialize(
       anchor: Dropdown::Anchor::LEFT_BOTTOM,
       button_classes: "",
-      dropdown_classes: "",
+      dropdown_classes: "w-56",
       classes: ""
     )
       @anchor = anchor
@@ -24,7 +24,6 @@ module Dropdown
         "hidden",
         @anchor,
         "mt-2",
-        "w-56",
         "rounded-md",
         "shadow-lg",
         "bg-white",

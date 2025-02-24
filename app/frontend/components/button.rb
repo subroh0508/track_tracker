@@ -5,6 +5,7 @@ module Button
   CONTAINED = "contained".freeze
   OUTLINED = "outlined".freeze
 
+  SQUARE = "".freeze
   ROUNDED = "rounded-lg".freeze
   PILLS = "rounded-full".freeze
 

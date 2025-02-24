@@ -13,6 +13,7 @@ en:
     register: "Register"
     registered: "Registered"
     search: "Search"
+    update: "Update"
   streaming_services:
     spotify: "Spotify"
     apple_music: "Apple Music"
@@ -40,6 +41,9 @@ en:
       open_tracks: "Open Track List"
     show:
       open_player: "Open Player"
+    edit:
+      update_all_by_spotify: "Update all by Spotify"
+      update_all_by_apple_music: "Update all by Apple Music"
     streaming_services:
       unlinked_albums:
         zero: "Can be registered: no albums"
