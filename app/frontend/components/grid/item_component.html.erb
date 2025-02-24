@@ -1,8 +1,8 @@
 <div class="<%= classes %>">
-    <img class="<%= thumbnail_classes %>"
-      src="<%= thumbnail_url %>"
-      alt=""
-    >
+    <%= render Grid::ThumbnailComponent.new(
+      src: thumbnail_url,
+      shape: thumbnail_shape,
+    ) %>
     <div class="<%= header_classes %>">
       <%= header %>
     </div>
