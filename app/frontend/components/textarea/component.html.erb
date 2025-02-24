@@ -1,0 +1,6 @@
+<textarea id="<%= id %>"
+  name="<%= name || id %>"
+  class="<%= classes %>"
+  placeholder="<%= placeholder || "" %>"
+  <%= required? ? "required" : nil %>
+  <%= disabled? ? "disabled" : nil %>><%= value %></textarea>
