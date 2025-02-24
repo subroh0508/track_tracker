@@ -1,0 +1,11 @@
+<div class="<%= classes %>">
+  <%= render Grid::ThumbnailComponent.new(
+    src: album[:thumbnail_url],
+    shape: Grid::THUMBNAIL_ROUNDED,
+  ) %>
+  <%= render Albums::Form::InputFieldComponent.new(
+    album: album,
+    classes: form_classes,
+  ) %>
+  <%= content %>
+</div>

@@ -76,6 +76,9 @@ class Artist < ApplicationRecord
     {
       id: id,
       name: localized_name!(locale, default_locale),
+      spotify_id: spotify_id,
+      apple_music_id: apple_music_id,
+      youtube_music_id: youtube_music_id,
     }
   end
 end

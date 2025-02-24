@@ -3,7 +3,7 @@
     label_for: StreamingTracks::FORM_ID,
     classes: label_classes(StreamingTracks::FORM_ID),
   ) do %>
-    <%= t("albums.streaming_services.label.album_id") %>
+    <%= t("albums.label.album_id") %>
   <% end %>
   <%= render Input::Component.new(
     type: input_type(StreamingTracks::FORM_ID),
@@ -17,7 +17,7 @@
     label_for: StreamingTracks::FORM_QUERY,
     classes: label_classes(StreamingTracks::FORM_QUERY),
   ) do %>
-    <%= t("albums.streaming_services.label.album_title") %>
+    <%= t("albums.label.album_title") %>
   <% end %>
   <%= render Input::Component.new(
     type: input_type(StreamingTracks::FORM_QUERY),

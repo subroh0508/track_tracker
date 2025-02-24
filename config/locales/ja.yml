@@ -25,12 +25,20 @@ ja:
     new_password: "パスワードをお忘れの方はこちら"
     sign_up: "TrackTrackerに登録する"
   albums:
+    label:
+      album_title: "アルバム名"
+      album_id: "アルバムID"
+      artist_name: "アーティスト名 (%{index})"
+      artist_id: "アーティストID (%{index})"
+    placeholder:
+      album_title: "アルバム名"
+      artist_name: "アーティスト名"
+      spotify_id: "Spotify ID"
+      apple_music_id: "Apple Music ID"
+      youtube_music_id: "YouTube Music ID"
     player:
       open_tracks: "トラックリストを開く"
     show:
       open_player: "プレイヤーを開く"
     streaming_services:
-      label:
-        album_title: "アルバム名"
-        album_id: "アルバムID"
       unlinked_albums: "登録可能なアルバム: %{count}件"
