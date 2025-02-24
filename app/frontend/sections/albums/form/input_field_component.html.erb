@@ -1,36 +1,40 @@
-<%= form_with class: classes,
-  method: :put,
-  url: url do
-%>
-    <% sections.each do |items| %>
-      <div class="flex flex-col gap-2 mb-5">
-        <% items.each do |item| %>
-          <% if item.label.present? %>
-            <%= render InputField::LabelComponent.new(
-              label_for: item.id,
-              classes: "block",
-            ) do %>
-              <%= item.label %>
-            <% end %>
-          <% end %>
-          <% if textarea?(item) %>
-            <%= render Textarea::Component.new(
-              id: item.id,
-              name: item.name,
-              placeholder: item.placeholder,
-              rows: item.rows,
-              required: item.required,
-              value: item.value,
-              classes: "block w-full",
-            ) %>
-          <% elsif id?(item) %>
-            <%= render Albums::Form::Input::IdComponent.new(
-              item: item,
-              classes: "block w-full",
-            ) %>
+<% sections.each do |items| %>
+  <%= form_with class: "mt-4" do %>
+    <div class="flex flex-col gap-2 mb-4">
+      <% items.each do |item| %>
+        <% if item.label.present? %>
+          <%= render InputField::LabelComponent.new(
+            label_for: item.id,
+            classes: "block",
+          ) do %>
+            <%= item.label %>
           <% end %>
         <% end %>
-      </div>
-      <hr class="mb-3">
-    <% end %>
+        <% if textarea?(item) %>
+          <%= render Textarea::Component.new(
+            id: item.id,
+            name: item.name,
+            placeholder: item.placeholder,
+            rows: item.rows,
+            required: item.required,
+            value: item.value,
+            classes: "block w-full",
+          ) %>
+        <% elsif id?(item) %>
+          <%= render Input::Component.new(
+            type: item.type,
+            id: item.id,
+            name: item.name,
+            placeholder: item.placeholder,
+            required: item.required,
+            value: item.value,
+            classes: "block w-full",
+          ) do |component| %>
+            <% component.with_icon(icon_class: item.icon_class) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
 <% end %>
