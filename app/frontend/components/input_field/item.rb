@@ -8,6 +8,7 @@ module InputField
     :type,
     :icon_class,
     :placeholder,
+    :rows,
     :required,
     :value,
     keyword_init: true,

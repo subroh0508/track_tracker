@@ -18,23 +18,16 @@
               id: item.id,
               name: item.name,
               placeholder: item.placeholder,
-              rows: 3,
+              rows: item.rows,
               required: item.required,
               value: item.value,
               classes: "block w-full",
             ) %>
-          <% elsif input?(item) %>
-            <%= render Input::Component.new(
-              type: item.type,
-              id: item.id,
-              name: item.name,
-              placeholder: item.placeholder,
-              required: item.required,
-              value: item.value,
+          <% elsif id?(item) %>
+            <%= render Albums::Form::Input::IdComponent.new(
+              item: item,
               classes: "block w-full",
-            ) do |component| %>
-              <% component.with_icon(icon_class: item.icon_class) %>
-            <% end %>
+            ) %>
           <% end %>
         <% end %>
       </div>

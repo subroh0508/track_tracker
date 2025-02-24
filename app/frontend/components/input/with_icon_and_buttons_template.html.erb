@@ -8,7 +8,9 @@
     value: nil,
   ) do |c| %>
     <% c.with_icon(icon_class: Icon::MagnifyingGlass) %>
-    <% c.with_button(label: button_label) %>
+    <% c.with_button do %>
+      <%= button_label %>
+    <% end %>
   <% end %>
   <%= render Input::Component.new(
     type: type,
@@ -19,7 +21,9 @@
     value: nil,
   ) do |c| %>
     <% c.with_icon(icon_class: Icon::MagnifyingGlass) %>
-    <% c.with_button(label: button_label) %>
+    <% c.with_button do %>
+      <%= button_label %>
+    <% end %>
   <% end %>
   <%= render Input::Component.new(
     type: type,
@@ -30,6 +34,8 @@
     value: nil,
   ) do |c| %>
     <% c.with_icon(icon_class: Icon::MagnifyingGlass) %>
-    <% c.with_button(label: button_label) %>
+    <% c.with_button do %>
+      <%= button_label %>
+    <% end %>
   <% end %>
 </div>

@@ -39,8 +39,12 @@ module Albums
         item.type == "textarea"
       end
 
-      def input?(item)
-        item.type.present?
+      def id?(item)
+        [
+          Streaming::KEY_SPOTIFY,
+          Streaming::KEY_APPLE_MUSIC,
+          Streaming::KEY_YOUTUBE_MUSIC,
+        ].any? { |key| item.id&.include?(key.to_s) }
       end
 
       private
@@ -55,6 +59,7 @@ module Albums
           type: "textarea",
           icon_class: Icon::CompactDisc,
           placeholder: t("albums.label.album_title"),
+          rows: 3,
           value: album[:title],
           required: true,
         )
@@ -107,9 +112,10 @@ module Albums
           id: "artist_name_#{index}",
           name: "album[artists][][name]",
           label: t("albums.label.artist_name", index: index),
-          type: "text",
+          type: "textarea",
           icon_class: Icon::User,
           placeholder: t("albums.placeholder.artist_name"),
+          rows: 1,
           value: artist[:name],
           required: true,
         )

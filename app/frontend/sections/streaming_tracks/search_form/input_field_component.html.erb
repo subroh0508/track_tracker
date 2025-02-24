@@ -11,7 +11,9 @@
     value: params[:id],
   ) do |component| %>
     <% component.with_icon(icon_class: Icon::CompactDisc) %>
-    <% component.with_button(label: t("common.search")) %>
+    <% component.with_button do %>
+      <%= t("common.search") %>
+    <% end %>
   <% end %>
   <%= render InputField::LabelComponent.new(
     label_for: StreamingTracks::FORM_QUERY,
@@ -25,6 +27,8 @@
     value: params[:query],
   ) do |component|%>
     <% component.with_icon(icon_class: Icon::CompactDisc) %>
-    <% component.with_button(label: t("common.search")) %>
+    <% component.with_button do %>
+      <%= t("common.search") %>
+    <% end %>
   <% end %>
 <% end %>

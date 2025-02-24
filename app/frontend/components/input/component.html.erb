@@ -28,7 +28,14 @@
       ) %>
     </div>
     <% if button? %>
-      <%= button %>
+      <%= render Button::Component.new(
+        variant: Button::CONTAINED,
+        type: "submit",
+        disabled: disabled?,
+        size: "px-4 py-2 text-sm",
+      ) do %>
+        <%= button %>
+      <% end %>
     <% end %>
   </div>
 <% end %>

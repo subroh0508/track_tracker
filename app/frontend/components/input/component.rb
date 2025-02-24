@@ -8,14 +8,7 @@ module Input
       )
     end
 
-    renders_one :button, ->(label:) do
-      Button::Component.new(
-        variant: Button::CONTAINED,
-        type: "submit",
-        disabled: disabled?,
-        size: "px-4 py-2 text-sm",
-      ).with_content(label)
-    end
+    renders_one :button
 
     attr_reader :type, :id, :name, :placeholder, :value
 
