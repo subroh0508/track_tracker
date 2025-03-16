@@ -6,7 +6,7 @@
     shape: Button::SQUARE,
     type: "submit",
     form_method: :put,
-    form_action: primary_action,
+    form_action: form_action(id),
     classes: primary_button_classes,
   ) do %>
     <%= t("common.update") %>
@@ -20,9 +20,24 @@
     <% component.with_button do %>
       <%= render Icon::CaretDown.new %>
     <% end %>
-    <% dropdown_items.each do |item| %>
-      <%= component.with_item do %>
-        <%= item %>
+    <% component.with_item do %>
+      <%= render Dropdown::ButtonComponent.new(
+        type: "submit",
+        shape: Button::SQUARE,
+        form_method: :put,
+        form_action: form_action(id, Api::SPOTIFY),
+      ) do %>
+        <%= t("albums.edit.update_all_by_spotify") %>
+      <% end %>
+    <% end %>
+    <% component.with_item do %>
+      <%= render Dropdown::ButtonComponent.new(
+        type: "submit",
+        shape: Button::SQUARE,
+        form_method: :put,
+        form_action: form_action(id, Api::APPLE_MUSIC),
+      ) do %>
+        <%= t("albums.edit.update_all_by_apple_music") %>
       <% end %>
     <% end %>
   <% end %>

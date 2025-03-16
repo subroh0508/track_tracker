@@ -3,15 +3,13 @@
 module Albums
   module Form
     class UpdateButtonComponent < ViewComponent::Base
-      renders_many :dropdown_items
-
-      attr_reader :primary_action
+      attr_reader :id
 
       def initialize(
-        primary_action: "#",
+        id: nil,
         classes: ""
       )
-        @primary_action = primary_action
+        @id = id
         @classes = classes
       end
 
@@ -41,6 +39,17 @@ module Albums
           dark:hover:bg-primary-700
           rounded-r-lg
         ].join(" ")
+      end
+
+      def form_action(id, streaming_service = nil)
+        url_for(
+          controller: :albums,
+          action: :update,
+          id: id,
+          params: {
+            streaming_service: streaming_service,
+          },
+        )
       end
 
       private

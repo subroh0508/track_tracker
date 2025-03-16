@@ -3,15 +3,13 @@
 module Albums
   module Form
     class InputFieldComponent < ViewComponent::Base
-      attr_reader :url, :classes
+      attr_reader :classes, :album
 
       def initialize(
         album: {},
-        url: "#",
         classes: ""
       )
         @album = album
-        @url = url
         @classes = classes
       end
 
@@ -48,8 +46,6 @@ module Albums
       end
 
       private
-
-      attr_reader :album
 
       def album_title
         InputField::Item.new(
