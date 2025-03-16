@@ -2,7 +2,7 @@
 
 module StreamingTracks
   class ImportAlbumService
-    include StreamingService
+    include StreamingService::Common
 
     def initialize(locale)
       @locale = locale

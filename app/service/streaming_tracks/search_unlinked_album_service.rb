@@ -2,7 +2,7 @@
 
 module StreamingTracks
   class SearchUnlinkedAlbumService
-    include StreamingService
+    include StreamingService::Common
 
     def execute!(params)
       column_name = detect_column_name_by_streaming_service_id(params)

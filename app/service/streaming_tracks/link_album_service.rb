@@ -2,7 +2,7 @@
 
 module StreamingTracks
   class LinkAlbumService
-    include StreamingService
+    include StreamingService::Common
 
     def execute!(
       id,
