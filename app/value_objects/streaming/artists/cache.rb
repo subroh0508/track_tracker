@@ -26,6 +26,7 @@ module Streaming
 
       def artists
         @artists ||= Artist.where(key => ids).
+          with_translations.
           reduce({}) { |acc, artist|
             acc.tap { |o| o[artist.send(key)] = artist }
           }

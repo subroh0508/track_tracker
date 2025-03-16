@@ -26,6 +26,7 @@ module Streaming
 
       def tracks
         @tracks ||= Track.where(key => ids).
+          with_translations.
           reduce({}) { |acc, track|
             acc.tap { |o| o[track.send(key)] = track }
           }
