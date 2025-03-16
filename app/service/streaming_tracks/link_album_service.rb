@@ -8,7 +8,7 @@ module StreamingTracks
       id,
       params
     )
-      column_name = detect_streaming_service_id_column_name(params)
+      column_name = detect_column_name_by_streaming_service_id(params)
 
       album = ::Album.find_by!(id: id)
 

@@ -9,7 +9,7 @@ module StreamingTracks
     end
 
     def execute!(albums_params)
-      column_name = detect_streaming_service_id_column_name(albums_params[0])
+      column_name = detect_column_name_by_streaming_service_id(albums_params[0])
 
       reset_cache(column_name, albums_params)
 
